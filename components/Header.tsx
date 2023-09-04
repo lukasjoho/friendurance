@@ -4,7 +4,7 @@ import { Icons } from "./Icons";
 
 const Header = () => {
   return (
-    <div className="w-full h-14 flex items-center border-b">
+    <div className="w-full h-14 flex items-center border-b ">
       <Container>
         <Icons.logo className="h-5" />
       </Container>

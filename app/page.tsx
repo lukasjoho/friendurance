@@ -9,7 +9,7 @@ export default function Home() {
       <div className="flex flex-col items-center gap-8">
         <Icons.logo className="w-[300px]" />
         <Link
-          href={`https://www.strava.com/oauth/authorize?client_id=113174&redirect_uri=http://localhost:3000&response_type=code&scope=read_all,profile:read_all,activity:read_all`}
+          href={`https://www.strava.com/oauth/authorize?client_id=${process.env.STRAVA_CLIENT_ID}&redirect_uri=${process.env.STRAVA_REDIRECT_URI}/api/strava&response_type=code&scope=read_all,profile:read_all,activity:read_all`}
         >
           <Button className="w-32" variant="brand">
             Login

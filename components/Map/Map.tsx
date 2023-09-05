@@ -8,7 +8,7 @@ const Map = async () => {
   const activities = await prisma.activity.findMany({
     select: {
       startLatLng: true,
-      athlete: {
+      user: {
         select: {
           imageUrl: true,
           firstName: true,

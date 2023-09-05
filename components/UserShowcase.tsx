@@ -1,14 +1,13 @@
 import { prisma } from "@/lib/prisma";
-import { Athlete, AthleteWithStats } from "@/lib/types";
+import { AthleteWithStats } from "@/lib/types";
 import React, { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Container from "./Container";
-import { Disc } from "lucide-react";
 
 const UserShowcase = async () => {
-  const athletes: any = await prisma.athlete.findMany({
+  const athletes: any = await prisma.user.findMany({
     include: {
-      athleteStats: true,
+      userStats: true,
     },
   });
 

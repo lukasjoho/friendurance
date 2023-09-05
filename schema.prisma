@@ -9,22 +9,22 @@ datasource db {
 
 }
 
-model Athlete {
+model User {
     id        String    @id @default(cuid())
-    athleteId  String    @unique
+    userId  String    @unique
     activities Activity[]
     firstName String?
     lastName String?
     imageUrl String?
     createdAt     DateTime @default(now())
-    athleteStats AthleteStats?
+    userStats UserStats?
 }
 
-model AthleteStats {
+model UserStats {
     id        String    @id @default(cuid())
-    athlete    Athlete  @relation(fields: [athleteId], references: [athleteId])
-    athleteId  String   @unique
-     @@index([athleteId])
+    user    User  @relation(fields: [userId], references: [userId])
+    userId  String   @unique
+     @@index([userId])
     totalRunDistance Float?
     totalSwimDistance Float?
     totalRideDistance Float?
@@ -33,9 +33,9 @@ model AthleteStats {
 model Activity {
     id        String    @id @default(cuid())
     activityId  String    @unique
-    athlete    Athlete    @relation(fields: [athleteId], references: [athleteId])
-    athleteId  String
-    @@index([athleteId])
+    user    User    @relation(fields: [userId], references: [userId])
+    userId  String
+    @@index([userId])
     type String?
     startDate String?
     startLatLng Json?

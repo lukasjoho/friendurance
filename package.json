@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.405.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
@@ -16,6 +17,7 @@
     "@uiw/react-heat-map": "^2.1.1",
     "@uiw/react-tooltip": "^4.21.28",
     "autoprefixer": "10.4.15",
+    "aws-crt": "^1.18.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "eslint": "8.48.0",
@@ -28,6 +30,10 @@
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.3"
   }
 }

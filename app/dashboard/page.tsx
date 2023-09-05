@@ -14,6 +14,13 @@ const DashboardPage = async () => {
   });
   const data = await res.json();
 
+  const resUser = await fetch(`https://www.strava.com/api/v3/athlete`, {
+    headers: {
+      Authorization: `Bearer ${accessTokenCookie?.value}`,
+    },
+  });
+  const dataUser = await resUser.json();
+
   const values = data.map((activity: any) => ({
     date: transformDate(activity.start_date_local),
     count: activity.moving_time,
@@ -23,7 +30,7 @@ const DashboardPage = async () => {
       <Header />
 
       <Heatmap values={values} />
-
+      <pre>USER: {JSON.stringify(dataUser, null, 2)}</pre>
       <pre>ACCESS TOKEN: {JSON.stringify(accessTokenCookie, null, 2)}</pre>
       <pre>DATA: {JSON.stringify(data, null, 2)}</pre>
     </div>

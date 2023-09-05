@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  relationMode = "prisma"
+
+}
+
+model Athlete {
+    id        String    @id @default(cuid())
+    athleteId  String    @unique
+    activities Activity[]
+    firstName String?
+    lastName String?
+    imageUrl String?
+    createdAt     DateTime @default(now())
+    athleteStats AthleteStats?
+}
+
+model AthleteStats {
+    id        String    @id @default(cuid())
+    athlete    Athlete  @relation(fields: [athleteId], references: [athleteId])
+    athleteId  String   @unique
+     @@index([athleteId])
+    totalRunDistance Float?
+    totalSwimDistance Float?
+    totalRideDistance Float?
+}
+
+model Activity {
+    id        String    @id @default(cuid())
+    activityId  String    @unique
+    athlete    Athlete    @relation(fields: [athleteId], references: [id])
+    athleteId  String
+    @@index([athleteId])
+    type String?
+    startDate String?
+    startLatLng Json?
+    distance Float?
+    movingTime Int?
+}
+

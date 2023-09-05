@@ -5,6 +5,29 @@ import { cn } from "@/lib/utils";
 export type Icon = LucideIcon;
 
 export const Icons = {
+  stravaRaw: (props: LucideProps) => (
+    <svg
+      width="272"
+      height="400"
+      viewBox="0 0 272 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g clip-path="url(#clip0_9_9)">
+        <path d="M0 232L112 0L224 232H152L112 136L72 232H0Z" fill="white" />
+        <path
+          d="M160 232L192 304L224 232H272L192 400L112 232H160Z"
+          fill="#FDA580"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_9_9">
+          <rect width="272" height="400" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  ),
   logo: (props: LucideProps) => (
     <svg
       viewBox="0 0 96 10"

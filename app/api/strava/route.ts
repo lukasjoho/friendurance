@@ -1,8 +1,4 @@
-import { client } from "@/lib/dynamodb";
-import {
-  BatchWriteItemCommand,
-  PutItemCommand,
-} from "@aws-sdk/client-dynamodb";
+import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -23,21 +19,10 @@ export async function GET(req: NextRequest) {
     },
   });
   const stravaData = await stravaUser.json();
-  const Item = {
-    id: { S: stravaData.id.toString() },
-    firstName: { S: stravaData.firstname },
-    lastName: { S: stravaData.lastname },
-    imageUrl: { S: stravaData.profile },
-  };
-  const user = await client.send(
-    new PutItemCommand({
-      TableName: "users",
-      Item,
-    })
-  );
+  cookies().set("athleteId", data.athlete.id);
 
-  const resActivities = await fetch(
-    `https://www.strava.com/api/v3/athlete/activities?per_page=25`,
+  const activitiesRes = await fetch(
+    `https://www.strava.com/api/v3/athlete/activities?per_page=100`,
     {
       method: "GET",
       headers: {
@@ -45,33 +30,38 @@ export async function GET(req: NextRequest) {
       },
     }
   );
+  const activitiesData = await activitiesRes.json();
 
-  const dataActivities = await resActivities.json();
+  const userObj = {
+    athleteId: String(stravaData.id),
+    firstName: stravaData.firstname,
+    lastName: stravaData.lastname,
+    imageUrl: stravaData.profile,
+  };
+  const dbAthlete = await prisma.athlete.upsert({
+    where: { athleteId: String(stravaData.id) },
+    update: userObj,
+    create: userObj,
+  });
 
-  const updatedActivities = await client.send(
-    new BatchWriteItemCommand({
-      RequestItems: {
-        activities: dataActivities.map((activity: any) => ({
-          PutRequest: {
-            Item: {
-              id: { S: activity.id.toString() },
-              name: { S: activity.name },
-              distance: { S: activity.distance?.toString() },
-              movingTime: { S: activity.moving_time?.toString() },
-              type: { S: activity.type },
-              startDate: { S: activity.start_date },
-              startLatLng: {
-                L: [
-                  { S: activity.start_latlng?.[0]?.toString() ?? "" },
-                  { S: activity.start_latlng?.[1]?.toString() ?? "" },
-                ],
-              },
-            },
-          },
-        })),
-      },
+  const upsertedActivities = await prisma.$transaction(
+    activitiesData.map((activity: any) => {
+      const newActivity = {
+        activityId: String(activity.id),
+        distance: activity.distance,
+        movingTime: activity.moving_time,
+        type: activity.type,
+        startDate: activity.start_date,
+        startLatLng: activity.start_latlng,
+        athlete: { connect: { athleteId: String(activity.athlete.id) } },
+      };
+      return prisma.activity.upsert({
+        where: { activityId: String(activity.id) },
+        update: newActivity,
+        create: newActivity,
+      });
     })
   );
 
-  return NextResponse.json({ updatedActivities });
+  return NextResponse.json({ upsertedActivities });
 }

@@ -1,7 +1,9 @@
 import { NextRequest } from "next/server";
 
-export async function middleware(req: NextRequest) {}
+export async function middleware(req: NextRequest) {
+  const cookieToken = req.cookies.get("accesstoken");
+}
 
 export const config = {
-  matcher: "/dashboard",
+  matcher: ["/dashboard", "/users"],
 };

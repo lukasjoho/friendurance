@@ -6,8 +6,7 @@ export const fetcher = async (url: string) => {
   const accessTokenCookie = cookieStore.get("accessToken");
   const accessToken = accessTokenCookie?.value;
   try {
-    const request = async (accessToken: string) => {
-      console.log("FIRING REQUEST", accessToken);
+    const request = (accessToken: string) => async () => {
       return await fetch(url, {
         headers: {
           Authorization: `Bearer ${String(accessToken)}`,
@@ -15,10 +14,7 @@ export const fetcher = async (url: string) => {
       });
     };
 
-    const data = await handleRequest(
-      () => request(accessToken as string),
-      accessToken as string
-    );
+    const data = await handleRequest(request, accessToken as string);
     return [data, null];
   } catch (error) {
     return [null, error];
@@ -26,21 +22,18 @@ export const fetcher = async (url: string) => {
 };
 
 const handleRequest = async (
-  request: (token: string) => Promise<any>,
+  requestGenerator: (token: string) => () => Promise<any>,
   accessToken: string
 ) => {
   try {
-    const res = await request(accessToken);
+    const res = await requestGenerator(accessToken)();
     if (res.status === 401) {
       const { accessToken: newAccessToken } = await refreshTokens();
-      console.log("NEW ACCESS TOKEN", newAccessToken);
-      const res = await request(newAccessToken);
-      console.log("NEW RES", res);
-
-      return;
+      const res = await requestGenerator(newAccessToken)();
+      const data = await res.json();
+      return data;
     }
     const data = await res.json();
-
     return data;
   } catch (error: any) {
     throw new Error(error);

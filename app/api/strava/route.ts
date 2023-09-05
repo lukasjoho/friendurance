@@ -44,24 +44,24 @@ export async function GET(req: NextRequest) {
     create: userObj,
   });
 
-  const upsertedActivities = await prisma.$transaction(
-    activitiesData.map((activity: any) => {
-      const newActivity = {
-        activityId: String(activity.id),
-        distance: activity.distance,
-        movingTime: activity.moving_time,
-        type: activity.type,
-        startDate: activity.start_date,
-        startLatLng: activity.start_latlng,
-        athlete: { connect: { athleteId: String(activity.athlete.id) } },
-      };
-      return prisma.activity.upsert({
-        where: { activityId: String(activity.id) },
-        update: newActivity,
-        create: newActivity,
-      });
-    })
-  );
+  // const upsertedActivities = await prisma.$transaction(
+  //   activitiesData.map((activity: any) => {
+  //     const newActivity = {
+  //       activityId: String(activity.id),
+  //       distance: activity.distance,
+  //       movingTime: activity.moving_time,
+  //       type: activity.type,
+  //       startDate: activity.start_date,
+  //       startLatLng: activity.start_latlng,
+  //       athlete: { connect: { athleteId: String(activity.athlete.id) } },
+  //     };
+  //     return prisma.activity.upsert({
+  //       where: { activityId: String(activity.id) },
+  //       update: newActivity,
+  //       create: newActivity,
+  //     });
+  //   })
+  // );
 
-  return NextResponse.json({ upsertedActivities });
+  return NextResponse.json({ dbAthlete });
 }

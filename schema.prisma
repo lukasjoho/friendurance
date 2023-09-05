@@ -33,7 +33,7 @@ model AthleteStats {
 model Activity {
     id        String    @id @default(cuid())
     activityId  String    @unique
-    athlete    Athlete    @relation(fields: [athleteId], references: [id])
+    athlete    Athlete    @relation(fields: [athleteId], references: [athleteId])
     athleteId  String
     @@index([athleteId])
     type String?

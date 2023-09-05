@@ -30,14 +30,10 @@ const DashboardPage = async () => {
     count: activity.moving_time,
   }));
   return (
-    <div>
-      <ImportDataPopUp />
+    <div className="flex flex-col gap-4 md:gap-8">
       <UserShowcase />
-      <Heatmap values={values} />
+      {/* <Heatmap values={values} /> */}
       <Map />
-      <pre>USER: {JSON.stringify(dataUser, null, 2)}</pre>
-      <pre>ACCESS TOKEN: {JSON.stringify(accessTokenCookie, null, 2)}</pre>
-      <pre>DATA: {JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 };

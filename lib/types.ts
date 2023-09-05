@@ -13,3 +13,13 @@ export interface StravaActivity {
   type?: string;
   start_date?: string;
 }
+
+export interface AthleteStats {
+  totalRunDistance: number;
+  totalSwimDistance: number;
+  totalRideDistance: number;
+}
+
+export interface AthleteWithStats extends Athlete {
+  athleteStats: AthleteStats | null;
+}

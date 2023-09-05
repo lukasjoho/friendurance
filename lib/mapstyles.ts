@@ -4,10 +4,7 @@ const mapStyle = [
     elementType: "geometry",
     stylers: [
       {
-        color: "#e9e9e9",
-      },
-      {
-        lightness: 17,
+        color: "#fafafa",
       },
     ],
   },
@@ -16,10 +13,7 @@ const mapStyle = [
     elementType: "geometry",
     stylers: [
       {
-        color: "#f5f5f5",
-      },
-      {
-        lightness: 20,
+        color: "#e4e4e7",
       },
     ],
   },

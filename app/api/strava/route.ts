@@ -1,5 +1,8 @@
 import { client } from "@/lib/dynamodb";
-import { PutItemCommand } from "@aws-sdk/client-dynamodb";
+import {
+  BatchWriteItemCommand,
+  PutItemCommand,
+} from "@aws-sdk/client-dynamodb";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -32,5 +35,43 @@ export async function GET(req: NextRequest) {
       Item,
     })
   );
-  return NextResponse.json({ user });
+
+  const resActivities = await fetch(
+    `https://www.strava.com/api/v3/athlete/activities?per_page=25`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${data.access_token}`,
+      },
+    }
+  );
+
+  const dataActivities = await resActivities.json();
+
+  const updatedActivities = await client.send(
+    new BatchWriteItemCommand({
+      RequestItems: {
+        activities: dataActivities.map((activity: any) => ({
+          PutRequest: {
+            Item: {
+              id: { S: activity.id.toString() },
+              name: { S: activity.name },
+              distance: { S: activity.distance?.toString() },
+              movingTime: { S: activity.moving_time?.toString() },
+              type: { S: activity.type },
+              startDate: { S: activity.start_date },
+              startLatLng: {
+                L: [
+                  { S: activity.start_latlng?.[0]?.toString() ?? "" },
+                  { S: activity.start_latlng?.[1]?.toString() ?? "" },
+                ],
+              },
+            },
+          },
+        })),
+      },
+    })
+  );
+
+  return NextResponse.json({ updatedActivities });
 }

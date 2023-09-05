@@ -5,7 +5,7 @@ interface ContainerProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 const Container: FC<ContainerProps> = ({ children }) => {
-  return <div className="px-4 md:px-8">{children}</div>;
+  return <div className="px-4 md:px-8 lg:px-16 xl:px-32">{children}</div>;
 };
 
 export default Container;

@@ -1,5 +1,7 @@
 import Header from "@/components/Header";
 import Heatmap from "@/components/Heatmap";
+import SimpleMap from "@/components/Map/GoogleMap";
+import Map from "@/components/Map/Map";
 import { transformDate } from "@/lib/helpers";
 import { cookies } from "next/headers";
 import React from "react";
@@ -30,6 +32,7 @@ const DashboardPage = async () => {
       <Header />
 
       <Heatmap values={values} />
+      <Map />
       <pre>USER: {JSON.stringify(dataUser, null, 2)}</pre>
       <pre>ACCESS TOKEN: {JSON.stringify(accessTokenCookie, null, 2)}</pre>
       <pre>DATA: {JSON.stringify(data, null, 2)}</pre>

@@ -17,7 +17,7 @@ const TeamSummary = async () => {
   return (
     <Card className="ml-auto w-full shrink-0 rounded-xl md:w-auto">
       <CardHeader>
-        <CardTitle className="text-xl">Summary</CardTitle>
+        <CardTitle className="text-xl">Team Summary</CardTitle>
         <CardDescription>Last month aggregate activities.</CardDescription>
       </CardHeader>
       <CardContent>

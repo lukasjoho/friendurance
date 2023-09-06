@@ -1,5 +1,5 @@
-import { prisma } from "./prisma";
-import { getStravaUser } from "./strava";
+import { prisma } from './prisma';
+import { getStravaUser } from './strava';
 
 export async function hasActivitiesAndStats() {
   let hasActivitiesAndStats = false;

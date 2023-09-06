@@ -1,6 +1,6 @@
-import { hasActivitiesAndStats } from "@/lib/db";
-import React from "react";
-import ImportDataPopUp from "./ImportDataPopUp";
+import { hasActivitiesAndStats } from '@/lib/db';
+import React from 'react';
+import ImportDataPopUp from './ImportDataPopUp';
 
 const PopUpWrapper = async () => {
   const user = await hasActivitiesAndStats();

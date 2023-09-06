@@ -1,5 +1,5 @@
-import { getServerUser } from "@/lib/fetcher";
-import React from "react";
+import { getServerUser } from '@/lib/fetcher';
+import React from 'react';
 
 const page = async () => {
   const user = await getServerUser();

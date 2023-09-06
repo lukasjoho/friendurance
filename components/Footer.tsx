@@ -1,19 +1,19 @@
-import React from "react";
-import Container from "./Container";
+import React from 'react';
+import Container from './Container';
 
 const Footer = () => {
   return (
     <div className="border-t py-4">
       <Container>
-        <p className="text-muted-foreground text-center text-sm">
-          Build by{" "}
+        <p className="text-center text-sm text-muted-foreground">
+          Build by{' '}
           <a
             href="https://lukashoppe.com"
             target="_blank"
             className="underline"
           >
             Lukas
-          </a>{" "}
+          </a>{' '}
           on his balcony with lots of cold post-workout smoothies.🥤
         </p>
       </Container>

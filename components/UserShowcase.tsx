@@ -1,8 +1,8 @@
-import { prisma } from "@/lib/prisma";
-import React, { FC } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import Container from "./Container";
-import { User } from "@/lib/types";
+import { prisma } from '@/lib/prisma';
+import React, { FC } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import Container from './Container';
+import { User } from '@/lib/types';
 
 const UserShowcase = async () => {
   const users = await prisma.user.findMany({
@@ -30,7 +30,7 @@ const UserShowcase = async () => {
   }
   return (
     <Container>
-      <div className="flex flex-start gap-4 overflow-scroll">
+      <div className="flex-start flex gap-4 overflow-scroll">
         {users.map((user: any) => {
           return <UserItem user={user} />;
         })}
@@ -48,11 +48,11 @@ interface UserItemProps {
 const UserItem: FC<UserItemProps> = ({ user }) => {
   const { imageUrl, firstName, lastName, userStats } = user;
   return (
-    <div className="flex flex-col items-center gap-2 p-6 rounded-xl border">
-      <Avatar className="w-20 h-20">
+    <div className="flex flex-col items-center gap-2 rounded-xl border p-6">
+      <Avatar className="h-20 w-20">
         <AvatarImage src={imageUrl ?? undefined} />
         <AvatarFallback>
-          {firstName?.charAt(0) + "" + lastName?.charAt(0)}
+          {firstName?.charAt(0) + '' + lastName?.charAt(0)}
         </AvatarFallback>
       </Avatar>
       <span className="font-medium">{firstName}</span>
@@ -81,7 +81,7 @@ interface DisciplineProps {
 
 const Discipline: FC<DisciplineProps> = ({ emoji, text }) => {
   return (
-    <div className="flex items-center gap-1 justify-center">
+    <div className="flex items-center justify-center gap-1">
       <div>{emoji}</div>
       <p>{text}km</p>
     </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import Container from "./Container";
+import React from 'react';
+import Container from './Container';
 import {
   Table,
   TableBody,
@@ -7,17 +7,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { prisma } from "@/lib/prisma";
-import { Athlete } from "@/lib/types";
-import { formatDate } from "@/lib/helpers";
+} from './ui/table';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { prisma } from '@/lib/prisma';
+import { Athlete } from '@/lib/types';
+import { formatDate } from '@/lib/helpers';
 
 const UsersTable = async () => {
   const athletes: Athlete[] = await prisma.athlete.findMany({});
   return (
     <Container>
-      <div className="border rounded-xl">
+      <div className="rounded-xl border">
         <Table>
           <TableHeader>
             <TableRow>
@@ -29,16 +29,16 @@ const UsersTable = async () => {
             {athletes.map((athlete) => {
               return (
                 <TableRow>
-                  <TableCell className="font-medium w-64 flex gap-4 items-center whitespace-nowrap">
+                  <TableCell className="flex w-64 items-center gap-4 whitespace-nowrap font-medium">
                     <Avatar>
                       <AvatarImage src={athlete.imageUrl ?? undefined} />
                       <AvatarFallback>
                         {athlete.firstName?.charAt(0) +
-                          "" +
+                          '' +
                           athlete.lastName?.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
-                    {athlete.firstName + " " + athlete.lastName}
+                    {athlete.firstName + ' ' + athlete.lastName}
                   </TableCell>
                   <TableCell>
                     {formatDate(athlete.createdAt.toString())}

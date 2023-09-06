@@ -1,14 +1,14 @@
-import { fetcher } from "@/lib/fetcher";
-import { prisma } from "@/lib/prisma";
-import { getStravaUser } from "@/lib/strava";
-import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { fetcher } from '@/lib/fetcher';
+import { prisma } from '@/lib/prisma';
+import { getStravaUser } from '@/lib/strava';
+import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest, res: NextResponse) {
   const cookieStore = cookies();
   // const athleteIdCookie = cookieStore.get("athleteId");
   // const athleteId = athleteIdCookie?.value;
-  const accessTokenCookie = cookieStore.get("accessToken");
+  const accessTokenCookie = cookieStore.get('accessToken');
   const accessToken = accessTokenCookie?.value;
   // if (!athleteId) {
   //   throw new Error("Athlete ID is null or undefined");

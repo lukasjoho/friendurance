@@ -1,11 +1,11 @@
-import { cookies } from "next/headers";
-import { refreshTokens } from "./strava";
+import { cookies } from 'next/headers';
+import { refreshTokens } from './strava';
 
 export const fetcher = async (url: string) => {
   const cookieStore = cookies();
-  const accessTokenCookie = cookieStore.get("accessToken");
+  const accessTokenCookie = cookieStore.get('accessToken');
   const accessToken = accessTokenCookie?.value;
-  console.log("ACCESS TOOOsKEN: ", accessToken);
+  console.log('ACCESS TOOOsKEN: ', accessToken);
   try {
     const request = (accessToken: string) => async () => {
       return await fetch(url, {

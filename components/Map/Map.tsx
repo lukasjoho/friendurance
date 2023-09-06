@@ -1,8 +1,8 @@
-import React from "react";
-import GoogleMap from "./GoogleMap";
-import { prisma } from "@/lib/prisma";
-import { act } from "react-dom/test-utils";
-import Container from "../Container";
+import React from 'react';
+import GoogleMap from './GoogleMap';
+import { prisma } from '@/lib/prisma';
+import { act } from 'react-dom/test-utils';
+import Container from '../Container';
 
 const Map = async () => {
   const activities = await prisma.activity.findMany({
@@ -19,7 +19,7 @@ const Map = async () => {
   });
   return (
     <Container>
-      <div className="border rounded-xl overflow-hidden">
+      <div className="overflow-hidden rounded-xl border">
         <GoogleMap markers={activities} />
       </div>
     </Container>

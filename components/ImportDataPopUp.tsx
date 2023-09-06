@@ -1,20 +1,20 @@
-"use client";
-import React, { useState } from "react";
-import Container from "./Container";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { Activity, Loader2, Terminal } from "lucide-react";
-import { Button } from "./ui/button";
-import { Icons } from "./Icons";
-import { toast } from "react-hot-toast";
-import ToastBody from "./ToastBody";
-import { useRouter } from "next/navigation";
+'use client';
+import React, { useState } from 'react';
+import Container from './Container';
+import { Alert, AlertDescription, AlertTitle } from './ui/alert';
+import { Activity, Loader2, Terminal } from 'lucide-react';
+import { Button } from './ui/button';
+import { Icons } from './Icons';
+import { toast } from 'react-hot-toast';
+import ToastBody from './ToastBody';
+import { useRouter } from 'next/navigation';
 
 const ImportDataPopUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleImport = async () => {
     setIsLoading(true);
-    const res = await fetch("/api/import");
+    const res = await fetch('/api/import');
     if (res.ok) {
       toast.success(
         <ToastBody title="Success" message="Data successfully connected." />
@@ -30,7 +30,7 @@ const ImportDataPopUp = () => {
   return (
     <Container>
       <Alert>
-        <Activity className="w-4 h-4" />
+        <Activity className="h-4 w-4" />
         <div className="flex justify-between">
           <div>
             <AlertTitle>Connect Strava data</AlertTitle>
@@ -47,13 +47,13 @@ const ImportDataPopUp = () => {
           >
             {!isLoading && (
               <>
-                <Icons.stravaRaw className="w-auto h-5" />
+                <Icons.stravaRaw className="h-5 w-auto" />
                 <span>Connect</span>
               </>
             )}
             {isLoading && (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />{" "}
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />{' '}
                 <span>Connecting...</span>
               </>
             )}

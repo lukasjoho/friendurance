@@ -22,6 +22,7 @@
     "@types/react-dom": "18.2.7",
     "@uiw/react-heat-map": "^2.1.1",
     "@uiw/react-tooltip": "^4.21.28",
+    "@vercel/analytics": "^1.0.2",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",

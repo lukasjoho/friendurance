@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
@@ -49,6 +50,7 @@ export default function RootLayout({
             }}
           />
         </main>
+        <Analytics />
       </body>
     </html>
   );

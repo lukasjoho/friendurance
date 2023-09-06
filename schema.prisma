@@ -18,6 +18,9 @@ model User {
     imageUrl String?
     createdAt     DateTime @default(now())
     userStats UserStats?
+    team Team? @relation(fields: [teamId], references: [id])
+    teamId String?
+    @@index([teamId])
 }
 
 model UserStats {
@@ -52,3 +55,11 @@ model Feedback {
     createdAt    DateTime @default(now())
 }
 
+model Team {
+    id           String    @id @default(cuid())
+    slug         String @unique
+    name         String @unique
+    imageUrl     String?
+    createdAt    DateTime @default(now())
+    member       User[]
+}

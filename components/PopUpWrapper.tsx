@@ -1,5 +1,4 @@
 import { hasActivitiesAndStats } from '@/lib/db';
-import React from 'react';
 import ImportDataPopUp from './ImportDataPopUp';
 
 const PopUpWrapper = async () => {

@@ -1,8 +1,8 @@
 'use client';
-import React, { FC } from 'react';
+import { secondsToHoursMinutes } from '@/lib/helpers';
 import HeatMap from '@uiw/react-heat-map';
 import Tooltip from '@uiw/react-tooltip';
-import { secondsToHoursMinutes } from '@/lib/helpers';
+import { FC } from 'react';
 import Container from './Container';
 
 interface HeatmapProps {

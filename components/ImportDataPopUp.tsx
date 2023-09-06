@@ -1,13 +1,13 @@
 'use client';
-import React, { useState } from 'react';
-import Container from './Container';
-import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-import { Activity, Loader2, Terminal } from 'lucide-react';
-import { Button } from './ui/button';
-import { Icons } from './Icons';
-import { toast } from 'react-hot-toast';
-import ToastBody from './ToastBody';
+import { Activity, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import Container from './Container';
+import { Icons } from './Icons';
+import ToastBody from './ToastBody';
+import { Alert, AlertDescription, AlertTitle } from './ui/alert';
+import { Button } from './ui/button';
 
 const ImportDataPopUp = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -35,8 +35,8 @@ const ImportDataPopUp = () => {
           <div>
             <AlertTitle>Connect Strava data</AlertTitle>
             <AlertDescription>
-              You are logged in, but haven't connected your Strava data yet. Hit
-              "Connect" to do so. You can revoke the data access at any time.
+              You are logged in, but havent connected your Strava data yet. Hit
+              Connect to do so. You can revoke the data access at any time.
             </AlertDescription>
           </div>
           <Button

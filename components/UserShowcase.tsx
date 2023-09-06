@@ -1,8 +1,8 @@
 import { prisma } from '@/lib/prisma';
-import React, { FC } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import Container from './Container';
 import { User } from '@/lib/types';
+import { FC } from 'react';
+import Container from './Container';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 const UserShowcase = async () => {
   const users = await prisma.user.findMany({
@@ -31,8 +31,8 @@ const UserShowcase = async () => {
   return (
     <Container>
       <div className="flex-start flex gap-4 overflow-scroll">
-        {users.map((user: any) => {
-          return <UserItem user={user} />;
+        {users.map((user: any, idx) => {
+          return <UserItem key={idx} user={user} />;
         })}
       </div>
     </Container>

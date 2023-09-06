@@ -1,6 +1,5 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import ImportDataPopUp from '@/components/ImportDataPopUp';
 import PopUpWrapper from '@/components/PopUpWrapper';
 import React, { FC } from 'react';
 

@@ -1,8 +1,6 @@
-import React from 'react';
-import GoogleMap from './GoogleMap';
 import { prisma } from '@/lib/prisma';
-import { act } from 'react-dom/test-utils';
 import Container from '../Container';
+import GoogleMap from './GoogleMap';
 
 const Map = async () => {
   const activities = await prisma.activity.findMany({

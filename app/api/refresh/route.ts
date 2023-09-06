@@ -1,12 +1,9 @@
-import { refreshTokens } from '@/lib/strava';
 import { setTokens } from '@/lib/tokens';
 import { cookies } from 'next/headers';
 
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
-  const accessTokenCookie = cookies().get('accessToken');
-
+export async function GET() {
   const cookieStore = cookies();
   const refreshTokenCookie = cookieStore.get('refreshToken');
   const currentRefreshToken = refreshTokenCookie?.value;

@@ -1,7 +1,7 @@
 'use client';
-import React, { FC } from 'react';
-import GoogleMapReact from 'google-map-react';
 import mapStyle from '@/lib/mapstyles';
+import GoogleMapReact from 'google-map-react';
+import { FC } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const Marker = ({ data }: any) => (
@@ -45,12 +45,13 @@ const GoogleMap: FC<GoogleMapProps> = ({ markers }) => {
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-        {markers.map((marker) => {
+        {markers.map((marker, idx) => {
           if (!marker.startLatLng[0]) {
             return;
           }
           return (
             <Marker
+              key={idx}
               lat={marker.startLatLng[0]}
               lng={marker.startLatLng[1]}
               data={marker}

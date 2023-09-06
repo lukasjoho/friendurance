@@ -26,8 +26,11 @@ model UserStats {
     userId  String   @unique
      @@index([userId])
     recentRunDistance Float?
-    recentSwimDistance Float?
     recentRideDistance Float?
+    recentSwimDistance Float?
+    recentRunCount Int?
+    recentRideCount Int?
+    recentSwimCount Float?
 }
 
 model Activity {
@@ -37,9 +40,15 @@ model Activity {
     userId  String
     @@index([userId])
     type String?
-    startDate String?
+    startDate DateTime?
     startLatLng Json?
     distance Float?
     movingTime Int?
+}
+
+model Feedback {
+    id           String    @id @default(cuid())
+    content      String
+    createdAt    DateTime @default(now())
 }
 

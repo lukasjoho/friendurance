@@ -25,7 +25,7 @@ const GoogleMap: FC<GoogleMapProps> = ({ markers }) => {
   const defaultProps = {
     center: {
       lat: 50.8687324,
-      lng: 5.2485311,
+      lng: 9.5485311,
     },
     zoom: 5.5,
   };

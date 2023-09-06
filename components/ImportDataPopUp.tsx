@@ -11,20 +11,33 @@ import { Button } from './ui/button';
 
 const ImportDataPopUp = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const router = useRouter();
   const handleImport = async () => {
     setIsLoading(true);
-    const res = await fetch('/api/import');
-    if (res.ok) {
+    const statsRes = await fetch('/api/import/stats');
+    if (!statsRes.ok) {
+      toast.error(
+        <ToastBody title="Error" message="Could not import athlete stats." />
+      );
+    }
+    setProgress(1);
+    const activitiesRes = await fetch('/api/import/activities');
+    if (!activitiesRes.ok) {
+      toast.error(
+        <ToastBody
+          title="Error"
+          message="Could not import athlete activities."
+        />
+      );
+    }
+    if (statsRes.ok && activitiesRes.ok) {
+      setProgress(2);
       toast.success(
         <ToastBody title="Success" message="Data successfully connected." />
       );
-      router.refresh();
-    } else {
-      toast.success(
-        <ToastBody title="Error" message="Data connection failed." />
-      );
     }
+    router.refresh();
     setIsLoading(false);
   };
   return (
@@ -54,7 +67,7 @@ const ImportDataPopUp = () => {
             {isLoading && (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />{' '}
-                <span>Connecting...</span>
+                <span>Connecting... {`${progress} / 2`}</span>
               </>
             )}
           </Button>

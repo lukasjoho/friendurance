@@ -19,4 +19,7 @@ export interface UserStats {
   recentRunDistance: number;
   recentSwimDistance: number;
   recentRideDistance: number;
+  recentRunCount: number;
+  recentSwimCount: number;
+  recentRideCount: number;
 }

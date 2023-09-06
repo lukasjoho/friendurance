@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      fontSize: {
+        '2xs': '10px',
+      },
       colors: {
         brand: 'hsl(var(--brand))',
         border: 'hsl(var(--border))',

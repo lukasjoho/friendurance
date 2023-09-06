@@ -4,7 +4,7 @@ const mapStyle = [
     elementType: 'geometry',
     stylers: [
       {
-        color: '#fafafa',
+        color: '#ffffff',
       },
     ],
   },
@@ -40,7 +40,7 @@ const mapStyle = [
         lightness: 29,
       },
       {
-        weight: 0.2,
+        weight: 0.1,
       },
     ],
   },
@@ -157,11 +157,9 @@ const mapStyle = [
     elementType: 'geometry.stroke',
     stylers: [
       {
-        color: '#fefefe',
+        color: '#a1a1aa',
       },
-      {
-        lightness: 17,
-      },
+
       {
         weight: 1.2,
       },

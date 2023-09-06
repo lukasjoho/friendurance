@@ -8,7 +8,6 @@ const PopUpWrapper = async () => {
   }
   return (
     <div>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
       <ImportDataPopUp />
     </div>
   );

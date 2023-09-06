@@ -6,7 +6,9 @@ interface ContainerProps extends React.HTMLProps<HTMLDivElement> {
 
 const Container: FC<ContainerProps> = ({ children }) => {
   return (
-    <div className="w-full px-4 md:px-8 lg:px-16 xl:px-32">{children}</div>
+    <div className="w-full max-w-[2400px] px-4 md:px-8 lg:px-16 xl:px-32">
+      {children}
+    </div>
   );
 };
 

@@ -5,15 +5,43 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { prisma } from '@/lib/prisma';
 import { FC } from 'react';
 import { metersToKilometers } from './UserShowcase';
 
 const TeamSummary = async () => {
-  const res = await fetch(`${process.env.HOST_URL}/api/summary`, {
-    cache: 'no-store',
+  const run = await prisma.activity.aggregate({
+    _avg: {
+      distance: true,
+    },
+    _sum: {
+      distance: true,
+    },
+    where: {
+      startDate: {
+        gte: new Date(new Date().getTime() - 28 * 24 * 60 * 60 * 1000),
+      },
+      type: {
+        equals: 'Run',
+      },
+    },
   });
-  const data = await res.json();
-  const { run, bike } = data;
+  const bike = await prisma.activity.aggregate({
+    _avg: {
+      distance: true,
+    },
+    _sum: {
+      distance: true,
+    },
+    where: {
+      startDate: {
+        gte: new Date(new Date().getTime() - 28 * 24 * 60 * 60 * 1000),
+      },
+      type: {
+        equals: 'Ride',
+      },
+    },
+  });
   return (
     <Card className="ml-auto w-full shrink-0 rounded-xl md:w-auto">
       <CardHeader>
@@ -58,7 +86,7 @@ export default TeamSummary;
 
 interface MetricProps {
   label: string;
-  value: number;
+  value: number | null | undefined;
   annotation: string;
 }
 

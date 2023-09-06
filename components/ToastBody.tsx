@@ -8,7 +8,7 @@ interface ToastBodyProps {
 const ToastBody: FC<ToastBodyProps> = ({ title, message }) => {
   return (
     <div>
-      <p>{title}</p>
+      <p className="font-semibold">{title}</p>
       {message && <p>{message}</p>}
     </div>
   );

@@ -16,7 +16,7 @@ const FeedbackButton = () => {
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" className="text-sm md:text-base">
           Feedback
         </Button>
       </DropdownMenuTrigger>

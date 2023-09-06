@@ -11,6 +11,7 @@ const AppLayout: FC<AppLayoutProps> = ({ children }) => {
   return (
     <div className="flex grow flex-col gap-4 md:gap-8">
       <Header />
+
       <PopUpWrapper />
       {children}
       <div className="mt-16 md:mt-32">

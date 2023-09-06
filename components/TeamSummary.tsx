@@ -15,7 +15,7 @@ const TeamSummary = async () => {
   const data = await res.json();
   const { run, bike } = data;
   return (
-    <Card className="ml-auto w-full shrink-0 md:w-auto">
+    <Card className="ml-auto w-full shrink-0 rounded-xl md:w-auto">
       <CardHeader>
         <CardTitle className="text-xl">Summary</CardTitle>
         <CardDescription>Last month aggregate activities.</CardDescription>

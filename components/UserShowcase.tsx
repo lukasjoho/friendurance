@@ -27,7 +27,7 @@ const UserShowcase = async () => {
   });
 
   return (
-    <Card className="grow">
+    <Card className="grow rounded-xl">
       <CardHeader>
         <CardTitle className="text-xl">Friends</CardTitle>
       </CardHeader>

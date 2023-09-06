@@ -1,24 +1,40 @@
 import { prisma } from "@/lib/prisma";
-import { AthleteWithStats } from "@/lib/types";
 import React, { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Container from "./Container";
+import { User } from "@/lib/types";
 
 const UserShowcase = async () => {
-  const athletes: any = await prisma.user.findMany({
+  const users = await prisma.user.findMany({
+    where: {
+      NOT: [
+        {
+          activities: {
+            none: {},
+          },
+        },
+        {
+          userStats: {
+            is: null,
+          },
+        },
+      ],
+    },
     include: {
       userStats: true,
+      activities: true,
     },
   });
-
+  if (users.length < 1) {
+    return false;
+  }
   return (
     <Container>
-      <div className="flex flex-start gap-4">
-        {athletes.map((athlete: any) => {
-          return <UserItem athlete={athlete} />;
+      <div className="flex flex-start gap-4 overflow-scroll">
+        {users.map((user: any) => {
+          return <UserItem user={user} />;
         })}
       </div>
-      {/* <pre>{JSON.stringify(athletes, null, 2)}</pre> */}
     </Container>
   );
 };
@@ -26,31 +42,32 @@ const UserShowcase = async () => {
 export default UserShowcase;
 
 interface UserItemProps {
-  athlete: AthleteWithStats;
+  user: User;
 }
 
-const UserItem: FC<UserItemProps> = ({ athlete }) => {
+const UserItem: FC<UserItemProps> = ({ user }) => {
+  const { imageUrl, firstName, lastName, userStats } = user;
   return (
     <div className="flex flex-col items-center gap-2 p-6 rounded-xl border">
       <Avatar className="w-20 h-20">
-        <AvatarImage src={athlete.imageUrl ?? undefined} />
+        <AvatarImage src={imageUrl ?? undefined} />
         <AvatarFallback>
-          {athlete.firstName?.charAt(0) + "" + athlete.lastName?.charAt(0)}
+          {firstName?.charAt(0) + "" + lastName?.charAt(0)}
         </AvatarFallback>
       </Avatar>
-      <span className="font-medium">{athlete.firstName}</span>
+      <span className="font-medium">{firstName}</span>
       <div>
         <Discipline
           emoji="🏃"
-          text={metersToKilometers(athlete.athleteStats?.totalRunDistance)}
+          text={metersToKilometers(userStats?.recentRunDistance || 0)}
         />
         <Discipline
           emoji="🚴"
-          text={metersToKilometers(athlete.athleteStats?.totalRideDistance)}
+          text={metersToKilometers(userStats?.recentRideDistance || 0)}
         />
         <Discipline
           emoji="🏊"
-          text={metersToKilometers(athlete.athleteStats?.totalSwimDistance)}
+          text={metersToKilometers(userStats?.recentSwimDistance || 0)}
         />
       </div>
     </div>

@@ -25,9 +25,9 @@ model UserStats {
     user    User  @relation(fields: [userId], references: [userId])
     userId  String   @unique
      @@index([userId])
-    totalRunDistance Float?
-    totalSwimDistance Float?
-    totalRideDistance Float?
+    recentRunDistance Float?
+    recentSwimDistance Float?
+    recentRideDistance Float?
 }
 
 model Activity {

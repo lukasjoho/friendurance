@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const accessTokenCookie = cookies().get("accessToken");
-  console.log("COOKIES REFRESHED:", req.headers.get("set-cookie"));
 
   const cookieStore = cookies();
   const refreshTokenCookie = cookieStore.get("refreshToken");

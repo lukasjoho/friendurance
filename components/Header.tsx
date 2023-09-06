@@ -2,7 +2,7 @@ import React from "react";
 import Container from "./Container";
 import { Icons } from "./Icons";
 
-const Header = () => {
+const Header = async () => {
   return (
     <div className="w-full h-14 flex items-center border-b ">
       <Container>

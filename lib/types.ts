@@ -1,10 +1,11 @@
-export interface Athlete {
+export interface User {
   id: string;
-  athleteId: string;
+  userId: string;
   createdAt: Date;
   firstName: string | null;
   lastName: string | null;
   imageUrl: string | null;
+  userStats: UserStats | null;
 }
 
 export interface StravaActivity {
@@ -14,12 +15,8 @@ export interface StravaActivity {
   start_date?: string;
 }
 
-export interface AthleteStats {
-  totalRunDistance: number;
-  totalSwimDistance: number;
-  totalRideDistance: number;
-}
-
-export interface AthleteWithStats extends Athlete {
-  athleteStats: AthleteStats | null;
+export interface UserStats {
+  recentRunDistance: number;
+  recentSwimDistance: number;
+  recentRideDistance: number;
 }

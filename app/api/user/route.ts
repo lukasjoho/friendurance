@@ -4,14 +4,13 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const cookieStore = cookies();
-  const accessTokenCookie = cookieStore.get("accessToken");
-  const stravaUser = await getStravaUser(accessTokenCookie?.value as string);
-  const athleteId = stravaUser?.id;
-  const dbUser = await prisma.user.findUnique({
-    where: {
-      userId: String(athleteId),
-    },
-  });
-  return NextResponse.json(dbUser);
+  console.log("START API", req.cookies.get("accessToken"));
+  const stravaUser = await getStravaUser();
+  // const athleteId = stravaUser?.id;
+  // const dbUser = await prisma.user.findUnique({
+  //   where: {
+  //     userId: String(athleteId),
+  //   },
+  // });
+  return NextResponse.json({ stravaUser });
 }

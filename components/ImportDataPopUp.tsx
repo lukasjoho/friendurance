@@ -7,16 +7,19 @@ import { Button } from "./ui/button";
 import { Icons } from "./Icons";
 import { toast } from "react-hot-toast";
 import ToastBody from "./ToastBody";
+import { useRouter } from "next/navigation";
 
 const ImportDataPopUp = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const handleImport = async () => {
     setIsLoading(true);
-    const res = await fetch("/api/strava/import");
+    const res = await fetch("/api/import");
     if (res.ok) {
       toast.success(
         <ToastBody title="Success" message="Data successfully connected." />
       );
+      router.refresh();
     } else {
       toast.success(
         <ToastBody title="Error" message="Data connection failed." />

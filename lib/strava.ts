@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { setTokens } from "./tokens";
+import { fetcher } from "./fetcher";
 
 export interface TokenResponse {
   token_type: string;
@@ -38,12 +39,9 @@ export async function refreshTokens() {
   return { accessToken: data.access_token, refreshToken: data.refresh_token };
 }
 
-export async function getStravaUser(accessToken: string) {
-  const res = await fetch(`${process.env.STRAVA_API_URL}/athlete`, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  const data = await res.json();
+export async function getStravaUser() {
+  const [data, error] = await fetcher(`${process.env.STRAVA_API_URL}/athlete`);
+  console.log("STRAVAAASSS: ", error);
+
   return data;
 }

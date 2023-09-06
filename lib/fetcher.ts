@@ -1,19 +1,11 @@
 import { cookies } from "next/headers";
 import { refreshTokens } from "./strava";
-import { redirect } from "next/navigation";
-
-export const getServerUser = async () => {
-  const [user, error] = await fetcher(`${process.env.HOST_URL}/api/user`);
-  if (!user) {
-    redirect("/");
-  }
-  return user;
-};
 
 export const fetcher = async (url: string) => {
   const cookieStore = cookies();
   const accessTokenCookie = cookieStore.get("accessToken");
   const accessToken = accessTokenCookie?.value;
+  console.log("ACCESS TOOOsKEN: ", accessToken);
   try {
     const request = (accessToken: string) => async () => {
       return await fetch(url, {

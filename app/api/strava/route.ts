@@ -1,14 +1,20 @@
 import { upsertUser } from '@/lib/service';
-import { getStravaUser, getTokens } from '@/lib/strava';
+import { getStravaUser } from '@/lib/strava';
 import { setTokens } from '@/lib/tokens';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.nextUrl);
   const code = searchParams.get('code');
-  const tokens = await getTokens(code as string);
-  setTokens(tokens.access_token, tokens.refresh_token);
-  const stravaUser = await getStravaUser();
-  await upsertUser(stravaUser);
+  const { access_token, refresh_token, athlete } = await getStravaUser(
+    code as string
+  );
+  setTokens(access_token, refresh_token);
+  const upsertedUser = {
+    access_token: access_token,
+    refresh_token: refresh_token,
+    ...athlete,
+  };
+  await upsertUser(upsertedUser);
   return NextResponse.redirect(new URL('/dashboard', req.url));
 }

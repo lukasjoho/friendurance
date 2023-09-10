@@ -1,10 +1,10 @@
 import { fetcher } from '@/lib/fetcher';
 import { prisma } from '@/lib/prisma';
-import { getStravaUser } from '@/lib/strava';
+import { getStravaUserSingle } from '@/lib/strava';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const stravaUser = await getStravaUser();
+  const stravaUser = await getStravaUserSingle();
   const [activities, error] = await fetcher(
     `https://www.strava.com/api/v3/athlete/activities?per_page=100`
   );
@@ -19,6 +19,15 @@ export async function GET() {
         startDate: new Date(activity.start_date),
         startLatLng: activity.start_latlng,
         user: { connect: { userId: String(stravaUser.id) } },
+        elevHigh: activity.elev_high,
+        maxSpeed: activity.max_speed,
+        averageSpeed: activity.average_speed,
+        calories: activity.calories,
+        averageWatts: activity.average_watts,
+        kilojoules: activity.kilojoules,
+        maxWatts: activity.max_watts,
+        elapsedTime: activity.elapsed_time,
+        kudosCount: activity.kudos_count,
       };
       return prisma.activity.upsert({
         where: { activityId: String(activity.id) },

@@ -6,6 +6,8 @@ export async function upsertUser(stravaUser: any) {
     firstName: stravaUser.firstname,
     lastName: stravaUser.lastname,
     imageUrl: stravaUser.profile,
+    accessToken: stravaUser.access_token,
+    refreshToken: stravaUser.refresh_token,
   };
   const dbAthlete = await prisma.user.upsert({
     where: { userId: String(stravaUser.id) },

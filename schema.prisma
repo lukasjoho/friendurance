@@ -20,6 +20,8 @@ model User {
     userStats UserStats?
     team Team? @relation(fields: [teamId], references: [id])
     teamId String?
+    accessToken String?
+    refreshToken String?
     @@index([teamId])
 }
 
@@ -47,6 +49,16 @@ model Activity {
     startLatLng Json?
     distance Float?
     movingTime Int?
+    elevHigh Float?
+    elevLow Float?
+    elapsedTime Int?
+    kudosCount Int?
+    averageSpeed Float?
+    maxSpeed Float?
+    calories Float?
+    averageWatts Float?
+    kilojoules Float?
+    maxWatts Float?
 }
 
 model Feedback {
@@ -61,5 +73,5 @@ model Team {
     name         String @unique
     imageUrl     String?
     createdAt    DateTime @default(now())
-    member       User[]
+    members       User[]
 }

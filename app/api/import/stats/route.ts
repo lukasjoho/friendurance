@@ -1,10 +1,10 @@
 import { fetcher } from '@/lib/fetcher';
 import { prisma } from '@/lib/prisma';
-import { getStravaUser } from '@/lib/strava';
+import { getStravaUserSingle } from '@/lib/strava';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const stravaUser = await getStravaUser();
+  const stravaUser = await getStravaUserSingle();
 
   const [userStats, error] = await fetcher(
     `https://www.strava.com/api/v3/athletes/${String(stravaUser.id)}/stats`

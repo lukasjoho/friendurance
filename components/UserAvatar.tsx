@@ -34,9 +34,11 @@ export const TeamAvatar: FC<TeamAvatarProps> = ({ team, ...props }) => {
   const { name, imageUrl } = team;
 
   return (
-    <Avatar className={cn('h-8 w-8', props.className)}>
+    <Avatar className={cn('h-8 w-8 rounded-lg', props.className)}>
       <AvatarImage src={imageUrl || undefined} />
-      <AvatarFallback>{name.charAt(0)}</AvatarFallback>
+      <AvatarFallback className="rounded-lg border">
+        {name.charAt(0)}
+      </AvatarFallback>
     </Avatar>
   );
 };

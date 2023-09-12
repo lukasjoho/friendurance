@@ -1,5 +1,7 @@
 import Container from '@/components/Container';
 import { TeamAvatar } from '@/components/UserAvatar';
+import CreateTeamButton from '@/components/shared/CreateTeamButton';
+
 import { Button, buttonVariants } from '@/components/ui/button';
 import {
   Card,
@@ -48,6 +50,7 @@ const TeamsOverview = async () => {
           <>
             {teams.map((team) => (
               <Link
+                key={team.id}
                 href={`/team/${team.slug}`}
                 className={cn(
                   buttonVariants({ variant: 'secondary' }),
@@ -68,8 +71,9 @@ const TeamsOverview = async () => {
             </p>
           </div>
         )}
-
-        <Button className="w-full">Create team</Button>
+        <CreateTeamButton>
+          <Button className="w-full">Create team</Button>
+        </CreateTeamButton>
       </CardContent>
     </Card>
   );

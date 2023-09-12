@@ -1,9 +1,17 @@
 import { prisma } from '@/lib/prisma';
-import Container from '../Container';
 import GoogleMap from './GoogleMap';
 
-const Map = async () => {
+const Map = async ({ slug }: { slug: string }) => {
   const activities = await prisma.activity.findMany({
+    where: {
+      user: {
+        teams: {
+          some: {
+            slug,
+          },
+        },
+      },
+    },
     select: {
       startLatLng: true,
       user: {
@@ -16,11 +24,9 @@ const Map = async () => {
     },
   });
   return (
-    <Container>
-      <div className="overflow-hidden rounded-xl border">
-        <GoogleMap markers={activities} />
-      </div>
-    </Container>
+    <div className="overflow-hidden rounded-xl border">
+      <GoogleMap markers={activities} />
+    </div>
   );
 };
 

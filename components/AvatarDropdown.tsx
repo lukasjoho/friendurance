@@ -6,10 +6,13 @@ import {
 import { getAuthUser } from '@/lib/db';
 import LogoutButton from './LogoutButton';
 import { UserAvatar } from './UserAvatar';
+import LoginButton from './shared/LoginButton';
 
 const AvatarDropdown = async () => {
   const user = await getAuthUser();
-
+  if (!user) {
+    return <LoginButton className="" size="sm" />;
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

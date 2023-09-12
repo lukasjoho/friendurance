@@ -15,15 +15,9 @@ export async function hasActivitiesAndStats() {
             none: {},
           },
         },
-        {
-          userStats: {
-            is: null,
-          },
-        },
       ],
     },
     include: {
-      userStats: true,
       activities: true,
     },
   });
@@ -48,6 +42,7 @@ export async function getAuthUser() {
       imageUrl: true,
       accessToken: true,
       refreshToken: true,
+      currentTeam: true,
     },
   });
   return dbUser;
@@ -68,8 +63,16 @@ export async function getTeams() {
   return teams;
 }
 
-export async function getUsers() {
-  const users: any[] = await prisma.user.findMany({});
+export async function getUsersByTeam(slug: string) {
+  const users: any[] = await prisma.user.findMany({
+    where: {
+      teams: {
+        some: {
+          slug: slug,
+        },
+      },
+    },
+  });
   return users;
 }
 
@@ -90,12 +93,13 @@ export async function getTeamsSummariesByDiscipline(
 export async function getUsersSummariesByDiscipline(
   users: any,
   discipline: string,
+  slug: string,
   days?: number
 ) {
   const usersData = await Promise.all(
     users.map(
       async (user: any) =>
-        await getAthleteSummaryByDiscipline(user, discipline, days)
+        await getAthleteSummaryByDiscipline(user, discipline, slug, days)
     )
   );
   return usersData;
@@ -104,11 +108,14 @@ export async function getUsersSummariesByDiscipline(
 export async function getAthleteSummaryByDiscipline(
   user: any,
   discipline: string,
+  slug: string,
   days: number = 365000
 ) {
   const activityDataGroupedByUser = await prisma.activity.aggregate({
     where: {
-      userId: user.userId,
+      user: {
+        userId: user.userId,
+      },
       type: {
         equals: discipline,
       },
@@ -118,20 +125,21 @@ export async function getAthleteSummaryByDiscipline(
     },
     _sum: {
       distance: true,
+      movingTime: true,
     },
     _avg: {
       distance: true,
       movingTime: true,
+      averageSpeed: true,
     },
     _count: {
       id: true,
     },
   });
+  console.log('ACT: ', activityDataGroupedByUser);
   const userStats = {
     avgTotalDistance: activityDataGroupedByUser._sum.distance || 0,
-    avgSpeed:
-      activityDataGroupedByUser._avg.distance! /
-        activityDataGroupedByUser._avg.movingTime! || 0,
+    avgSpeed: activityDataGroupedByUser._avg.averageSpeed || 0,
     avgDistancePerRun: activityDataGroupedByUser._avg.distance || 0,
     avgActivityCount: activityDataGroupedByUser._count.id || 0,
   };
@@ -173,6 +181,7 @@ export async function getTeamSummaryByDiscipline(
     _avg: {
       distance: true,
       movingTime: true,
+      averageSpeed: true,
     },
     _count: {
       id: true,
@@ -181,9 +190,7 @@ export async function getTeamSummaryByDiscipline(
   const teamStats = {
     avgTotalDistance:
       activityDataGroupedByTeam._sum.distance! / team.members.length || 0,
-    avgSpeed:
-      activityDataGroupedByTeam._avg.distance! /
-        activityDataGroupedByTeam._avg.movingTime! || 0,
+    avgSpeed: activityDataGroupedByTeam._avg.averageSpeed || 0,
     avgDistancePerRun: activityDataGroupedByTeam._avg.distance || 0,
     avgActivityCount:
       activityDataGroupedByTeam._count.id / team.members.length || 0,

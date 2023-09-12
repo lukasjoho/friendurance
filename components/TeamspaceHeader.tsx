@@ -4,7 +4,7 @@ import TeamSelector from './TeamSelector';
 
 const TeamspaceHeader = () => {
   return (
-    <div className="mt-2 h-10 md:mt-4">
+    <div className="h-10">
       <Container className="flex justify-between">
         <TeamSelector />
         <DateRangeSelector />

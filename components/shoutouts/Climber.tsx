@@ -1,16 +1,28 @@
+import getDateFromCookie from '@/lib/helpers/getDateFromCookie';
 import { prisma } from '@/lib/prisma';
 import ShoutoutCard from '../ShoutoutCard';
 
-const Climber = async () => {
+const Climber = async ({ slug }: { slug: string }) => {
   //get user with highest elevation gain
+  const date = await getDateFromCookie();
   const usersSortedByElevationGain = await prisma.activity.groupBy({
     by: ['userId'],
     _sum: {
       elevHigh: true,
     },
     where: {
+      user: {
+        teams: {
+          some: {
+            slug,
+          },
+        },
+      },
+      type: {
+        in: ['Run', 'Ride', 'Hike'],
+      },
       startDate: {
-        gte: new Date(new Date().setDate(new Date().getDate() - 28)),
+        gte: date,
       },
     },
     orderBy: {
@@ -34,7 +46,7 @@ const Climber = async () => {
       label="Climber"
       metric={Number(elevationGain)}
       annotation="m"
-      description="total elevation gain"
+      description="Total elevation gain"
     />
   );
 };

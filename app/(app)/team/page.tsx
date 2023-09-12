@@ -1,8 +1,13 @@
 import { getAuthUser } from '@/lib/db';
+import { redirect } from 'next/navigation';
 
 const TeamPage = async () => {
   const user = await getAuthUser();
-  return <div>{JSON.stringify(user, null, 2)}</div>;
+  const currentTeamSlug = user?.currentTeam?.slug;
+  if (!currentTeamSlug) {
+    redirect('/teams');
+  }
+  redirect(`/team/${currentTeamSlug}`);
 };
 
 export default TeamPage;

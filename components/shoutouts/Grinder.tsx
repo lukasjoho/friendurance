@@ -1,8 +1,18 @@
+import getDateFromCookie from '@/lib/helpers/getDateFromCookie';
 import { prisma } from '@/lib/prisma';
 import ShoutoutCard from '../ShoutoutCard';
 
-const Grinder = async () => {
-  const users: any[] = await prisma.user.findMany({});
+const Grinder = async ({ slug }: { slug: string }) => {
+  const date = await getDateFromCookie();
+  const users: any[] = await prisma.user.findMany({
+    where: {
+      teams: {
+        some: {
+          slug,
+        },
+      },
+    },
+  });
 
   const isConsecutive = (isoDate1: string | null, isoDate2: string | null) => {
     if (!isoDate1 || !isoDate2) return false;
@@ -19,6 +29,9 @@ const Grinder = async () => {
     const userActivities = await prisma.activity.findMany({
       where: {
         userId: user.userId,
+        startDate: {
+          gte: date,
+        },
       },
       orderBy: {
         startDate: 'asc',
@@ -53,7 +66,7 @@ const Grinder = async () => {
       symbol="🗓️"
       label="Daily Grinder"
       metric={maxStreak}
-      description="days activity streak"
+      description="Activity day streak"
     />
   );
 };

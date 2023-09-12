@@ -1,15 +1,27 @@
+import getDateFromCookie from '@/lib/helpers/getDateFromCookie';
 import { prisma } from '@/lib/prisma';
 import ShoutoutCard from '../ShoutoutCard';
 
-const Streaker = async () => {
+const Hustler = async ({ slug }: { slug: string }) => {
+  const date = await getDateFromCookie();
   const usersSortedByActivityCount = await prisma.activity.groupBy({
     by: ['userId'],
     _count: {
       userId: true,
     },
     where: {
+      user: {
+        teams: {
+          some: {
+            slug,
+          },
+        },
+      },
       startDate: {
-        gte: new Date(new Date().setDate(new Date().getDate() - 28)),
+        gte: date,
+      },
+      type: {
+        in: ['Run', 'Ride', 'Swim', 'Workout'],
       },
     },
     orderBy: {
@@ -33,9 +45,9 @@ const Streaker = async () => {
       symbol="🦾"
       label="Hustler"
       metric={activityCount}
-      description="activities"
+      description="Num. of activities"
     />
   );
 };
 
-export default Streaker;
+export default Hustler;

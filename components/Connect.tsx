@@ -13,12 +13,7 @@ const Connect = () => {
   const router = useRouter();
   const handleImport = async () => {
     setIsLoading(true);
-    const statsRes = await fetch('/api/import/stats');
-    if (!statsRes.ok) {
-      toast.error(
-        <ToastBody title="Error" message="Could not import athlete stats." />
-      );
-    }
+
     setProgress(1);
     const activitiesRes = await fetch('/api/import/activities');
     if (!activitiesRes.ok) {
@@ -29,7 +24,7 @@ const Connect = () => {
         />
       );
     }
-    if (statsRes.ok && activitiesRes.ok) {
+    if (activitiesRes.ok) {
       setProgress(2);
       toast.success(
         <ToastBody title="Success" message="Data successfully connected." />
@@ -56,9 +51,6 @@ const Connect = () => {
             </div>
           )}
         </div>
-        {/* {!isLoading && (
-          <Loader2 className="strke-green-500 absolute left-0 top-0 h-64 w-64 text-green-500" />
-        )} */}
       </div>
 
       <Button

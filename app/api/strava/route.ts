@@ -16,5 +16,5 @@ export async function GET(req: NextRequest) {
     ...athlete,
   };
   await upsertUser(upsertedUser);
-  return NextResponse.redirect(new URL('/dashboard', req.url));
+  return NextResponse.redirect(new URL('/team', req.url));
 }

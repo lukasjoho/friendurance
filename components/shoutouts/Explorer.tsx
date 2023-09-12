@@ -1,14 +1,24 @@
+import getDateFromCookie from '@/lib/helpers/getDateFromCookie';
 import { prisma } from '@/lib/prisma';
 import ShoutoutCard from '../ShoutoutCard';
 
-const Explorer = async () => {
+const Explorer = async ({ slug }: { slug: string }) => {
+  const date = await getDateFromCookie();
+
   //get user with largest variance in start coordinates in last 28 days
   const usersWithActivities = await prisma.user.findMany({
+    where: {
+      teams: {
+        some: {
+          slug,
+        },
+      },
+    },
     include: {
       activities: {
         where: {
           startDate: {
-            gte: new Date(new Date().setDate(new Date().getDate() - 28)),
+            gte: date,
           },
         },
       },
@@ -73,7 +83,7 @@ const Explorer = async () => {
       label="Explorer"
       metric={Number(explorerDistance.avgDistance.toFixed(0))}
       annotation="km"
-      description="Avg. km's between activities"
+      description="Geographical variance"
     />
   );
 };

@@ -78,8 +78,8 @@ export async function getDaysFromDateRange(dateRange: string) {
   }
   const currentDateRange = dateRanges.find(
     (range) => range.value === activeDateRange
-  );
-  return currentDateRange?.days;
+  )!;
+  return currentDateRange.days;
 }
 
 export async function wait() {

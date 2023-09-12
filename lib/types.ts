@@ -5,7 +5,6 @@ export interface User {
   firstName: string | null;
   lastName: string | null;
   imageUrl: string | null;
-  userStats: UserStats | null;
 }
 
 export interface StravaActivity {
@@ -13,15 +12,6 @@ export interface StravaActivity {
   moving_time?: number;
   type?: string;
   start_date?: string;
-}
-
-export interface UserStats {
-  recentRunDistance: number;
-  recentSwimDistance: number;
-  recentRideDistance: number;
-  recentRunCount: number;
-  recentSwimCount: number;
-  recentRideCount: number;
 }
 
 export interface Team {

@@ -1,31 +1,52 @@
+import getDateFromCookie from '@/lib/helpers/getDateFromCookie';
 import { prisma } from '@/lib/prisma';
 import ShoutoutCard from '../ShoutoutCard';
 
-const FlashRunner = async () => {
-  const activity = await prisma.activity.findFirst({
+const FlashRunner = async ({ slug }: { slug: string }) => {
+  const date = await getDateFromCookie();
+  const activities = await prisma.activity.groupBy({
+    by: ['userId'],
     where: {
       type: 'Run',
+      user: {
+        teams: {
+          some: {
+            slug,
+          },
+        },
+      },
+      startDate: {
+        gte: date,
+      },
+    },
+    _avg: {
+      averageSpeed: true,
     },
     orderBy: {
-      averageSpeed: 'desc',
-    },
-    include: {
-      user: true,
+      _avg: {
+        averageSpeed: 'desc',
+      },
     },
   });
-  if (!activity?.averageSpeed) return false;
 
-  const speedInKmPerHour = ((activity?.averageSpeed * 60 * 60) / 1000).toFixed(
-    2
-  );
+  const user = await prisma.user.findUnique({
+    where: {
+      userId: activities[0].userId,
+    },
+  });
+
+  const speedInKmPerHour = (
+    (activities[0]._avg.averageSpeed! * 60 * 60) /
+    1000
+  ).toFixed(2);
   return (
     <ShoutoutCard
-      user={activity.user}
+      user={user}
       symbol="🏃"
       label="Pace Maker"
       metric={Number(speedInKmPerHour)}
       annotation="km/h"
-      description="highest average speed"
+      description="Average speed"
     />
   );
 };

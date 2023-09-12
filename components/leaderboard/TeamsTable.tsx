@@ -20,7 +20,6 @@ const TeamsTable: FC<TeamsTableProps> = async ({ discipline }) => {
   return (
     <Container>
       <div className="rounded-xl border">
-        <pre>{JSON.stringify(teamsData, null, 2)}</pre>
         <DataTable data={teamsData} columns={teamColumns} />
       </div>
     </Container>

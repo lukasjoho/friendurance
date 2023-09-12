@@ -2,7 +2,7 @@ import UsersTable from '../leaderboard/UsersTable';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
-const AthletesStats = () => {
+const AthletesStats = ({ slug }: { slug: string }) => {
   return (
     <Card>
       <CardHeader>
@@ -15,10 +15,10 @@ const AthletesStats = () => {
             <TabsTrigger value="ride">Ride</TabsTrigger>
           </TabsList>
           <TabsContent value="run" className="w-full">
-            <UsersTable discipline="Run" />
+            <UsersTable discipline="Run" slug={slug} />
           </TabsContent>
           <TabsContent value="ride">
-            <UsersTable discipline="Ride" />
+            <UsersTable discipline="Ride" slug={slug} />
           </TabsContent>
         </Tabs>
       </CardContent>

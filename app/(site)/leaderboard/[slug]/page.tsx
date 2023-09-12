@@ -3,8 +3,8 @@ import DisciplineSelector, {
   DateRangeSelector,
 } from '@/components/DisciplineSelector';
 import LeaderboardHero from '@/components/leaderboard/LeaderboardHero';
-import LeaderboardTable from '@/components/leaderboard/LeaderboardTable';
 import SkeletonLeaderboardTable from '@/components/leaderboard/SkeletonLeaderboardTable';
+import TeamsTable from '@/components/leaderboard/TeamsTable';
 import { Discipline, disciplines } from '@/lib/data/disciplines';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -29,7 +29,7 @@ const LeaderboardTypePage = ({ params }: { params: { slug: string } }) => {
         <DateRangeSelector />
       </Container>
       <Suspense fallback={<SkeletonLeaderboardTable />}>
-        <LeaderboardTable discipline={discipline} />
+        <TeamsTable discipline={discipline} />
       </Suspense>
     </div>
   );

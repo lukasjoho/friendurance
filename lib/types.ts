@@ -23,3 +23,11 @@ export interface UserStats {
   recentSwimCount: number;
   recentRideCount: number;
 }
+
+export interface Team {
+  id: string;
+  slug: string;
+  name: string;
+  imageUrl: string | null;
+  members: User[];
+}

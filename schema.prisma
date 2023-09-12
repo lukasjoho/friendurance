@@ -18,11 +18,12 @@ model User {
     imageUrl String?
     createdAt     DateTime @default(now())
     userStats UserStats?
-    team Team? @relation(fields: [teamId], references: [id])
-    teamId String?
+    teams Team[] @relation("UserTeam")
     accessToken String?
     refreshToken String?
-    @@index([teamId])
+    currentTeam Team? @relation("CurrentUserTeam", fields: [currentTeamId], references: [id])
+    currentTeamId String?
+    @@index([currentTeamId])
 }
 
 model UserStats {
@@ -75,5 +76,6 @@ model Team {
     name         String @unique
     imageUrl     String?
     createdAt    DateTime @default(now())
-    members       User[]
+    members      User[] @relation("UserTeam")
+    currentTeamMembers User[] @relation("CurrentUserTeam")
 }

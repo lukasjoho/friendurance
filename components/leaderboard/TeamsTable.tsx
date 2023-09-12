@@ -3,13 +3,14 @@ import { getTeams, getTeamsSummariesByDiscipline } from '@/lib/db';
 import { getCookieValue, getDaysFromDateRange } from '@/lib/helpers';
 import { FC } from 'react';
 import Container from '../Container';
-import LeaderboardTableRender from './LeaderboardTableRender';
+import DataTable from './DataTable';
+import { teamColumns } from './leaderboardColumns';
 
-interface LeaderboardTableProps {
+interface TeamsTableProps {
   discipline: Discipline;
 }
 
-const LeaderboardTable: FC<LeaderboardTableProps> = async ({ discipline }) => {
+const TeamsTable: FC<TeamsTableProps> = async ({ discipline }) => {
   const { dbType } = discipline;
   const dateRange = await getCookieValue('dateRange');
   const days = await getDaysFromDateRange(dateRange || 'last-month');
@@ -19,10 +20,11 @@ const LeaderboardTable: FC<LeaderboardTableProps> = async ({ discipline }) => {
   return (
     <Container>
       <div className="rounded-xl border">
-        <LeaderboardTableRender data={teamsData} />
+        <pre>{JSON.stringify(teamsData, null, 2)}</pre>
+        <DataTable data={teamsData} columns={teamColumns} />
       </div>
     </Container>
   );
 };
 
-export default LeaderboardTable;
+export default TeamsTable;

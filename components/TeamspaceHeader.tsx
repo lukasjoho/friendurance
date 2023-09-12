@@ -1,5 +1,5 @@
 import Container from './Container';
-import DateRangeSelector from './DateRangeSelector';
+import { DateRangeSelector } from './DisciplineSelector';
 import TeamSelector from './TeamSelector';
 
 const TeamspaceHeader = () => {

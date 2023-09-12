@@ -53,7 +53,7 @@ export async function getAuthUser() {
   return dbUser;
 }
 export async function getTeams() {
-  const teams = await prisma.team.findMany({
+  const teams: any[] = await prisma.team.findMany({
     include: {
       members: {
         select: {
@@ -66,6 +66,11 @@ export async function getTeams() {
     },
   });
   return teams;
+}
+
+export async function getUsers() {
+  const users: any[] = await prisma.user.findMany({});
+  return users;
 }
 
 export async function getTeamsSummariesByDiscipline(
@@ -82,6 +87,65 @@ export async function getTeamsSummariesByDiscipline(
   return teamsData;
 }
 
+export async function getUsersSummariesByDiscipline(
+  users: any,
+  discipline: string,
+  days?: number
+) {
+  const usersData = await Promise.all(
+    users.map(
+      async (user: any) =>
+        await getAthleteSummaryByDiscipline(user, discipline, days)
+    )
+  );
+  return usersData;
+}
+
+export async function getAthleteSummaryByDiscipline(
+  user: any,
+  discipline: string,
+  days: number = 365000
+) {
+  const activityDataGroupedByUser = await prisma.activity.aggregate({
+    where: {
+      userId: user.userId,
+      type: {
+        equals: discipline,
+      },
+      startDate: {
+        gte: getDateFromDays(days),
+      },
+    },
+    _sum: {
+      distance: true,
+    },
+    _avg: {
+      distance: true,
+      movingTime: true,
+    },
+    _count: {
+      id: true,
+    },
+  });
+  const userStats = {
+    avgTotalDistance: activityDataGroupedByUser._sum.distance || 0,
+    avgSpeed:
+      activityDataGroupedByUser._avg.distance! /
+        activityDataGroupedByUser._avg.movingTime! || 0,
+    avgDistancePerRun: activityDataGroupedByUser._avg.distance || 0,
+    avgActivityCount: activityDataGroupedByUser._count.id || 0,
+  };
+  return {
+    entity: {
+      userId: user.userId,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      imageUrl: user.imageUrl,
+    },
+    ...userStats,
+  };
+}
+
 export async function getTeamSummaryByDiscipline(
   team: any,
   discipline: string,
@@ -90,7 +154,11 @@ export async function getTeamSummaryByDiscipline(
   const activityDataGroupedByTeam = await prisma.activity.aggregate({
     where: {
       user: {
-        teamId: team.id,
+        teams: {
+          some: {
+            id: team.id,
+          },
+        },
       },
       type: {
         equals: discipline,
@@ -110,7 +178,7 @@ export async function getTeamSummaryByDiscipline(
       id: true,
     },
   });
-  const teamData = {
+  const teamStats = {
     avgTotalDistance:
       activityDataGroupedByTeam._sum.distance! / team.members.length || 0,
     avgSpeed:
@@ -121,12 +189,12 @@ export async function getTeamSummaryByDiscipline(
       activityDataGroupedByTeam._count.id / team.members.length || 0,
   };
   return {
-    team: {
+    entity: {
       id: team.id,
       name: team.name,
       imageUrl: team.imageUrl,
       members: team.members,
     },
-    ...teamData,
+    ...teamStats,
   };
 }

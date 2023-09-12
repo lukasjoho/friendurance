@@ -1,8 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import DataTable from './usertables/DataTable';
+import UsersTable from '../leaderboard/UsersTable';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
-const StatsTable = () => {
+const AthletesStats = () => {
   return (
     <Card>
       <CardHeader>
@@ -15,10 +15,10 @@ const StatsTable = () => {
             <TabsTrigger value="ride">Ride</TabsTrigger>
           </TabsList>
           <TabsContent value="run" className="w-full">
-            <DataTable type="Run" />
+            <UsersTable discipline="Run" />
           </TabsContent>
           <TabsContent value="ride">
-            <DataTable type="Ride" />
+            <UsersTable discipline="Ride" />
           </TabsContent>
         </Tabs>
       </CardContent>
@@ -26,4 +26,4 @@ const StatsTable = () => {
   );
 };
 
-export default StatsTable;
+export default AthletesStats;

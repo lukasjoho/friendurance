@@ -1,6 +1,6 @@
 'use client';
 
-import { createFeedback } from '@/lib/actions/utils';
+import { createFeedback } from '@/lib/actions';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';

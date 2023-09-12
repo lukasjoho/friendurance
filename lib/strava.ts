@@ -16,6 +16,13 @@ export interface TokenResponse {
   };
 }
 
+export async function getStravaActivityById(id: string) {
+  const [data, error] = await fetcher(
+    `${process.env.STRAVA_API_URL}/activities/${id}`
+  );
+  return data;
+}
+
 export async function getStravaUser(code: string): Promise<TokenResponse> {
   const clientId = process.env.STRAVA_CLIENT_ID;
   const clientSecret = process.env.STRAVA_CLIENT_SECRET;

@@ -1,19 +1,42 @@
-import { getAuthUser } from '@/lib/db';
+import { cn } from '@/lib/utils';
+import { AvatarProps } from '@radix-ui/react-avatar';
 import { FC } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
-interface UserAvatarProps {}
+interface UserAvatarProps extends AvatarProps {
+  user: any;
+}
 
-const UserAvatar: FC<UserAvatarProps> = async () => {
-  const user = await getAuthUser();
+export const UserAvatar: FC<UserAvatarProps> = ({ user, ...props }) => {
+  if (!user) {
+    return false;
+  }
+  const { firstName, lastName, imageUrl } = user;
+  const { className, ...rest } = props;
   return (
-    <Avatar className="h-8 w-8">
-      <AvatarImage src={user?.imageUrl || undefined} />
+    <Avatar className={cn('h-8 w-8', props.className)} {...rest}>
+      <AvatarImage src={imageUrl || undefined} />
       <AvatarFallback>
-        {user?.firstName?.charAt(0) + '' + user?.lastName?.charAt(0)}
+        {firstName.charAt(0) + '' + lastName.charAt(0)}
       </AvatarFallback>
     </Avatar>
   );
 };
 
-export default UserAvatar;
+interface TeamAvatarProps extends AvatarProps {
+  team: any;
+}
+
+export const TeamAvatar: FC<TeamAvatarProps> = ({ team, ...props }) => {
+  if (!team) {
+    return false;
+  }
+  const { name, imageUrl } = team;
+
+  return (
+    <Avatar className={cn('h-8 w-8', props.className)}>
+      <AvatarImage src={imageUrl || undefined} />
+      <AvatarFallback>{name.charAt(0)}</AvatarFallback>
+    </Avatar>
+  );
+};

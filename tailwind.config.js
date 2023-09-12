@@ -1,3 +1,5 @@
+import { BREAKPOINTS } from './lib/constants';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
@@ -8,6 +10,13 @@ module.exports = {
     './src/**/*.{ts,tsx}',
   ],
   theme: {
+    screens: {
+      sm: `${BREAKPOINTS.SM}px`,
+      md: `${BREAKPOINTS.MD}px`,
+      lg: `${BREAKPOINTS.LG}px`,
+      xl: `${BREAKPOINTS.XL}px`,
+      '2xl': `${BREAKPOINTS['2xl']}px`,
+    },
     container: {
       center: true,
       padding: '2rem',

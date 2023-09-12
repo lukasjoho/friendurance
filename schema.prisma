@@ -59,6 +59,8 @@ model Activity {
     averageWatts Float?
     kilojoules Float?
     maxWatts Float?
+    photosCount Int?
+    photo String?
 }
 
 model Feedback {

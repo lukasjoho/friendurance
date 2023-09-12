@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const Marker = ({ data }: any) => (
-  <div className="flex aspect-square h-6 w-6 items-center justify-center rounded-full bg-brand">
+  <div className="relative flex aspect-square h-6 w-6 items-center justify-center rounded-full bg-brand transition duration-150 hover:z-10 hover:scale-[2]">
     <Avatar className="h-5 w-5">
       <AvatarImage src={data?.user?.imageUrl ?? undefined} />
       <AvatarFallback>

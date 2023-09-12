@@ -1,10 +1,9 @@
 import { getAuthUser } from '@/lib/db';
 import Link from 'next/link';
+import AvatarDropdown from './AvatarDropdown';
 import Container from './Container';
 import FeedbackButton from './FeedbackButton';
 import { Icons } from './Icons';
-import TeamSelector from './TeamSelector';
-import UserAvatar from './UserAvatar';
 
 const Header = async () => {
   const user = await getAuthUser();
@@ -15,9 +14,8 @@ const Header = async () => {
           <Icons.logo className="h-3 md:h-5" />
         </Link>
         <div className="flex items-center gap-2 md:gap-4">
-          <TeamSelector />
           <FeedbackButton />
-          <UserAvatar />
+          <AvatarDropdown />
         </div>
       </Container>
     </div>

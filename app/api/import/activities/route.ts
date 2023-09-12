@@ -28,6 +28,7 @@ export async function GET() {
         maxWatts: activity.max_watts,
         elapsedTime: activity.elapsed_time,
         kudosCount: activity.kudos_count,
+        photosCount: activity.total_photo_count,
       };
       return prisma.activity.upsert({
         where: { activityId: String(activity.id) },

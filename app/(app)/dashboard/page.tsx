@@ -1,7 +1,7 @@
 import Container from '@/components/Container';
+import Gallery from '@/components/Gallery';
 import Map from '@/components/Map/Map';
-import TeamSummary from '@/components/TeamSummary';
-import UserShowcase from '@/components/UserShowcase';
+import StatsTable from '@/components/StatsTable';
 import Climber from '@/components/shoutouts/Climber';
 import Explorer from '@/components/shoutouts/Explorer';
 import FlashRunner from '@/components/shoutouts/FlashRunner';
@@ -15,10 +15,23 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { hasActivitiesAndStats } from '@/lib/db';
+import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
+  const user = await hasActivitiesAndStats();
+  if (!user) {
+    redirect('/connect');
+  }
   return (
     <div className="flex flex-col gap-4 md:gap-8">
+      <Container>
+        <StatsTable />
+      </Container>
+      {/* <Container>
+        <HeatMap />
+      </Container> */}
       <Container>
         <Card>
           <CardHeader>
@@ -37,12 +50,10 @@ const DashboardPage = () => {
           </CardContent>
         </Card>
       </Container>
-      <Container>
-        <div className="flex flex-col gap-4 md:flex-row md:gap-8">
-          <UserShowcase />
-          <TeamSummary />
-        </div>
-      </Container>
+      <Suspense fallback={<p>Loading.....</p>}>
+        <Gallery />
+      </Suspense>
+
       <Map />
     </div>
   );

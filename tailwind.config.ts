@@ -1,7 +1,6 @@
+import type { Config } from 'tailwindcss';
 import { BREAKPOINTS } from './lib/constants';
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const tailwindConfig = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -15,7 +14,7 @@ module.exports = {
       md: `${BREAKPOINTS.MD}px`,
       lg: `${BREAKPOINTS.LG}px`,
       xl: `${BREAKPOINTS.XL}px`,
-      '2xl': `${BREAKPOINTS['2xl']}px`,
+      '2xl': `${BREAKPOINTS['2XL']}px`,
     },
     container: {
       center: true,
@@ -71,12 +70,12 @@ module.exports = {
       },
       keyframes: {
         'accordion-down': {
-          from: { height: 0 },
+          from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 0 },
+          to: { height: '0' },
         },
       },
       animation: {
@@ -86,4 +85,6 @@ module.exports = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-};
+} satisfies Config;
+
+export default tailwindConfig;

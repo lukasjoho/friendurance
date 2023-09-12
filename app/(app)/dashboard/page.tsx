@@ -1,4 +1,3 @@
-import StatsTable from '@/components/AthletesTable';
 import Container from '@/components/Container';
 import Gallery from '@/components/Gallery';
 import Map from '@/components/Map/Map';
@@ -26,9 +25,6 @@ const DashboardPage = async () => {
   }
   return (
     <div className="flex flex-col gap-4 md:gap-8">
-      <Container>
-        <StatsTable />
-      </Container>
       {/* <Container>
         <HeatMap />
       </Container> */}

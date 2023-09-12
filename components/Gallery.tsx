@@ -53,6 +53,7 @@ const Gallery = async () => {
                     sizes="100vw"
                     style={{ width: 'auto', height: '100%' }}
                     className="shrink-0 overflow-hidden rounded-xl"
+                    key={activity.id}
                   />
                 );
               })}

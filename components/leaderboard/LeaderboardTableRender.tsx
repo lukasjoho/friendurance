@@ -37,6 +37,7 @@ export const columns: ColumnDef<any>[] = [
             <div className="flex">
               {team.members.map((member: any, idx: number) => (
                 <UserAvatar
+                  key={member.id}
                   user={member}
                   className={cn(
                     'box-content h-4 w-4 border-2 border-white text-xs md:h-6 md:w-6'

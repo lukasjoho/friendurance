@@ -81,7 +81,7 @@ const Connect = () => {
         )}
       </Button>
       <p className="text-center text-sm text-muted-foreground">
-        By clicking "Connect" Friendurance will establish a connection to your
+        By clicking Connect Friendurance will establish a connection to your
         public Strava data. <br />
         You can revoke the access at any time. (The connection process can take
         a couple of seconds.)

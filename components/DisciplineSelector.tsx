@@ -10,15 +10,13 @@ interface DisciplineSelectorProps {
   discipline: Discipline;
 }
 
-const DisciplineSelector: FC<DisciplineSelectorProps> = ({ discipline }) => {
-  //get path from url
-  const path = usePathname();
-  const disciplinePath = path.split('/leaderboard/')[1];
-  const isActive = disciplinePath === discipline.slug;
+const DisciplineSelector: FC<DisciplineSelectorProps> = () => {
   return (
     <div className="inline-flex rounded-md bg-muted p-1 text-muted-foreground">
       {disciplines.map((discipline) => (
-        <TabItem discipline={discipline}>{discipline.titlePrefix}</TabItem>
+        <TabItem discipline={discipline} key={discipline.slug}>
+          {discipline.titlePrefix}
+        </TabItem>
       ))}
     </div>
   );
@@ -31,7 +29,7 @@ interface TabItemProps {
   children: React.ReactNode | React.ReactNode[];
 }
 
-const TabItem: FC<TabItemProps> = ({ discipline, children, ...props }) => {
+const TabItem: FC<TabItemProps> = ({ discipline, children }) => {
   const path = usePathname();
   const disciplinePath = path.split('/leaderboard/')[1];
   const isActive = disciplinePath === discipline.slug;
@@ -78,7 +76,7 @@ export const DateRangeSelector: FC<any> = () => {
 
   return (
     <div className="inline-flex rounded-md bg-muted p-1 text-muted-foreground">
-      {dateRanges.map((dateRange) => {
+      {dateRanges.map((dateRange, idx) => {
         const isActive = dateRangeCookie === dateRange.value;
         return (
           <button
@@ -87,6 +85,7 @@ export const DateRangeSelector: FC<any> = () => {
               isActive && 'bg-background text-foreground shadow-sm'
             )}
             onClick={() => handleDateRangeSelection(dateRange)}
+            key={idx}
           >
             {dateRange.label}
           </button>

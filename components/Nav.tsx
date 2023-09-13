@@ -7,22 +7,22 @@ import { usePathname } from 'next/navigation';
 
 const Nav = ({ user }: any) => {
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-4 md:gap-8">
       {!user ? (
         <>
           <NavLink href="/leaderboard/run">
-            Leaderboard
+            <span className="hidden md:inline"> Leaderboard</span>
             <LayoutDashboard className="h-4 w-4" />
           </NavLink>
         </>
       ) : (
         <>
           <NavLink href="/team">
-            Teamboard
+            <span className="hidden md:inline"> Teamboard</span>
             <Medal className="h-4 w-4" />
           </NavLink>
           <NavLink href="/leaderboard/run">
-            Leaderboard
+            <span className="hidden md:inline"> Leaderboard</span>
             <LayoutDashboard className="h-4 w-4" />
           </NavLink>
         </>

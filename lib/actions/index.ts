@@ -1,5 +1,7 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
+import { cookies } from 'next/headers';
 import { getAuthUser } from '../db';
 import { prisma } from '../prisma';
 import ActionResponse from './utils';
@@ -48,6 +50,7 @@ export async function setHasConnected(userId: string) {
 export async function createFeedback(data: any) {
   try {
     await prisma.feedback.create({ data });
+    revalidatePath('/feedback');
     return {
       success: true,
       message: 'Feedback created.',
@@ -80,4 +83,36 @@ export async function createTeam(data: any) {
   } catch (error) {
     return ActionResponse.error('Failed to create team.');
   }
+}
+
+export async function createVote(feedbackId: string) {
+  const anonymousId = cookies().get('anonymousId');
+  const dbVote = await prisma.vote.findUnique({
+    where: {
+      feedbackId_anonymousId: {
+        feedbackId,
+        anonymousId: anonymousId?.value || '',
+      },
+    },
+  });
+  if (dbVote) {
+    await prisma.vote.delete({
+      where: {
+        feedbackId_anonymousId: {
+          feedbackId,
+          anonymousId: anonymousId?.value || '',
+        },
+      },
+    });
+    revalidatePath('/feedback');
+    return;
+  }
+  await prisma.vote.create({
+    data: {
+      feedback: { connect: { id: feedbackId } },
+      anonymousId: anonymousId?.value,
+    },
+  });
+  revalidatePath('/feedback');
+  return;
 }

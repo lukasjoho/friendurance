@@ -57,6 +57,16 @@ model Feedback {
     id           String    @id @default(cuid())
     content      String
     createdAt    DateTime @default(now())
+    votes Vote[]
+}
+
+model Vote { 
+  createdAt    DateTime @default(now())
+  feedback     Feedback @relation(fields: [feedbackId], references: [id])
+  feedbackId   String
+  @@index([feedbackId])
+  anonymousId  String @default(cuid())
+  @@id([feedbackId, anonymousId])
 }
 
 model Team {

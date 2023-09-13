@@ -2,12 +2,13 @@
 
 import { createFeedback } from '@/lib/actions';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as z from 'zod';
 import ToastBody from './ToastBody';
-import { Button } from './ui/button';
+import { Button, buttonVariants } from './ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Textarea } from './ui/textarea';
 
@@ -72,6 +73,18 @@ const FeedbackForm: FC<FeedbackFormProps> = ({ onOpenChange }) => {
           <Button type="submit" disabled={!isValid} className="m-0">
             Submit
           </Button>
+          <Link
+            className={buttonVariants({ variant: 'secondary', size: 'sm' })}
+            href="/feedback"
+          >
+            View all feedback
+          </Link>
+          <Link
+            className={buttonVariants({ variant: 'outline', size: 'sm' })}
+            href="/releases"
+          >
+            View releases
+          </Link>
         </form>
       </Form>
     </div>

@@ -7,7 +7,7 @@ interface SiteLayoutProps {
 
 const SiteLayout: FC<SiteLayoutProps> = ({ children }) => {
   return (
-    <div className="grow">
+    <div className="flex grow flex-col">
       {children}
       <div className="mt-16 md:mt-32">
         <Footer />

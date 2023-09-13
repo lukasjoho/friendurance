@@ -24,7 +24,7 @@ const HomePage = () => {
               <Medal className="w-5" />
             </Button>
           </Link>
-          <Icons.logo className="w-[90%] md:w-[60%]" />
+          <Icons.tagline className="w-[90%] md:w-[60%]" />
           <Image
             src={landingPic}
             alt="Happy 3d avatar runners running towards camera"

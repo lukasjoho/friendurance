@@ -1,17 +1,8 @@
-'use client';
-import { useWindowSize } from '@/lib/hooks/useWindowSize';
+import { getAuthUser } from '@/lib/db';
 import { ChevronsUpDown, PlusCircle } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
-import ToastBody from './ToastBody';
-import CreateTeamForm from './shared/CreateTeamForm';
-import {
-  Modal,
-  ModalContents,
-  ModalOpenButton,
-} from './shared/GlobalModal/Modal';
+import CreateFormModal from './CreateFormModal';
+import { Modal, ModalOpenButton } from './shared/GlobalModal/Modal';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -24,29 +15,10 @@ import {
 } from './ui/dropdown-menu';
 import { Skeleton } from './ui/skeleton';
 
-const TeamSelector = () => {
-  const { slug } = useParams();
-  const [user, setUser] = useState<any>(null);
-  useEffect(() => {
-    const getUserTeams = async () => {
-      const res = await fetch('/api/current', {
-        method: 'GET',
-      });
-      const data = await res.json();
-      setUser(data);
-    };
-    getUserTeams();
-  }, [slug]);
-  const handleClick = () => {
-    toast(
-      <ToastBody
-        title="You can't switch team channels yet!"
-        message="Creating multiple team channels and switching between them will be coming soon."
-      />
-    );
-  };
-  let size = useWindowSize();
+const TeamSelector = async ({ slug }: any) => {
+  const user = await getAuthUser();
 
+  const currentTeam = user?.teams?.find((team: any) => team.slug === slug);
   return (
     <Modal>
       <DropdownMenu>
@@ -56,13 +28,12 @@ const TeamSelector = () => {
             className="group flex items-center justify-start gap-1 text-sm outline-none focus:outline-none md:gap-2 md:text-base"
             variant="outline"
             size="sm"
-            onClick={handleClick}
           >
             <div className="grid aspect-square h-4 w-4 shrink-0 place-items-center overflow-hidden rounded-md bg-muted text-xs font-semibold md:h-5 md:w-5 md:text-xs">
-              {user?.currentTeam?.name[0]}
+              {currentTeam?.name[0]}
             </div>
             <div className="block w-12 max-w-[128px] overflow-hidden text-ellipsis whitespace-nowrap text-left md:w-auto">
-              {user?.currentTeam?.name ?? (
+              {currentTeam?.name ?? (
                 <Skeleton className="h-[20px] w-12 rounded-md" />
               )}
             </div>
@@ -103,9 +74,7 @@ const TeamSelector = () => {
           </ModalOpenButton>
         </DropdownMenuContent>
       </DropdownMenu>
-      <ModalContents title="Create team" size={size} maxSize="sm">
-        <CreateTeamForm />
-      </ModalContents>
+      <CreateFormModal />
     </Modal>
   );
 };

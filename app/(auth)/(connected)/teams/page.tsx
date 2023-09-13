@@ -35,6 +35,11 @@ const TeamsOverview = async () => {
     include: {
       members: true,
     },
+    where: {
+      slug: {
+        notIn: ['friendurance-demo-team'],
+      },
+    },
     // where: {
     //   members: {
     //     some: {
@@ -44,7 +49,7 @@ const TeamsOverview = async () => {
     // },
   });
   return (
-    <Card className="w-[350px]">
+    <Card className="min-w-[300px] max-w-[350px]">
       <CardHeader>
         <CardTitle>Teams</CardTitle>
         <CardDescription>Join a team or create your own.</CardDescription>
@@ -55,14 +60,14 @@ const TeamsOverview = async () => {
             {teams.map((team) => (
               <Link
                 key={team.id}
-                href={`/team/${team.slug}`}
+                href={`api/team?slug=${team.slug}`}
                 className={cn(
                   buttonVariants({ variant: 'secondary' }),
                   'flex w-full items-center justify-start gap-3 overflow-scroll py-8'
                 )}
               >
                 <TeamAvatar team={team} className="h-9 w-9" />
-                <p className="text-lg">{team.name}</p>
+                <p className="whitespace-nowrap text-lg">{team.name}</p>
                 <AvatarsListing users={team.members} max={3} />
               </Link>
             ))}

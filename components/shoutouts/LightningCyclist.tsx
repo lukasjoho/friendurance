@@ -29,6 +29,18 @@ const LightningCyclist = async ({ slug }: { slug: string }) => {
       },
     },
   });
+  if (!activities[0]) {
+    return (
+      <ShoutoutCard
+        user={null}
+        symbol="🚴"
+        label="Cyclone"
+        metric={0}
+        annotation="km/h"
+        description="Average speed"
+      />
+    );
+  }
   const user = await prisma.user.findUnique({
     where: {
       userId: activities[0].userId,

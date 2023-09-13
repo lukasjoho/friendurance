@@ -28,6 +28,18 @@ const FlashRunner = async ({ slug }: { slug: string }) => {
       },
     },
   });
+  if (!activities[0]) {
+    return (
+      <ShoutoutCard
+        user={null}
+        symbol="🏃"
+        label="Pace Maker"
+        metric={0}
+        annotation="km/h"
+        description="Average speed"
+      />
+    );
+  }
 
   const user = await prisma.user.findUnique({
     where: {

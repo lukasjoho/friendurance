@@ -1,4 +1,5 @@
 'use client';
+import { setHasConnected } from '@/lib/actions';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -7,7 +8,7 @@ import { Icons } from './Icons';
 import ToastBody from './ToastBody';
 import { Button } from './ui/button';
 
-const Connect = () => {
+const Connect = ({ user }: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const router = useRouter();
@@ -24,13 +25,15 @@ const Connect = () => {
         />
       );
     }
+    const res = await setHasConnected(user.userId);
+    if (!res.success) {
+      toast.error('Could not connect user.');
+    }
     if (activitiesRes.ok) {
       setProgress(2);
-      toast.success(
-        <ToastBody title="Success" message="Data successfully connected." />
-      );
+      toast.success('Data successfully connected.');
     }
-    router.refresh();
+    router.push('/team');
     setIsLoading(false);
   };
   return (
@@ -68,7 +71,7 @@ const Connect = () => {
         {isLoading && (
           <>
             <Icons.stravaRaw className="h-5 w-auto" />
-            <span>Connecting... {`${progress} / 2`}</span>
+            <span>Connecting...</span>
           </>
         )}
       </Button>

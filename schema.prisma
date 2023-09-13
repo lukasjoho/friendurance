@@ -22,7 +22,7 @@ model User {
     refreshToken String?
     currentTeam Team? @relation("CurrentUserTeam", fields: [currentTeamId], references: [id])
     currentTeamId String?
-    hasConnectedStrava Boolean @default(false)
+    hasConnected Boolean @default(false)
     @@index([currentTeamId])
 }
 

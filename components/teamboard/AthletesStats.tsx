@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 const AthletesStats = ({ slug }: { slug: string }) => {
   return (
-    <Card>
+    <Card className="grow overflow-hidden">
       <CardHeader>
         <CardTitle>Athlete Stats</CardTitle>
       </CardHeader>
@@ -14,7 +14,7 @@ const AthletesStats = ({ slug }: { slug: string }) => {
             <TabsTrigger value="run">Run</TabsTrigger>
             <TabsTrigger value="ride">Ride</TabsTrigger>
           </TabsList>
-          <TabsContent value="run" className="w-full">
+          <TabsContent value="run">
             <UsersTable discipline="Run" slug={slug} />
           </TabsContent>
           <TabsContent value="ride">

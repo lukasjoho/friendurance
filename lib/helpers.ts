@@ -87,7 +87,7 @@ export async function wait() {
     try {
       setTimeout(() => {
         resolve(true);
-      }, 2000);
+      }, 3000);
     } catch (error) {
       reject(false);
     }

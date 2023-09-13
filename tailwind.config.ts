@@ -26,6 +26,18 @@ const tailwindConfig = {
     extend: {
       fontSize: {
         '2xs': '10px',
+        '10xl': '10rem',
+        '11xl': '12rem',
+        '12xl': '14rem',
+        '13xl': '16rem',
+        '14xl': '18rem',
+        '15xl': '20rem',
+      },
+      fontFamily: {
+        din: ['var(--font-din)'],
+        fingerpaint: ['var(--font-fingerpaint)'],
+        tungsten: ['var(--font-tungsten)'],
+        oswald: ['var(--font-oswald)'],
       },
       colors: {
         brand: 'hsl(var(--brand))',

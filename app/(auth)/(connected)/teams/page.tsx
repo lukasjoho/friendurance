@@ -1,5 +1,6 @@
 import Container from '@/components/Container';
 import { TeamAvatar } from '@/components/UserAvatar';
+import AvatarsListing from '@/components/shared/AvatarsListing';
 import CreateTeamButton from '@/components/shared/CreateTeamButton';
 
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -31,13 +32,16 @@ export default TeamsPage;
 const TeamsOverview = async () => {
   const user = await getAuthUser();
   const teams = await prisma.team.findMany({
-    where: {
-      members: {
-        some: {
-          userId: user?.userId,
-        },
-      },
+    include: {
+      members: true,
     },
+    // where: {
+    //   members: {
+    //     some: {
+    //       userId: user?.userId,
+    //     },
+    //   },
+    // },
   });
   return (
     <Card className="w-[350px]">
@@ -54,11 +58,12 @@ const TeamsOverview = async () => {
                 href={`/team/${team.slug}`}
                 className={cn(
                   buttonVariants({ variant: 'secondary' }),
-                  'flex w-full items-center justify-start gap-3 py-8'
+                  'flex w-full items-center justify-start gap-3 overflow-scroll py-8'
                 )}
               >
                 <TeamAvatar team={team} className="h-9 w-9" />
                 <p className="text-lg">{team.name}</p>
+                <AvatarsListing users={team.members} max={3} />
               </Link>
             ))}
             <p className="text-center text-sm text-muted-foreground">or</p>

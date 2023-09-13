@@ -31,6 +31,17 @@ const Climber = async ({ slug }: { slug: string }) => {
       },
     },
   });
+  if (!usersSortedByElevationGain[0])
+    return (
+      <ShoutoutCard
+        user={null}
+        symbol="⛰️"
+        label="Climber"
+        metric={0}
+        annotation="m"
+        description="Total elevation gain"
+      />
+    );
   const userIdWithHighestElevationGain = usersSortedByElevationGain[0].userId;
   const user = await prisma.user.findUnique({
     where: {

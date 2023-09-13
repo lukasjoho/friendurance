@@ -1,7 +1,49 @@
 'use server';
 
+import { getAuthUser } from '../db';
 import { prisma } from '../prisma';
 import ActionResponse from './utils';
+
+export async function getUserTeams() {
+  const user = await getAuthUser();
+  return ActionResponse.success('', user);
+}
+
+export async function setCurrentTeam(userId: string, slug: string) {
+  try {
+    await prisma.user.update({
+      where: {
+        userId: userId,
+      },
+      data: {
+        currentTeam: {
+          connect: {
+            slug: slug,
+          },
+        },
+      },
+    });
+    return ActionResponse.success('Successfully updated current team.');
+  } catch (error) {
+    return ActionResponse.error('Failed to set current team.');
+  }
+}
+
+export async function setHasConnected(userId: string) {
+  try {
+    await prisma.user.update({
+      where: {
+        userId: userId,
+      },
+      data: {
+        hasConnected: true,
+      },
+    });
+    return ActionResponse.success('User updated.');
+  } catch (error: unknown) {
+    return ActionResponse.error('Failed to update user.');
+  }
+}
 
 export async function createFeedback(data: any) {
   try {

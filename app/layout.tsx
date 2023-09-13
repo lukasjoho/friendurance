@@ -1,10 +1,16 @@
+import Header from '@/components/Header';
+import {
+  din,
+  fingerpaint,
+  inter,
+  mechepro,
+  oswald,
+  tungsten,
+} from '@/lib/fonts';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Friendurance',
@@ -19,8 +25,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="flex flex-col" style={{ height: '100dvh' }}>
+      <body
+        className={`${din.variable} ${fingerpaint.variable} ${mechepro.variable} ${tungsten.variable} ${oswald.variable} ${inter.className}`}
+      >
+        <main
+          className="font-din flex flex-col align-middle"
+          style={{ height: '100dvh' }}
+        >
+          <Header />
+
           {children}
           <Toaster
             toastOptions={{

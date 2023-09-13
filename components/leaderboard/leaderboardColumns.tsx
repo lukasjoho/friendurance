@@ -1,7 +1,8 @@
 'use client';
-import { cn, formatMPerSecondToKmPerHour, formatMToKm } from '@/lib/utils';
+import { formatMPerSecondToKmPerHour, formatMToKm } from '@/lib/utils';
 import { ColumnDef } from '@tanstack/react-table';
-import { TeamAvatar, UserAvatar } from '../UserAvatar';
+import { TeamAvatar } from '../UserAvatar';
+import AvatarsListing from '../shared/AvatarsListing';
 import TableHeaderButton from '../shared/TableHeaderButton';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Stats } from './DataTable';
@@ -90,20 +91,7 @@ export const teamColumns: ColumnDef<any>[] = [
           />
           <div className="md:space-y-1">
             <div className="text-base font-medium md:text-lg">{team?.name}</div>
-            <div className="flex">
-              {team.members.map((member: any, idx: number) => (
-                <UserAvatar
-                  key={member.id}
-                  user={member}
-                  className={cn(
-                    'box-content h-4 w-4 border-2 border-white text-xs md:h-6 md:w-6'
-                  )}
-                  style={{
-                    marginLeft: idx === 0 ? 0 : '-8px',
-                  }}
-                />
-              ))}
-            </div>
+            <AvatarsListing users={team.members} />
           </div>
         </div>
       );

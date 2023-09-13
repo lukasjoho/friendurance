@@ -6,10 +6,10 @@ import { Icons } from './Icons';
 
 const Header = () => {
   return (
-    <div className="flex h-14 w-full items-center border-b ">
+    <div className="flex h-14 w-full shrink-0 items-center border-b">
       <Container className="flex items-center justify-between">
         <Link href="/">
-          <Icons.logo className="h-3 md:h-5" />
+          <Icons.logo className="h-3 fill-foreground md:h-5" />
         </Link>
 
         <div className="flex items-center gap-2 md:gap-4">

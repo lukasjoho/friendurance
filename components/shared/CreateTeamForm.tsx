@@ -1,7 +1,7 @@
 'use client';
-import { createTeam } from '@/lib/actions';
 import { slugify } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -41,12 +41,22 @@ const CreateTeamForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    const res = await createTeam(values);
-    if (res.success) {
-      toast.success(`/team/${res.data.slug}`);
-      router.push(`/team/${res.data.slug}`);
+    // const res = await createTeam(values);
+    const res = await fetch('/api/teams', {
+      method: 'POST',
+      body: JSON.stringify(values),
+    });
+    const team = await res.json();
+    if (res.ok) {
+      toast.success(`Team successfully created.`);
+      router.push(`/team/${team.slug}`);
+      revalidatePath(`/team/${team.slug}`);
     } else {
-      toast.error(res.message);
+      if (res.status === 409) {
+        toast.error('Team name not available.');
+        return;
+      }
+      toast.error('Team creation failed.');
     }
   }
   return (

@@ -43,8 +43,15 @@ export async function getAuthUser() {
       accessToken: true,
       refreshToken: true,
       currentTeam: true,
+      hasConnected: true,
+      teams: true,
     },
   });
+
+  if (!dbUser) {
+    return null;
+  }
+
   return dbUser;
 }
 export async function getTeams() {

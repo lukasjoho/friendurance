@@ -1,3 +1,4 @@
+import { User } from 'lucide-react';
 import { FC } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
@@ -5,7 +6,7 @@ interface ShoutoutCardProps {
   user: any;
   symbol: string;
   label: string;
-  metric: number;
+  metric: number | null;
   annotation?: string;
   description: string;
 }
@@ -34,15 +35,16 @@ const ShoutoutCard: FC<ShoutoutCardProps> = async ({
           <AvatarImage src={user?.imageUrl || undefined} />
 
           <AvatarFallback>
-            {user?.firstName?.charAt(0) + '' + user?.lastName?.charAt(0)}
+            {user && user.firstName?.charAt(0) + '' + user.lastName?.charAt(0)}
+            {!user && <User className="h-5 w-5 text-muted-foreground" />}
           </AvatarFallback>
         </Avatar>
-        <h3 className="font-semibold">{user?.firstName}</h3>
+        <h3 className="font-semibold">{user?.firstName ?? '-'}</h3>
       </div>
       <div className="flex gap-4 px-6 py-6">
         <div className="flex flex-col items-center">
           <h4 className="relative text-5xl font-semibold">
-            {metric}
+            {metric ?? '-'}
 
             <span className="absolute bottom-0.5 ml-0.5 text-sm">
               {annotation}

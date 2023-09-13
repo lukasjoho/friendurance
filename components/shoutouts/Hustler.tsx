@@ -31,7 +31,18 @@ const Hustler = async ({ slug }: { slug: string }) => {
     },
   });
 
-  const userIdWithMostActivities = usersSortedByActivityCount[0].userId;
+  const userIdWithMostActivities = usersSortedByActivityCount[0]?.userId;
+  if (!userIdWithMostActivities) {
+    return (
+      <ShoutoutCard
+        user={null}
+        symbol="🦾"
+        label="Hustler"
+        metric={0}
+        description="Num. of activities"
+      />
+    );
+  }
 
   const user = await prisma.user.findUnique({
     where: {

@@ -10,7 +10,8 @@ const ModalOverlay: FC<ModalOverlayProps> = ({
 }: any) => {
   return (
     <motion.div
-      className="fixed left-0 top-0 h-screen w-screen bg-background/80 backdrop-blur-sm"
+      className="fixed left-0 top-0 w-screen bg-background/80 backdrop-blur-sm"
+      style={{ height: '100dvh' }}
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,

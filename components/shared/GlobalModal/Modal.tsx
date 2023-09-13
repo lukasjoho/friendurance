@@ -87,9 +87,10 @@ function ModalContents({
       {isOpen && (
         <div
           className={cn(
-            'fixed left-0 top-0 z-50 grid h-screen w-screen',
+            'fixed left-0 top-0 z-50 grid w-screen',
             test && 'bg-green-500'
           )}
+          style={{ height: '100dvh' }}
         >
           <ModalOverlay
             handleModalBackgroundClick={handleModalBackgroundClick}

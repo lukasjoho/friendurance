@@ -140,7 +140,7 @@ export async function getAthleteSummaryByDiscipline(
       averageSpeed: true,
     },
     _count: {
-      id: true,
+      activityId: true,
     },
   });
   console.log('ACT: ', activityDataGroupedByUser);
@@ -148,7 +148,7 @@ export async function getAthleteSummaryByDiscipline(
     avgTotalDistance: activityDataGroupedByUser._sum.distance || 0,
     avgSpeed: activityDataGroupedByUser._avg.averageSpeed || 0,
     avgDistancePerRun: activityDataGroupedByUser._avg.distance || 0,
-    avgActivityCount: activityDataGroupedByUser._count.id || 0,
+    avgActivityCount: activityDataGroupedByUser._count.activityId || 0,
   };
   return {
     entity: {
@@ -191,7 +191,7 @@ export async function getTeamSummaryByDiscipline(
       averageSpeed: true,
     },
     _count: {
-      id: true,
+      activityId: true,
     },
   });
   const teamStats = {
@@ -200,7 +200,7 @@ export async function getTeamSummaryByDiscipline(
     avgSpeed: activityDataGroupedByTeam._avg.averageSpeed || 0,
     avgDistancePerRun: activityDataGroupedByTeam._avg.distance || 0,
     avgActivityCount:
-      activityDataGroupedByTeam._count.id / team.members.length || 0,
+      activityDataGroupedByTeam._count.activityId / team.members.length || 0,
   };
   return {
     entity: {

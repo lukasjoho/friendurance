@@ -19,7 +19,7 @@ const UsersTable: FC<UsersTableProps> = async ({ discipline, slug }) => {
     slug,
     days
   );
-  return <DataTable data={usersData} columns={userColumns} />;
+  return <DataTable data={usersData} columns={userColumns} type="user" />;
 };
 
 export default UsersTable;

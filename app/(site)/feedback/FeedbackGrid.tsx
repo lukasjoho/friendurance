@@ -37,7 +37,7 @@ const FeedbackGrid = async () => {
       style={{ gridTemplateRows: 'masonry' }}
     >
       {feedbacks.map((feedback) => (
-        <FeedbackItem feedback={feedback} />
+        <FeedbackItem feedback={feedback} key={feedback.id} />
       ))}
     </div>
   );

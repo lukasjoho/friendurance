@@ -8,6 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { FC, useState } from 'react';
+import TeamInfoModal from '../TeamInfoModal';
 import {
   Table,
   TableBody,
@@ -31,9 +32,10 @@ export interface Data extends Stats {
 interface DataTableProps {
   data: Data[];
   columns: ColumnDef<any>[];
+  type: 'user' | 'team';
 }
 
-const DataTable: FC<DataTableProps> = ({ data, columns }) => {
+const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
   const [sorting, setSorting] = useState<SortingState>([
     {
       id: 'avgTotalDistance',
@@ -74,22 +76,21 @@ const DataTable: FC<DataTableProps> = ({ data, columns }) => {
       <TableBody>
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row, idx) => (
-            <TableRow
-              key={row.id}
-              data-state={row.getIsSelected() && 'selected'}
-            >
-              <TableCell className="pl-6 text-lg font-medium md:text-xl">
-                {idx + 1}
-              </TableCell>
-              {row.getVisibleCells().map((cell) => (
-                <TableCell
-                  key={cell.id}
-                  className="py-4 text-base font-medium md:py-6 md:text-lg"
-                >
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            <TeamInfoModal data={row} type={type} key={row.id}>
+              <TableRow data-state={row.getIsSelected() && 'selected'}>
+                <TableCell className="pl-6 text-lg font-medium md:text-xl">
+                  {idx + 1}
                 </TableCell>
-              ))}
-            </TableRow>
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell
+                    key={cell.id}
+                    className="py-4 text-base font-medium md:py-6 md:text-lg"
+                  >
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TeamInfoModal>
           ))
         ) : (
           <TableRow>

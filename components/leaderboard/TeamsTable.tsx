@@ -20,7 +20,7 @@ const TeamsTable: FC<TeamsTableProps> = async ({ discipline }) => {
   return (
     <Container>
       <div className="rounded-xl border">
-        <DataTable data={teamsData} columns={teamColumns} />
+        <DataTable data={teamsData} columns={teamColumns} type="team" />
       </div>
     </Container>
   );

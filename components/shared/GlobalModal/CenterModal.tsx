@@ -38,7 +38,7 @@ const CenterModal: FC<CenterModalProps> = ({ children, maxSize = 'md' }) => {
       ref={ref}
       id="body"
       className={cn(
-        'relative mx-auto hidden max-h-[700px] min-h-[200px] w-full gap-4 place-self-center overflow-scroll rounded-lg border bg-background/80 p-6 pt-0 shadow-lg backdrop-blur-2xl  sm:rounded-lg md:block',
+        'relative mx-auto hidden max-h-[700px] min-h-[200px] w-full gap-4 place-self-center overflow-scroll rounded-lg border bg-background p-6 pt-0 shadow-lg backdrop-blur-2xl  sm:rounded-lg md:block',
         isOverflowing && 'top-16',
         maxSize == 'xl' && 'max-w-5xl',
         maxSize == 'lg' && 'max-w-4xl',

@@ -23,14 +23,15 @@ model User {
     currentTeam Team? @relation("CurrentUserTeam", fields: [currentTeamId], references: [id])
     currentTeamId String?
     hasConnected Boolean @default(false)
+    isDemo Boolean @default(false)
     @@index([currentTeamId])
 }
 
 
 
 model Activity {
-    id        String    @id @default(cuid())
-    activityId  String    @unique
+    // id        String    @id @default(cuid())
+    activityId  String    @id @default(cuid())
     user    User    @relation(fields: [userId], references: [userId])
     userId  String
     @@index([userId])
@@ -39,6 +40,7 @@ model Activity {
     startLatLng Json?
     distance Float?
     movingTime Int?
+    elevGain Float?
     elevHigh Float?
     elevLow Float?
     elapsedTime Int?
@@ -51,6 +53,7 @@ model Activity {
     maxWatts Float?
     photosCount Int?
     photo String?
+    isDemo Boolean @default(false)
 }
 
 model Feedback {

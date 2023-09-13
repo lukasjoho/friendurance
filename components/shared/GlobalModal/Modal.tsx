@@ -111,8 +111,8 @@ interface ModalOpenProps {
 }
 const ModalHeader: FC<ModalOpenProps> = ({ title, handleClose }) => {
   return (
-    <div className="sticky top-0 z-10 flex items-start justify-between gap-4 bg-background py-6">
-      <CardTitle>Create team</CardTitle>
+    <div className="sticky top-0 z-10 flex items-start justify-between gap-4 bg-background pb-6 md:pt-6">
+      <CardTitle>{title}</CardTitle>
       <div
         onClick={() => handleClose()}
         className="cursor-pointer rounded-sm opacity-70 transition-opacity hover:opacity-100"

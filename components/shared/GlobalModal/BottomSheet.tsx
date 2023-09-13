@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import { FC } from "react"
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
+import { FC } from 'react';
 
 interface BottomSheetProps {
-  children: React.ReactNode
-  size: any
+  children: React.ReactNode;
+  size: any;
 }
 
 const BottomSheet: FC<BottomSheetProps> = ({ children, size }: any) => {
@@ -16,26 +16,26 @@ const BottomSheet: FC<BottomSheetProps> = ({ children, size }: any) => {
     visible: {
       y: 0,
     },
-  }
+  };
   return (
     <motion.div
       id="body"
-      className={`max-w-[800px] absolute min-h-[200px] bottom-0 w-full rounded-lg bg-red-500 backdrop-blur-2xl border p-6`}
+      className={`absolute bottom-0 min-h-[200px] w-full max-w-[800px] rounded-lg border bg-background p-6 backdrop-blur-2xl`}
       style={{ maxHeight: size.height }}
       variants={variants}
       custom={size.height}
       initial="hidden"
       animate="visible"
       exit="hidden"
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
       onClick={(event) => {
-        event.stopPropagation()
-        event.preventDefault()
+        event.stopPropagation();
+        event.preventDefault();
       }}
     >
       {children}
     </motion.div>
-  )
-}
+  );
+};
 
-export default BottomSheet
+export default BottomSheet;

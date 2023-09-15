@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 import FeedbackGrid from './FeedbackGrid';
 import FeedbackGridFallback from './FeedbackGridFallback';
 
-export const metaData: Metadata = createMetaDataObject({
+export const metadata: Metadata = createMetaDataObject({
   title: 'Feedback',
   description: 'View, vote and leave feedback about the Friendurance app.',
   slug: 'feedback',

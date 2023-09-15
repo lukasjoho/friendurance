@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
+import { prisma } from './clients/prisma';
 import { getDateFromDays } from './helpers';
-import { prisma } from './prisma';
 import { getStravaUserSingle } from './strava';
 
 export async function hasActivitiesAndStats() {

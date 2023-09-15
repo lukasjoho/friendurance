@@ -1,5 +1,5 @@
+import { prisma } from '@/lib/clients/prisma';
 import getDateFromCookie from '@/lib/helpers/getDateFromCookie';
-import { prisma } from '@/lib/prisma';
 import ShoutoutCard from '../ShoutoutCard';
 
 const FlashRunner = async ({ slug }: { slug: string }) => {

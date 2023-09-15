@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/clients/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { generateActivities, generateUsers } from './demoData';
 

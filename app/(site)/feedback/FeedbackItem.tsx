@@ -1,5 +1,5 @@
-import { Card } from '@/components/ui/card';
-import { prisma } from '@/lib/prisma';
+import { Card, CardContent } from '@/components/ui/card';
+import { prisma } from '@/lib/clients/prisma';
 import { cookies } from 'next/headers';
 import { FC } from 'react';
 import VoteItem from './VoteItem';
@@ -22,12 +22,14 @@ const FeedbackItem: FC<FeedbackItemProps> = async ({ feedback }) => {
   }
 
   return (
-    <Card className="flex gap-3 p-6 pr-12">
-      <div className="flex flex-col items-center gap-1">
-        <VoteItem feedback={feedback} hasVoted={hasVoted} />
-        <div>{feedback._count.votes}</div>
-      </div>
-      <div>{feedback.content}</div>
+    <Card>
+      <CardContent className="flex gap-3 pt-3 md:pt-6">
+        <div className="flex flex-col items-center gap-1">
+          <VoteItem feedback={feedback} hasVoted={hasVoted} />
+          <div>{feedback._count.votes}</div>
+        </div>
+        <div>{feedback.content}</div>
+      </CardContent>
     </Card>
   );
 };

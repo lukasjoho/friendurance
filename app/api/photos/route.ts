@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/clients/prisma';
 import { getStravaActivityById } from '@/lib/strava';
 import { NextResponse } from 'next/server';
 

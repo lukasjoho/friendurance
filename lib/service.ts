@@ -1,4 +1,4 @@
-import { prisma } from './prisma';
+import { prisma } from './clients/prisma';
 
 export async function upsertUser(stravaUser: any) {
   const user = {

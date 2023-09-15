@@ -35,7 +35,7 @@ const ReleaseItem = ({ item }: LaunchItemProps) => {
               src={imageUrl}
               alt="i"
               fill={true}
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: 'cover' }}
             />
           </div>
         </div>

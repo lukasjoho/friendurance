@@ -2,8 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
+import { prisma } from '../clients/prisma';
 import { getAuthUser } from '../db';
-import { prisma } from '../prisma';
 import ActionResponse from './utils';
 
 export async function getUserTeams() {

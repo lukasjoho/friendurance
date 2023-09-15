@@ -11,8 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { prisma } from '@/lib/clients/prisma';
 import { getAuthUser } from '@/lib/db';
-import { prisma } from '@/lib/prisma';
 import { cn } from '@/lib/utils';
 import { HeartCrack } from 'lucide-react';
 import Link from 'next/link';

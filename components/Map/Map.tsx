@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/clients/prisma';
 import GoogleMap from './GoogleMap';
 
 const Map = async ({ slug }: { slug: string }) => {

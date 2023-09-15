@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/clients/prisma';
 import Image from 'next/image';
 import Container from './Container';
 import {

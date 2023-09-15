@@ -1,5 +1,5 @@
+import { prisma } from '@/lib/clients/prisma';
 import { getAuthUser } from '@/lib/db';
-import { prisma } from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 //set user as member of team. Team slug in params. User id fetched on server based on auth. Then redirect to team page.

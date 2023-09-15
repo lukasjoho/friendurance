@@ -1,7 +1,7 @@
 //update current team of user in db with prisma
 
+import { prisma } from '@/lib/clients/prisma';
 import { getAuthUser } from '@/lib/db';
-import { prisma } from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(req: NextRequest) {

@@ -3,8 +3,8 @@ import Map from '@/components/Map/Map';
 import TeamspaceHeader from '@/components/TeamspaceHeader';
 import Shoutouts from '@/components/shoutouts';
 import AthletesStats from '@/components/teamboard/AthletesStats';
+import { prisma } from '@/lib/clients/prisma';
 import { getAuthUser, getTeams } from '@/lib/db';
-import { prisma } from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 
 export async function generateStaticParams() {

@@ -1,5 +1,5 @@
+import { prisma } from '@/lib/clients/prisma';
 import { fetcher } from '@/lib/fetcher';
-import { prisma } from '@/lib/prisma';
 import { getStravaUserSingle } from '@/lib/strava';
 import { NextResponse } from 'next/server';
 

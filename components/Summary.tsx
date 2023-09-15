@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/clients/prisma';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 const Summary = async () => {

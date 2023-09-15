@@ -1,7 +1,6 @@
 'use client';
-import { memo } from 'react';
 
-const HomeTitle = memo(() => {
+const HomeTitle = () => {
   return (
     <h1
       className="animate-fade-in font-tungsten uppercase leading-none"
@@ -28,6 +27,7 @@ const HomeTitle = memo(() => {
       </span>
     </h1>
   );
-});
+};
+HomeTitle.displayName = 'HomeTitle';
 
 export default HomeTitle;

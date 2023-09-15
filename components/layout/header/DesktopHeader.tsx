@@ -26,9 +26,13 @@ const DesktopHeader: FC<DesktopHeaderProps> = (props) => {
         </Link>
         <nav>
           <ul className="flex gap-8">
-            {NAV_ITEMS.map((item) => {
+            {NAV_ITEMS.map((item, idx) => {
               if (!item.screens[1]) return;
-              return <NavLink href={item.href}>{item.label}</NavLink>;
+              return (
+                <NavLink key={idx} href={item.href}>
+                  {item.label}
+                </NavLink>
+              );
             })}
           </ul>
         </nav>

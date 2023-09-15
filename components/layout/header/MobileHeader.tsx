@@ -80,10 +80,11 @@ const MobileMenu = () => {
           <Container>
             <nav>
               <ul className="pb-3">
-                {NAV_ITEMS.map((item) => {
+                {NAV_ITEMS.map((item, idx) => {
                   if (!item.screens[0]) return;
                   return (
                     <NavLink
+                      key={idx}
                       className="w-full py-2 pl-0.5 text-xl"
                       href={item.href}
                       onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}

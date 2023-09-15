@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from "react";
 
 export function useWindowSize() {
   const [windowSize, setWindowSize] = useState<{
@@ -17,16 +17,16 @@ export function useWindowSize() {
       });
     }
 
-    window?.addEventListener('resize', handleResize);
+    window?.addEventListener("resize", handleResize);
     handleResize();
 
     // Remove event listener on cleanup
-    return () => window?.removeEventListener('resize', handleResize);
+    return () => window?.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
 
   return {
     windowSize,
-    isMobile: typeof windowSize.width === 'number' && windowSize.width < 768,
-    isDesktop: typeof windowSize.width === 'number' && windowSize.width >= 768,
+    isMobile: typeof windowSize.width === "number" && windowSize.width < 768,
+    isDesktop: typeof windowSize.width === "number" && windowSize.width >= 768,
   };
 }

@@ -11,6 +11,7 @@ import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
 import './globals.css';
+import Providers from './providers';
 
 export const metadata: Metadata = {
   title: 'Friendurance',
@@ -29,39 +30,41 @@ export default function RootLayout({
         className={`${din.variable} ${fingerpaint.variable} ${mechepro.variable} ${tungsten.variable} ${oswald.variable} ${inter.className}`}
       >
         <main
-          className="font-din flex flex-col align-middle"
+          className="flex flex-col align-middle font-din"
           style={{ height: '100dvh' }}
         >
-          <Header />
+          <Providers>
+            <Header />
 
-          {children}
-          <Toaster
-            toastOptions={{
-              // Define default options
-              duration: 4000,
-              success: {
-                style: {
-                  background: 'rgb(34 197 94)',
-                  color: 'white',
+            {children}
+            <Toaster
+              toastOptions={{
+                // Define default options
+                duration: 4000,
+                success: {
+                  style: {
+                    background: 'rgb(34 197 94)',
+                    color: 'white',
+                  },
+                  iconTheme: {
+                    primary: 'white',
+                    secondary: 'rgb(34 197 94)',
+                  },
                 },
-                iconTheme: {
-                  primary: 'white',
-                  secondary: 'rgb(34 197 94)',
-                },
-              },
-              error: {
-                style: {
-                  background: 'rgb(239 68 68)',
-                  color: 'white',
-                },
+                error: {
+                  style: {
+                    background: 'rgb(239 68 68)',
+                    color: 'white',
+                  },
 
-                iconTheme: {
-                  primary: 'white',
-                  secondary: 'rgb(239 68 68)',
+                  iconTheme: {
+                    primary: 'white',
+                    secondary: 'rgb(239 68 68)',
+                  },
                 },
-              },
-            }}
-          />
+              }}
+            />
+          </Providers>
         </main>
         <Analytics />
       </body>

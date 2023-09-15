@@ -1,23 +1,36 @@
 'use client';
-import { useWindowSize } from '@/lib/hooks/useWindowSize';
-import { FC } from 'react';
+
+import { Button } from '../ui/button';
 import CreateTeamForm from './CreateTeamForm';
-import { Modal, ModalContents, ModalOpenButton } from './GlobalModal/Modal';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalTitle,
+  useModal,
+} from './modal';
 
-interface CreateTeamButtonProps {
-  children: React.ReactNode;
-}
-
-const CreateTeamButton: FC<CreateTeamButtonProps> = ({ children }) => {
-  let size = useWindowSize();
+export default function CreateTeamModal() {
+  const { show } = useModal();
   return (
-    <Modal>
-      <ModalOpenButton>{children}</ModalOpenButton>
-      <ModalContents title="Create team" size={size} maxSize="sm">
-        <CreateTeamForm />
-      </ModalContents>
-    </Modal>
+    <>
+      <Button
+        className="w-full"
+        onClick={() =>
+          show(
+            <Modal>
+              <ModalHeader>
+                <ModalTitle>Create team</ModalTitle>
+              </ModalHeader>
+              <ModalContent>
+                <CreateTeamForm />
+              </ModalContent>
+            </Modal>
+          )
+        }
+      >
+        Create team
+      </Button>
+    </>
   );
-};
-
-export default CreateTeamButton;
+}

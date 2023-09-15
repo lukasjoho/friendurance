@@ -3,7 +3,7 @@ import { TeamAvatar } from '@/components/UserAvatar';
 import AvatarsListing from '@/components/shared/AvatarsListing';
 import CreateTeamButton from '@/components/shared/CreateTeamButton';
 
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -81,9 +81,7 @@ const TeamsOverview = async () => {
             </p>
           </div>
         )}
-        <CreateTeamButton>
-          <Button className="w-full">Create team</Button>
-        </CreateTeamButton>
+        <CreateTeamButton />
       </CardContent>
     </Card>
   );

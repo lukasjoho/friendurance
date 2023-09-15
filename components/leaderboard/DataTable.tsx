@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-table';
 import { FC, useState } from 'react';
 import TeamInfoModal from '../TeamInfoModal';
+import { useModal } from '../shared/modal';
 import {
   Table,
   TableBody,
@@ -52,6 +53,7 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
       sorting,
     },
   });
+  const { show } = useModal();
   return (
     <Table className="w-full whitespace-nowrap">
       <TableHeader>
@@ -76,21 +78,23 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
       <TableBody>
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row, idx) => (
-            <TeamInfoModal data={row} type={type} key={row.id}>
-              <TableRow data-state={row.getIsSelected() && 'selected'}>
-                <TableCell className="pl-6 text-lg font-medium md:text-xl">
-                  {idx + 1}
+            <TableRow
+              key={row.id}
+              data-state={row.getIsSelected() && 'selected'}
+              onClick={() => show(<TeamInfoModal data={row} type={type} />)}
+            >
+              <TableCell className="pl-6 text-lg font-medium md:text-xl">
+                {idx + 1}
+              </TableCell>
+              {row.getVisibleCells().map((cell) => (
+                <TableCell
+                  key={cell.id}
+                  className="py-4 text-base font-medium md:py-6 md:text-lg"
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    key={cell.id}
-                    className="py-4 text-base font-medium md:py-6 md:text-lg"
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TeamInfoModal>
+              ))}
+            </TableRow>
           ))
         ) : (
           <TableRow>

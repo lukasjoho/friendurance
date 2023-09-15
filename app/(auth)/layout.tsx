@@ -9,7 +9,7 @@ const AuthLayout = async ({
 }) => {
   const user = await getAuthUser();
   if (!user) {
-    redirect('/');
+    redirect('/login');
   }
   // if (!user.hasConnected) {
   //   redirect('/connect');

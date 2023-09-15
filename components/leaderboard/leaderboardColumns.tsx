@@ -13,7 +13,7 @@ const coreColumns: ColumnDef<Stats>[] = [
     header: ({ column }) => {
       return (
         <TableHeaderButton column={column}>
-          Total Distance / Member
+          Total Distance / Athlete
         </TableHeaderButton>
       );
     },
@@ -48,7 +48,7 @@ const coreColumns: ColumnDef<Stats>[] = [
     accessorKey: 'avgActivityCount',
     header: ({ column }) => {
       return (
-        <TableHeaderButton column={column}>Runs / Member</TableHeaderButton>
+        <TableHeaderButton column={column}>Runs / Athlete</TableHeaderButton>
       );
     },
     cell: ({ row }) => {

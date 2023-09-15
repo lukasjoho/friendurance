@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { forwardRef } from "react";
+import { cn } from '@/lib/utils';
+import { forwardRef } from 'react';
 
 export const ModalTitle = forwardRef<
   HTMLParagraphElement,
@@ -8,9 +8,11 @@ export const ModalTitle = forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-xl font-semibold leading-none tracking-tight pointer-events-none",
+      'pointer-events-none text-xl font-semibold leading-none tracking-tight',
       className
     )}
     {...props}
   />
 ));
+
+ModalTitle.displayName = 'ModalTitle';

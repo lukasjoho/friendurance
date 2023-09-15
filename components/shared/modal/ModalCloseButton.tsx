@@ -1,8 +1,8 @@
-import { forwardRef, useContext } from "react";
-import { ModalContext } from "./ModalContext";
-import { X } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { X } from 'lucide-react';
+import { forwardRef, useContext } from 'react';
+import { ModalContext } from './ModalContext';
 
 export const ModalCloseButton = forwardRef<
   HTMLButtonElement,
@@ -12,12 +12,14 @@ export const ModalCloseButton = forwardRef<
   return (
     <Button
       ref={ref}
-      className={cn("z-10 p-0.5 h-auto", className)}
+      className={cn('z-10 h-auto p-0.5', className)}
       variant="ghost"
       onClick={() => hide()}
       {...props}
     >
-      <X className="w-4 h-4" />
+      <X className="h-4 w-4" />
     </Button>
   );
 });
+
+ModalCloseButton.displayName = 'ModalCloseButton';

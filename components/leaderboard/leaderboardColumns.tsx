@@ -51,6 +51,10 @@ const coreColumns: ColumnDef<Stats>[] = [
         <TableHeaderButton column={column}>Runs / Member</TableHeaderButton>
       );
     },
+    cell: ({ row }) => {
+      const avgActivityCount: number = row.getValue('avgActivityCount');
+      return <div>{avgActivityCount?.toFixed(0)}</div>;
+    },
   },
 ];
 

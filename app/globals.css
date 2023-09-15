@@ -74,4 +74,49 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      scale: 0;
+    }
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+
+  .animate-scale-in {
+    scale: 0.5;
+    opacity: 0;
+    animation-name: scaleIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 1000ms;
+  }
+  /* .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  } */
 }

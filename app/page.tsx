@@ -1,9 +1,9 @@
 import Container from '@/components/Container';
-import { Icons } from '@/components/Icons';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import HomeTitle from '@/components/HomeTitle';
 import LoginButton from '@/components/shared/LoginButton';
 import { cn } from '@/lib/utils';
 import { Medal } from 'lucide-react';
@@ -12,23 +12,23 @@ import landingPic from '../public/friendurance_intro.png';
 
 const HomePage = () => {
   return (
-    <div className="flex w-full grow flex-col items-center justify-center ">
+    <div className="flex w-full grow flex-col items-center justify-center pb-8 pt-8 md:pb-16 md:pt-16">
       <Container>
-        <div className="relative flex flex-col items-center gap-8">
+        <div className="relative flex flex-col items-center gap-6">
           <Link href="/leaderboard/run">
             <Button
               variant="outline"
-              className="flex h-9 gap-2 rounded-full border-brand px-8 text-brand hover:bg-brand/5 hover:text-brand hover:brightness-110"
+              className="flex h-8 items-center gap-2 rounded-full border-brand px-8 text-brand hover:bg-brand/5 hover:text-brand hover:brightness-110"
             >
               Team Leaderboards
-              <Medal className="w-5" />
+              <Medal className="w-4" />
             </Button>
           </Link>
-          <Icons.tagline className="w-[90%] md:w-[60%]" />
+          <HomeTitle />
           <Image
             src={landingPic}
             alt="Happy 3d avatar runners running towards camera"
-            className="-mb-12 w-full -translate-y-[15%] md:-mb-16 md:w-[40%]"
+            className="-mb-16 w-[80%] max-w-[500px] -translate-y-[25%] sm:-mb-20 sm:w-[70%] md:-mb-16 md:w-[40%] md:-translate-y-[25%] lg:w-[30%]"
           />
           <Suspense
             fallback={

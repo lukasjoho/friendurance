@@ -35,11 +35,11 @@ const TeamsOverview = async () => {
     include: {
       members: true,
     },
-    where: {
-      slug: {
-        notIn: ['friendurance-demo-team'],
-      },
-    },
+    // where: {
+    //   slug: {
+    //     notIn: ['friendurance-demo-team'],
+    //   },
+    // },
     // where: {
     //   members: {
     //     some: {

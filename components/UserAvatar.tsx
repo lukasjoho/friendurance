@@ -35,7 +35,7 @@ export const TeamAvatar: FC<TeamAvatarProps> = ({ team, ...props }) => {
 
   return (
     <Avatar className={cn('h-8 w-8 rounded-xl border', props.className)}>
-      <AvatarImage src={imageUrl || undefined} />
+      <AvatarImage className="h-full w-full" src={imageUrl || undefined} />
       <AvatarFallback className="rounded-xl border">
         {name.charAt(0)}
       </AvatarFallback>

@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const stravaUser = await getStravaUserSingle();
   const [activities, error] = await fetcher(
-    `https://www.strava.com/api/v3/athlete/activities?per_page=100`
+    `https://www.strava.com/api/v3/athlete/activities?per_page=200`
   );
 
   const upsertedActivities = await prisma.$transaction(

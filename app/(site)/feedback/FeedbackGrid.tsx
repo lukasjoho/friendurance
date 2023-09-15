@@ -1,5 +1,5 @@
+import Container from '@/components/Container';
 import { prisma } from '@/lib/clients/prisma';
-import { wait } from '@/lib/helpers';
 import FeedbackItem from './FeedbackItem';
 
 const getAllFeedback = async () => {
@@ -30,13 +30,12 @@ const getAllFeedback = async () => {
 
 const FeedbackGrid = async () => {
   const feedbacks = await getAllFeedback();
-  await wait();
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <Container className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {feedbacks.map((feedback) => (
         <FeedbackItem feedback={feedback} key={feedback.id} />
       ))}
-    </div>
+    </Container>
   );
 };
 

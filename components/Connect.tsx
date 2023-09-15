@@ -32,8 +32,8 @@ const Connect = ({ user }: any) => {
     if (activitiesRes.ok) {
       setProgress(2);
       toast.success('Data successfully connected.');
+      router.push('/team');
     }
-    router.push('/team');
     setIsLoading(false);
   };
   return (

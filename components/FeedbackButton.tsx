@@ -1,8 +1,9 @@
 'use client';
-
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import { useState } from 'react';
 import FeedbackForm from './FeedbackForm';
-import { Button } from './ui/button';
+import { buttonVariants } from './ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,19 +13,32 @@ import {
 } from './ui/dropdown-menu';
 
 const FeedbackButton = () => {
+  console.log('FB rendered');
   const [open, setOpen] = useState(false);
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger>
-        <Button variant="outline" size="sm" className="text-sm md:text-base">
+        <div
+          className={cn(
+            buttonVariants({ variant: 'outline', size: 'xs' }),
+            'text-sm md:text-base'
+          )}
+        >
           Feedback
-        </Button>
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Feedback</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <div className="p-2">
+        <div className="space-y-3 p-2">
           <FeedbackForm onOpenChange={setOpen} />
+          <Link
+            className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}
+            href="/feedback"
+            onClick={() => setOpen(false)}
+          >
+            View all feedback
+          </Link>
         </div>
       </DropdownMenuContent>
     </DropdownMenu>

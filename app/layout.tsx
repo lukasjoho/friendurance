@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header from '@/components/layout/header';
 import { din, inter, tungsten } from '@/lib/fonts';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';

@@ -1,12 +1,16 @@
 import { prisma } from '@/lib/clients/prisma';
 import { fetcher } from '@/lib/fetcher';
 import { getStravaUserSingle } from '@/lib/strava';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.nextUrl);
+  const page = searchParams?.get('page') ?? 1;
+  const pageSize = searchParams?.get('per_page') ?? 50;
+
   const stravaUser = await getStravaUserSingle();
   const [activities, error] = await fetcher(
-    `https://www.strava.com/api/v3/athlete/activities?per_page=150`
+    `https://www.strava.com/api/v3/athlete/activities?per_page=${pageSize}&page=${page}`
   );
 
   const upsertedActivities = await prisma.$transaction(

@@ -10,31 +10,74 @@ import { Button } from './ui/button';
 
 const Connect = ({ user }: any) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const [progress, setProgress] = useState(0);
   const router = useRouter();
   const handleImport = async () => {
     setIsLoading(true);
-
     setProgress(1);
-    const activitiesRes = await fetch('/api/import/activities');
-    if (!activitiesRes.ok) {
-      toast.error(
-        <ToastBody
-          title="Error"
-          message="Could not import athlete activities."
-        />
-      );
+    const activitiesRes1 = await fetch(
+      '/api/import/activities?per_page=50&page=1'
+    );
+    if (!activitiesRes1.ok) {
+      toast.error(<ToastBody title="Error" message="Connection failed." />);
+      setIsLoading(false);
+      return;
+    }
+    setProgress(2);
+    const activitiesRes2 = await fetch(
+      '/api/import/activities?per_page=50&page=2'
+    );
+    if (!activitiesRes2.ok) {
+      toast.error(<ToastBody title="Error" message="Connection failed." />);
+      setIsLoading(false);
+      return;
+    }
+    setProgress(3);
+    const activitiesRes3 = await fetch(
+      '/api/import/activities?per_page=50&page=3'
+    );
+    if (!activitiesRes3.ok) {
+      toast.error(<ToastBody title="Error" message="Connection failed." />);
+      setIsLoading(false);
+      return;
+    }
+    setProgress(4);
+    const activitiesRes4 = await fetch(
+      '/api/import/activities?per_page=50&page=4'
+    );
+    if (!activitiesRes4.ok) {
+      toast.error(<ToastBody title="Error" message="Connection failed." />);
+      setIsLoading(false);
+      return;
+    }
+    setProgress(5);
+    const activitiesRes5 = await fetch(
+      '/api/import/activities?per_page=50&page=5'
+    );
+    if (!activitiesRes5.ok) {
+      toast.error(<ToastBody title="Error" message="Connection failed." />);
+      setIsLoading(false);
+      return;
+    }
+    setProgress(6);
+    const activitiesRes6 = await fetch(
+      '/api/import/activities?per_page=50&page=6'
+    );
+    if (!activitiesRes6.ok) {
+      toast.error(<ToastBody title="Error" message="Connection failed." />);
+      setIsLoading(false);
+      return;
     }
     const res = await setHasConnected(user.userId);
     if (!res.success) {
       toast.error('Could not connect user.');
     }
-    if (activitiesRes.ok) {
-      setProgress(2);
-      toast.success('Data successfully connected.');
-      router.push('/team');
-    }
+    setProgress(7);
+    toast.success('Data successfully connected.');
     setIsLoading(false);
+    setIsRedirecting(true);
+    router.push('/team');
   };
   return (
     <div className="flex flex-col items-center gap-4">
@@ -50,7 +93,7 @@ const Connect = ({ user }: any) => {
           )}
           {isLoading && (
             <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center text-4xl font-semibold">
-              {progress} / 2
+              {progress} / 7
             </div>
           )}
         </div>
@@ -62,7 +105,7 @@ const Connect = ({ user }: any) => {
         onClick={handleImport}
         disabled={isLoading}
       >
-        {!isLoading && (
+        {!isLoading && !isRedirecting && (
           <>
             <Icons.stravaRaw className="h-5 w-auto" />
             <span>Connect</span>
@@ -72,6 +115,12 @@ const Connect = ({ user }: any) => {
           <>
             <Icons.stravaRaw className="h-5 w-auto" />
             <span>Connecting...</span>
+          </>
+        )}
+        {isRedirecting && (
+          <>
+            <Icons.stravaRaw className="h-5 w-auto" />
+            <span>Redirecting...</span>
           </>
         )}
       </Button>

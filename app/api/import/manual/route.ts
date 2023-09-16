@@ -1,12 +1,14 @@
 import { prisma } from '@/lib/clients/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const userId = searchParams.get('userId');
   const accessToken = searchParams.get('accessToken');
+  const page = searchParams.get('page') ?? 1;
+  const pageSize = searchParams.get('per_page') ?? 75;
   const res = await fetch(
-    `https://www.strava.com/api/v3/athlete/activities?per_page=100`,
+    `https://www.strava.com/api/v3/athlete/activities?per_page=${pageSize}&page=${page}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,

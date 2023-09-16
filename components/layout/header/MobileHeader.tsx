@@ -28,7 +28,10 @@ const MobileHeader: FC<MobileHeaderProps> = ({ avatarDropdown, ...props }) => {
   const { className, ...rest } = props;
   return (
     <HeaderContext.Provider value={{ isOpen, setIsOpen }}>
-      <div {...rest} className={cn('relative z-40', className)}>
+      <div
+        {...rest}
+        className={cn('sticky top-0 z-40 bg-background', className)}
+      >
         <Container>
           <div className="relative flex h-12 items-center justify-between">
             <ToggleMenu />

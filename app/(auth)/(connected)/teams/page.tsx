@@ -49,40 +49,42 @@ const TeamsOverview = async () => {
     // },
   });
   return (
-    <Card className="min-w-[300px] max-w-[350px]">
-      <CardHeader>
-        <CardTitle>Teams</CardTitle>
-        <CardDescription>Join a team or create your own.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {teams.length > 0 ? (
-          <>
-            {teams.map((team) => (
-              <Link
-                key={team.id}
-                href={`api/team?slug=${team.slug}`}
-                className={cn(
-                  buttonVariants({ variant: 'secondary' }),
-                  'flex w-full items-center justify-start gap-3 overflow-scroll py-8'
-                )}
-              >
-                <TeamAvatar team={team} className="h-9 w-9" />
-                <p className="whitespace-nowrap text-lg">{team.name}</p>
-                <AvatarsListing users={team.members} max={3} />
-              </Link>
-            ))}
-            <p className="text-center text-sm text-muted-foreground">or</p>
-          </>
-        ) : (
-          <div className="flex flex-col items-center py-4">
-            <HeartCrack className="h-16 w-16" />
-            <p className="text-center text-sm text-muted-foreground">
-              You are not yet part of any team
-            </p>
-          </div>
-        )}
-        <CreateTeamButton />
-      </CardContent>
-    </Card>
+    <div className="flex grow flex-col items-center justify-center py-8 md:py-16">
+      <Card className="min-w-[300px] max-w-[350px]">
+        <CardHeader>
+          <CardTitle>Teams</CardTitle>
+          <CardDescription>Join a team or create your own.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {teams.length > 0 ? (
+            <>
+              {teams.map((team) => (
+                <Link
+                  key={team.id}
+                  href={`api/team?slug=${team.slug}`}
+                  className={cn(
+                    buttonVariants({ variant: 'secondary' }),
+                    'flex w-full items-center justify-start gap-3 overflow-scroll py-8'
+                  )}
+                >
+                  <TeamAvatar team={team} className="h-9 w-9" />
+                  <p className="whitespace-nowrap text-lg">{team.name}</p>
+                  <AvatarsListing users={team.members} max={3} />
+                </Link>
+              ))}
+              <p className="text-center text-sm text-muted-foreground">or</p>
+            </>
+          ) : (
+            <div className="flex flex-col items-center py-4">
+              <HeartCrack className="h-16 w-16" />
+              <p className="text-center text-sm text-muted-foreground">
+                You are not yet part of any team
+              </p>
+            </div>
+          )}
+          <CreateTeamButton />
+        </CardContent>
+      </Card>
+    </div>
   );
 };

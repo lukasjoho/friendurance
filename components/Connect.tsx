@@ -82,7 +82,7 @@ const Connect = ({ user }: any) => {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="text-center">
-        <h1 className="text-4xl font-semibold">Connect Strava</h1>
+        <h1 className="text-4xl font-medium">Connect Strava</h1>
       </div>
       <div className="relative">
         <div className="relative">

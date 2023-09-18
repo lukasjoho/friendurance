@@ -1,35 +1,22 @@
-'use client';
 import { TeamAvatar, UserAvatar } from './UserAvatar';
 import { Modal, ModalContent, ModalHeader, ModalTitle } from './shared/modal';
 
-const TeamInfoModal = ({ data, type }: any) => {
+const TeamInfoModal = ({ data }: any) => {
   const { entity } = data.original;
 
-  if (type == 'team') {
-    return (
-      <Modal>
-        <ModalHeader>
-          <ModalTitle>{entity.name}</ModalTitle>
-        </ModalHeader>
-        <ModalContent>
-          <Team data={entity} />
-        </ModalContent>
-      </Modal>
-    );
-  }
-  if (type == 'user') {
-    return (
-      <Modal>
-        <ModalHeader>
-          <ModalTitle>{entity.firstName}</ModalTitle>
-        </ModalHeader>
-        <ModalContent>
-          <User data={entity} />
-        </ModalContent>
-      </Modal>
-    );
-  }
-  return false;
+  return (
+    <Modal>
+      <ModalHeader>
+        <ModalTitle>{entity.name}</ModalTitle>
+      </ModalHeader>
+      <ModalContent>
+        <Team data={entity} />
+      </ModalContent>
+    </Modal>
+    // <div>
+    //   <pre>{JSON.stringify(data, null, 2)}</pre>
+    // </div>
+  );
 };
 
 export default TeamInfoModal;
@@ -56,19 +43,6 @@ const Team = ({ data }: any) => {
           </div>
         ))}
       </div>
-    </div>
-  );
-};
-
-const User = ({ data }: any) => {
-  const user = {
-    firstName: data.firstName,
-    lastName: data.lastName,
-    imageUrl: data.imageUrl,
-  };
-  return (
-    <div className="flex w-full justify-center">
-      <UserAvatar className="h-auto w-1/2" user={user} />
     </div>
   );
 };

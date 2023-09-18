@@ -1,3 +1,4 @@
+import { getRadarMetrics } from '@/app/api/radars/actions';
 import { cookies } from 'next/headers';
 import { prisma } from './clients/prisma';
 import { getDateFromDays } from './helpers';
@@ -79,6 +80,14 @@ export async function getUsersByTeam(slug: string) {
         },
       },
     },
+    include: {
+      activities: {
+        orderBy: {
+          startDate: 'desc',
+        },
+        take: 5,
+      },
+    },
   });
   return users;
 }
@@ -150,12 +159,15 @@ export async function getAthleteSummaryByDiscipline(
     avgDistancePerRun: activityDataGroupedByUser._avg.distance || 0,
     avgActivityCount: activityDataGroupedByUser._count.activityId || 0,
   };
+  const metrics = await getRadarMetrics(user.userId);
   return {
     entity: {
       userId: user.userId,
+      activities: user.activities,
       firstName: user.firstName,
       lastName: user.lastName,
       imageUrl: user.imageUrl,
+      ...metrics,
     },
     ...userStats,
   };

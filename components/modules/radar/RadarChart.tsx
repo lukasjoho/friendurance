@@ -2,6 +2,7 @@
 
 import {
   Chart as ChartJS,
+  ChartOptions,
   Filler,
   Legend,
   LineElement,
@@ -19,8 +20,8 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const RadarChart = () => {
-  const options = {
+const RadarChart = ({ dataset1, dataset2 }: any) => {
+  const options: ChartOptions = {
     plugins: {
       legend: {
         display: false,
@@ -29,23 +30,25 @@ const RadarChart = () => {
     elements: {
       line: {
         borderWidth: 3,
+        tension: 0.5,
+      },
+    },
+    scales: {
+      r: {
+        type: 'radialLinear',
+        grid: {
+          circular: true,
+        },
+        beginAtZero: true,
       },
     },
   };
   const data = {
-    labels: [
-      'Eating',
-      'Drinking',
-      'Sleeping',
-      'Designing',
-      'Coding',
-      'Cycling',
-      'Running',
-    ],
+    labels: ['Frequency', 'Speed', 'Distance', 'Elevation'],
     datasets: [
       {
         label: 'My First Dataset',
-        data: [65, 59, 90, 81, 56, 55, 40],
+        data: dataset1,
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgb(255, 99, 132)',
@@ -56,7 +59,7 @@ const RadarChart = () => {
       },
       {
         label: 'My Second Dataset',
-        data: [28, 48, 40, 19, 96, 27, 100],
+        data: dataset2,
         fill: true,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgb(54, 162, 235)',
@@ -67,6 +70,7 @@ const RadarChart = () => {
       },
     ],
   };
+  //   @ts-ignore
   return <Radar data={data} options={options} />;
 };
 

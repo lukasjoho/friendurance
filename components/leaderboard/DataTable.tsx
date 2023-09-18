@@ -8,7 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { FC, useState } from 'react';
-import TeamInfoModal from '../TeamInfoModal';
+import RowModal from '../shared/RowModal';
 import { useModal } from '../shared/modal';
 import {
   Table,
@@ -81,7 +81,7 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
             <TableRow
               key={row.id}
               data-state={row.getIsSelected() && 'selected'}
-              onClick={() => show(<TeamInfoModal data={row} type={type} />)}
+              onClick={() => show(<RowModal data={row} type={type} />)}
             >
               <TableCell className="pl-6 text-lg font-medium md:text-xl">
                 {idx + 1}

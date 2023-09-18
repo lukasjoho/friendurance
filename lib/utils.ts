@@ -24,3 +24,38 @@ export function slugify(str: string) {
     .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
     .replace(/^-|-$/g, ''); // Remove leading and trailing hyphens if present
 }
+
+export function formatDate(isoDate: string) {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const date = new Date(isoDate);
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  return `${month} ${day}`;
+}
+
+export function secondsToHoursMinutes(seconds: number) {
+  if (!seconds) return '0min';
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+
+  if (hours > 0 && minutes > 0) {
+    return `${hours}h ${minutes}min`;
+  } else if (hours > 0) {
+    return `${hours}h`;
+  } else {
+    return `${minutes}min`;
+  }
+}

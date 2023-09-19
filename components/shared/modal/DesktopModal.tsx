@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+'use client';
+import { motion } from 'framer-motion';
 
 interface DesktopModalProps {
   children: React.ReactNode;
@@ -11,7 +12,7 @@ export function DesktopModal({ children }: DesktopModalProps) {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 50, opacity: 0 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="relative border rounded-lg min-w-[300px] max-h-[90%] overflow-scroll shadow-md max-w-[720px] self-center mx-auto"
+      className="relative mx-auto max-h-[90%] min-w-[300px] max-w-[720px] self-center overflow-scroll rounded-lg border shadow-md"
     >
       {children}
     </motion.div>

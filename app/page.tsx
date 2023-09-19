@@ -15,6 +15,7 @@ const HomePage = () => {
     <div className="flex w-full grow flex-col items-center justify-center pb-8 pt-8 md:pb-16 md:pt-16">
       <Container>
         <div className="relative flex flex-col items-center gap-6">
+          <Link href="/user/101854625">To Lukas</Link>
           <Link href="/leaderboard/run">
             <Button
               variant="outline"

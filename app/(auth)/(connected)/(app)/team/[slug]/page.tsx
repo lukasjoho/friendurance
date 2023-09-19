@@ -5,6 +5,7 @@ import Shoutouts from '@/components/shoutouts';
 import AthletesStats from '@/components/teamboard/AthletesStats';
 import { prisma } from '@/lib/clients/prisma';
 import { getAuthUser, getTeams } from '@/lib/db';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -39,6 +40,7 @@ const TeamPage = async ({ params }: { params: { slug: string } }) => {
       {/* <CurrentTeamSetter user={user} /> */}
       <TeamspaceHeader slug={slug} />
       <Container className="space-y-3 md:space-y-8">
+        <Link href="/user/101854625">To Lukas</Link>
         <div className="flex items-stretch gap-4 md:gap-8">
           <AthletesStats slug={slug} />
           {/* <div className="min-w-[400px] ">

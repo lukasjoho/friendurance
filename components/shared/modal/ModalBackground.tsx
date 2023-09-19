@@ -1,5 +1,7 @@
+'use client';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { ModalContext } from './ModalContext';
 import { useWindowSize } from './hooks/useWindowSize';
@@ -11,6 +13,7 @@ interface ModalBackgroundProps {
 export function ModalBackground({ children }: ModalBackgroundProps) {
   const { hide } = useContext(ModalContext);
   const { isMobile, isDesktop } = useWindowSize();
+  const router = useRouter();
   return (
     <div
       className={cn(

@@ -1,3 +1,4 @@
+'use client';
 import { PanInfo, Variants, motion, useDragControls } from 'framer-motion';
 import React, { useContext, useRef, useState } from 'react';
 import { ModalContext } from './ModalContext';

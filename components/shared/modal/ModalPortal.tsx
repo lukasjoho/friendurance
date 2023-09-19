@@ -1,3 +1,4 @@
+'use client';
 import { useContext, useEffect } from 'react';
 import { DesktopModal } from './DesktopModal';
 import MobileModal from './MobileModal';

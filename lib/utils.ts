@@ -65,6 +65,7 @@ export function formatToEmoji(value: string): string {
   const mapper = {
     run: '🏃',
     ride: '🚴',
+    workout: '🏋️',
   };
   if (key in mapper) {
     return mapper[key as keyof typeof mapper];

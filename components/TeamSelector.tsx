@@ -25,7 +25,7 @@ const TeamSelector = async ({ slug }: any) => {
         <Button
           className="group flex items-center justify-start gap-1 text-sm outline-none focus:outline-none md:gap-2 md:text-base"
           variant="outline"
-          size="sm"
+          size="md"
         >
           <div className="grid aspect-square h-4 w-4 shrink-0 place-items-center overflow-hidden rounded-md bg-muted text-xs font-semibold md:h-5 md:w-5 md:text-xs">
             {currentTeam?.name[0]}

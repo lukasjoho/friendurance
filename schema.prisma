@@ -25,6 +25,7 @@ model User {
     hasConnected Boolean @default(false)
     isDemo Boolean @default(false)
     @@index([currentTeamId])
+    invitations Invite[]
 }
 
 
@@ -80,4 +81,16 @@ model Team {
     createdAt    DateTime @default(now())
     members      User[] @relation("UserTeam")
     currentTeamMembers User[] @relation("CurrentUserTeam")
+    invites      Invite[]
+}
+
+model Invite {
+  id          String    @id @default(cuid())
+  createdAt   DateTime @default(now())
+  team        Team @relation(fields: [teamId], references: [id])
+  teamId      String
+  @@index([teamId])
+  invitedBy   User @relation(fields: [invitedById], references: [id])
+  invitedById String
+  @@index([invitedById])
 }

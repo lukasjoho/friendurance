@@ -30,6 +30,11 @@ const HomePage = () => {
             alt="Happy 3d avatar runners running towards camera"
             className="-mb-16 w-[80%] max-w-[500px] -translate-y-[25%] sm:-mb-20 sm:w-[70%] md:-mb-16 md:w-[40%] md:-translate-y-[25%] lg:w-[30%]"
           />
+          <p className="text-center">
+            Elevate your Strava experience with Friendurance. <br />
+            Connect your Strava account, create or join a team and enjoy brand
+            new metrics.
+          </p>
           <Suspense
             fallback={
               <Link

@@ -20,10 +20,10 @@ const ReleaseItem = ({ item }: LaunchItemProps) => {
   const { title, date, imageUrl, body } = item;
   return (
     <article className="grid grid-cols-12 gap-3 md:gap-4">
-      <div className="sticky top-0 col-span-12 md:col-span-6">
-        <div className="sticky top-8">
-          <h2 className="text-3xl font-medium">{title}</h2>
-          <div className="text-xl font-medium text-muted-foreground">
+      <div className="sticky top-12 z-10 col-span-12 md:top-14 md:col-span-6">
+        <div className=" bg-white py-2">
+          <h2 className="text-2xl font-medium md:text-3xl">{title}</h2>
+          <div className="text-lg font-medium text-muted-foreground md:text-xl">
             {formatDate(date)}
           </div>
         </div>

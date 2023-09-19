@@ -23,7 +23,10 @@ export default function RootLayout({
       <body
         className={`${din.variable} ${tungsten.variable} ${inter.className}`}
       >
-        <main className="flex flex-col font-din" style={{ height: '100dvh' }}>
+        <main
+          className="flex flex-col pt-12 font-din md:pt-14"
+          style={{ height: '100dvh' }}
+        >
           <Providers>
             <Header />
             {modal}

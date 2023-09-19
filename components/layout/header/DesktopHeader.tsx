@@ -15,7 +15,7 @@ const DesktopHeader: FC<DesktopHeaderProps> = (props) => {
   return (
     <div
       className={cn(
-        'sticky top-0 z-40 flex h-14 w-full shrink-0 items-center border-b bg-background',
+        'fixed top-0 z-40 flex h-14 w-full shrink-0 items-center border-b bg-background',
         className
       )}
       {...rest}

@@ -121,6 +121,52 @@ export async function getUsersSummariesByDiscipline(
   return usersData;
 }
 
+export async function getUserSummary({
+  id,
+  discipline,
+  days,
+}: {
+  id: string;
+  discipline: string;
+  days: number;
+}) {
+  console.log('SUMMARY SERVER DAYS: ', days);
+  const activityDataGroupedByUser = await prisma.activity.aggregate({
+    where: {
+      user: {
+        userId: id,
+      },
+      type: {
+        equals: discipline,
+      },
+      startDate: {
+        gte: getDateFromDays(days),
+      },
+    },
+    _sum: {
+      distance: true,
+      movingTime: true,
+    },
+    _avg: {
+      distance: true,
+      movingTime: true,
+      averageSpeed: true,
+    },
+    _count: {
+      activityId: true,
+    },
+  });
+  const userStats = {
+    avgTotalDistance: activityDataGroupedByUser._sum.distance || 0,
+    avgSpeed: activityDataGroupedByUser._avg.averageSpeed || 0,
+    avgDistancePerRun: activityDataGroupedByUser._avg.distance || 0,
+    avgActivityCount: activityDataGroupedByUser._count.activityId || 0,
+  };
+
+  console.log('NEW STATS: ', userStats);
+  return userStats;
+}
+
 export async function getAthleteSummaryByDiscipline(
   user: any,
   discipline: string,

@@ -59,3 +59,15 @@ export function secondsToHoursMinutes(seconds: number) {
     return `${minutes}min`;
   }
 }
+
+export function formatToEmoji(value: string): string {
+  const key = value.toLowerCase();
+  const mapper = {
+    run: '🏃',
+    ride: '🚴',
+  };
+  if (key in mapper) {
+    return mapper[key as keyof typeof mapper];
+  }
+  return value;
+}

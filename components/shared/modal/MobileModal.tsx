@@ -63,7 +63,7 @@ export function MobileModal({ windowSize, children }: MobileModalProps) {
         animate={'visible'}
         exit="hidden"
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 w-full overflow-hidden rounded-t-lg border border-b-0 bg-background"
+        className="absolute bottom-0 w-full overflow-scroll rounded-t-lg border border-b-0 bg-background"
         style={{
           maxHeight: windowSize.height! + 20,
           boxShadow: `0 -1px 10px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)`,

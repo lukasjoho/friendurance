@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  ChartData,
   Chart as ChartJS,
   ChartOptions,
   Filler,
@@ -33,6 +34,7 @@ const RadarChart = ({ dataset1, dataset2 }: any) => {
         tension: 0.5,
       },
     },
+
     scales: {
       r: {
         type: 'radialLinear',
@@ -40,14 +42,20 @@ const RadarChart = ({ dataset1, dataset2 }: any) => {
           circular: true,
         },
         beginAtZero: true,
+
+        min: 0,
+        max: 100,
+        ticks: {
+          stepSize: 20,
+        },
       },
     },
   };
-  const data = {
+  const data: ChartData = {
     labels: ['Frequency', 'Speed', 'Distance', 'Elevation'],
     datasets: [
       {
-        label: 'My First Dataset',
+        label: 'Run',
         data: dataset1,
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -58,7 +66,7 @@ const RadarChart = ({ dataset1, dataset2 }: any) => {
         pointHoverBorderColor: 'rgb(255, 99, 132)',
       },
       {
-        label: 'My Second Dataset',
+        label: 'Ride',
         data: dataset2,
         fill: true,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',

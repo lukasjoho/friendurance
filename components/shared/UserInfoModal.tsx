@@ -3,6 +3,7 @@ import {
   formatDate,
   formatMPerSecondToKmPerHour,
   formatMToKm,
+  formatToEmoji,
   secondsToHoursMinutes,
 } from '@/lib/utils';
 import { UserAvatar } from '../UserAvatar';
@@ -58,32 +59,32 @@ const User = ({ data }: any) => {
   );
 };
 
-const RecentActivities = ({ activities }: any) => {
+export const RecentActivities = ({ activities }: any) => {
   return (
     <div className="rounded-lg border">
-      <Table className="whitespace-nowrap">
+      <Table className="whitespace-nowrap font-medium">
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Date</TableHead>
+          <TableRow className="">
+            <TableHead>Date</TableHead>
             <TableHead>Type</TableHead>
             <TableHead>Speed</TableHead>
-            <TableHead className="text-right">Distance</TableHead>
+            <TableHead>Distance</TableHead>
             <TableHead className="text-right">Time</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {activities.map((activity: any, idx: any) => (
             <TableRow key={idx}>
-              <TableCell className="font-medium">
-                {formatDate(activity.startDate.toISOString())}
+              <TableCell>
+                <span>{formatDate(activity.startDate.toISOString())}</span>
               </TableCell>
-              <TableCell>{activity.type}</TableCell>
+              <TableCell className="text-2xl">
+                {formatToEmoji(activity.type)}
+              </TableCell>
               <TableCell>
                 {formatMPerSecondToKmPerHour(activity.averageSpeed)} km/h
               </TableCell>
-              <TableCell className="text-right">
-                {formatMToKm(activity.distance)} km
-              </TableCell>
+              <TableCell>{formatMToKm(activity.distance)} km</TableCell>
               <TableCell className="text-right">
                 {secondsToHoursMinutes(activity.movingTime)}
               </TableCell>

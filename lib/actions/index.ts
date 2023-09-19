@@ -31,6 +31,10 @@ export async function setCurrentTeam(userId: string, slug: string) {
   }
 }
 
+export async function customRevalidate(path: string) {
+  revalidatePath(path);
+}
+
 export async function setHasConnected(userId: string) {
   try {
     await prisma.user.update({

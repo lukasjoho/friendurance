@@ -48,11 +48,6 @@ const TabItem: FC<TabItemProps> = ({ discipline, children }) => {
 };
 
 const dateRanges = [
-  //   {
-  //     value: 'last-week',
-  //     label: 'Last week',
-  //     days: 7,
-  //   },
   {
     value: 'last-month',
     label: 'Last month',
@@ -67,12 +62,13 @@ const dateRanges = [
 
 export const DateRangeSelector: FC<any> = () => {
   const router = useRouter();
+  let dateRangeCookie: any;
   const handleDateRangeSelection = (dateRange: any) => {
     Cookies.set('dateRange', dateRange.value);
     router.refresh();
   };
 
-  const dateRangeCookie = Cookies.get('dateRange');
+  dateRangeCookie = Cookies.get('dateRange');
 
   return (
     <div className="inline-flex rounded-md bg-muted p-1 text-muted-foreground">

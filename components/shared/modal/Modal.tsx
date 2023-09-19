@@ -1,17 +1,13 @@
 'use client';
-import { useWindowSize } from './hooks/useWindowSize';
 
 interface ModalProps {
   children: React.ReactNode;
+  id?: string;
 }
 
-export function Modal({ children }: ModalProps) {
-  const { windowSize } = useWindowSize();
+export function Modal({ children, id }: ModalProps) {
   return (
-    <div
-      className="flex flex-col justify-between bg-background"
-      style={{ maxHeight: windowSize.height! + 20 }}
-    >
+    <div className="flex flex-col justify-between bg-background">
       {children}
     </div>
   );

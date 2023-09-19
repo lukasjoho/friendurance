@@ -7,8 +7,9 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
-import RowModal from '../shared/RowModal';
+import TeamInfoModal from '../TeamInfoModal';
 import { useModal } from '../shared/modal';
 import {
   Table,
@@ -53,6 +54,7 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
       sorting,
     },
   });
+  const router = useRouter();
   const { show } = useModal();
   return (
     <Table className="w-full whitespace-nowrap">
@@ -78,10 +80,15 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
       <TableBody>
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row, idx) => (
+            // <Link href="/user/101854625" style={{ display: 'table-row' }}>
             <TableRow
               key={row.id}
               data-state={row.getIsSelected() && 'selected'}
-              onClick={() => show(<RowModal data={row} type={type} />)}
+              onClick={() =>
+                type === 'user'
+                  ? router.push(`/user/${row.original.entity.userId}`)
+                  : show(<TeamInfoModal data={row} />)
+              }
             >
               <TableCell className="pl-6 text-lg font-medium md:text-xl">
                 {idx + 1}
@@ -95,6 +102,7 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
                 </TableCell>
               ))}
             </TableRow>
+            // </Link>
           ))
         ) : (
           <TableRow>

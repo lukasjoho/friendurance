@@ -112,10 +112,8 @@ export async function getRadarMetrics(userId: string) {
   const runMetrics = await getAllMetrics(userId, 'Run');
   const rideMetrics = await getAllMetrics(userId, 'Ride');
   const response = {
-    metrics: {
-      run: runMetrics,
-      ride: rideMetrics,
-    },
+    run: runMetrics,
+    ride: rideMetrics,
   };
   return response;
 }

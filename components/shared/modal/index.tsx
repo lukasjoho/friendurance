@@ -1,7 +1,8 @@
-export { Modal } from "./Modal";
-export { ModalHeader } from "./ModalHeader";
-export { ModalFooter } from "./ModalFooter";
-export { ModalTitle } from "./ModalTitle";
-export { ModalProvider } from "./ModalProvider";
-export { useModal } from "./useModal";
-export { ModalContent } from "./ModalContent";
+'use client';
+export { Modal } from './Modal';
+export { ModalContent } from './ModalContent';
+export { ModalFooter } from './ModalFooter';
+export { ModalHeader } from './ModalHeader';
+export { ModalProvider } from './ModalProvider';
+export { ModalTitle } from './ModalTitle';
+export { useModal } from './useModal';

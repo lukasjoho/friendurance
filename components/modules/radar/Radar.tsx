@@ -1,18 +1,16 @@
+import { CardTitle } from '@/components/ui/card';
 import RadarChart from './RadarChart';
 
-const Radar = ({ metrics }: any) => {
-  const runMetrics = metrics.run;
-  const rideMetrics = metrics.ride;
-  const dataset1 = Object.keys(runMetrics).map((key) => {
-    return runMetrics[key];
-  });
-  const dataset2 = Object.keys(rideMetrics).map((key) => {
-    return rideMetrics[key];
-  });
+const Radar = ({ data }: any) => {
+  const runValues = Object.values(data.run);
+  const rideValues = Object.values(data.ride);
 
   return (
     <div>
-      <RadarChart dataset1={dataset1} dataset2={dataset2} />
+      <CardTitle className="text-center">Percentile Radar</CardTitle>
+      <div className="w-[340px]">
+        <RadarChart dataset1={runValues} dataset2={rideValues} />
+      </div>
     </div>
   );
 };

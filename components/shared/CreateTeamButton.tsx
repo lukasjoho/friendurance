@@ -23,6 +23,7 @@ export default function CreateTeamModal() {
                 <ModalTitle>Create team</ModalTitle>
               </ModalHeader>
               <ModalContent>
+                <p>formmmm</p>
                 <CreateTeamForm />
               </ModalContent>
             </Modal>

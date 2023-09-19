@@ -1,7 +1,13 @@
 'use client';
 import { PlusCircle } from 'lucide-react';
 import CreateTeamForm from './shared/CreateTeamForm';
-import { Modal, ModalContent, useModal } from './shared/modal';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalTitle,
+  useModal,
+} from './shared/modal';
 import { DropdownMenuItem } from './ui/dropdown-menu';
 
 const CreateTeamFromDropdown = () => {
@@ -12,6 +18,9 @@ const CreateTeamFromDropdown = () => {
       onClick={() =>
         show(
           <Modal>
+            <ModalHeader>
+              <ModalTitle>Create team</ModalTitle>
+            </ModalHeader>
             <ModalContent>
               <CreateTeamForm />
             </ModalContent>

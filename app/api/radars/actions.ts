@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/clients/prisma';
+import { getDisciplines } from '@/lib/db';
 
 interface QueryOptions {
   metric: '_count' | '_avg';
@@ -13,7 +14,9 @@ export async function getSortedCounts(type: 'Run' | 'Ride') {
       startDate: {
         gte: new Date(new Date().setDate(new Date().getDate() - 30)),
       },
-      type,
+      type: {
+        in: getDisciplines(type),
+      },
     },
     _count: {
       userId: true,
@@ -33,7 +36,9 @@ export async function getSortedSpeed(type: 'Run' | 'Ride') {
       startDate: {
         gte: new Date(new Date().setDate(new Date().getDate() - 30)),
       },
-      type,
+      type: {
+        in: getDisciplines(type),
+      },
     },
     _avg: {
       averageSpeed: true,
@@ -53,7 +58,9 @@ export async function getSortedDistance(type: 'Run' | 'Ride') {
       startDate: {
         gte: new Date(new Date().setDate(new Date().getDate() - 30)),
       },
-      type,
+      type: {
+        in: getDisciplines(type),
+      },
     },
     _avg: {
       distance: true,
@@ -73,7 +80,9 @@ export async function getSortedElevation(type: 'Run' | 'Ride') {
       startDate: {
         gte: new Date(new Date().setDate(new Date().getDate() - 30)),
       },
-      type,
+      type: {
+        in: getDisciplines(type),
+      },
     },
     _avg: {
       elevHigh: true,

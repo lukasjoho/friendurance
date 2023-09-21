@@ -1,12 +1,12 @@
 export const NAV_ITEMS = [
   {
-    label: 'Leaderboard',
-    href: '/leaderboard/run',
+    label: 'Teamboard',
+    href: '/team',
     screens: [true, true],
   },
   {
-    label: 'Teamboard',
-    href: '/team',
+    label: 'Globalboard',
+    href: '/leaderboard/run',
     screens: [true, true],
   },
   {

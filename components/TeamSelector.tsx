@@ -2,6 +2,7 @@ import { getAuthUser } from '@/lib/db';
 import { ChevronsUpDown } from 'lucide-react';
 import Link from 'next/link';
 import CreateTeamFromDropdown from './CreateTeamFromDropdown';
+import { TeamAvatar } from './UserAvatar';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -12,7 +13,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
-import { Skeleton } from './ui/skeleton';
 
 const TeamSelector = async ({ slug }: any) => {
   const user = await getAuthUser();
@@ -27,14 +27,21 @@ const TeamSelector = async ({ slug }: any) => {
           variant="outline"
           size="md"
         >
-          <div className="grid aspect-square h-4 w-4 shrink-0 place-items-center overflow-hidden rounded-md bg-muted text-xs font-semibold md:h-5 md:w-5 md:text-xs">
+          <TeamAvatar
+            team={currentTeam}
+            className="h-5 w-5 rounded-md text-xs"
+          />
+          <div className="block w-12 max-w-[128px] overflow-hidden text-ellipsis whitespace-nowrap text-left md:w-auto">
+            {currentTeam?.name}
+          </div>
+          {/* <div className="grid aspect-square h-4 w-4 shrink-0 place-items-center overflow-hidden rounded-md bg-muted text-xs font-semibold md:h-5 md:w-5 md:text-xs">
             {currentTeam?.name[0]}
           </div>
           <div className="block w-12 max-w-[128px] overflow-hidden text-ellipsis whitespace-nowrap text-left md:w-auto">
             {currentTeam?.name ?? (
               <Skeleton className="h-[20px] w-12 rounded-md" />
             )}
-          </div>
+          </div> */}
           <ChevronsUpDown className="ml-auto h-4 w-4 text-muted-foreground group-hover:text-foreground" />
         </Button>
       </DropdownMenuTrigger>
@@ -47,9 +54,10 @@ const TeamSelector = async ({ slug }: any) => {
               <Link href={`/team/${team.slug}`} key={team.id}>
                 <DropdownMenuItem className="cursor-pointer">
                   <div className="flex gap-2">
-                    <div className="grid aspect-square h-5 w-5 shrink-0 place-items-center rounded-md bg-muted text-xs font-semibold">
-                      {team.name[0]}
-                    </div>
+                    <TeamAvatar
+                      team={team}
+                      className="h-5 w-5 rounded-md text-xs"
+                    />
                     <span>{team.name}</span>
                   </div>
                 </DropdownMenuItem>

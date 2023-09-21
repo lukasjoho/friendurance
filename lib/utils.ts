@@ -13,6 +13,10 @@ export const formatMToKm = (m: number) => {
   return (m / 1000).toFixed(2);
 };
 
+export const formatFloatMToM = (m: number) => {
+  return m.toFixed(0) + ' m';
+};
+
 export const isServer = () => typeof window === 'undefined';
 
 export function slugify(str: string) {
@@ -65,7 +69,9 @@ export function formatToEmoji(value: string): string {
   const mapper = {
     run: '🏃',
     ride: '🚴',
+    virtualride: '🚴',
     workout: '🏋️',
+    swim: '🏊',
   };
   if (key in mapper) {
     return mapper[key as keyof typeof mapper];

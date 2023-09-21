@@ -61,7 +61,7 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
-            <TableHead className="pl-6">Rank</TableHead>
+            <TableHead className="pl-3 md:pl-6">Rank</TableHead>
             {headerGroup.headers.map((header) => {
               return (
                 <TableHead key={header.id}>
@@ -82,6 +82,7 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
           table.getRowModel().rows.map((row, idx) => (
             // <Link href="/user/101854625" style={{ display: 'table-row' }}>
             <TableRow
+              className="cursor-pointer"
               key={row.id}
               data-state={row.getIsSelected() && 'selected'}
               onClick={() =>
@@ -90,7 +91,7 @@ const DataTable: FC<DataTableProps> = ({ data, columns, type }) => {
                   : show(<TeamInfoModal data={row} />)
               }
             >
-              <TableCell className="pl-6 text-lg font-medium md:text-xl">
+              <TableCell className="pl-3 text-lg font-medium md:pl-6 md:text-xl">
                 {idx + 1}
               </TableCell>
               {row.getVisibleCells().map((cell) => (

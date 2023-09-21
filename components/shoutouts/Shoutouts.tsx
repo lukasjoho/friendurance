@@ -20,7 +20,7 @@ const Shoutouts = ({ slug }: { slug: string }) => {
         <CardDescription>High-performers in last 30 days.</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="-ml-6 -mr-6 flex gap-4 overflow-scroll pl-6 pr-6">
+        <div className="-ml-3 -mr-3 flex gap-4 overflow-scroll pl-3 pr-3 md:-ml-6 md:-mr-6 md:pl-6 md:pr-6">
           <Hustler slug={slug} />
           <Climber slug={slug} />
           <Grinder slug={slug} />

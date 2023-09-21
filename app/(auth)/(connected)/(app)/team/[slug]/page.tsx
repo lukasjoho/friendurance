@@ -21,19 +21,20 @@ const TeamPage = async ({ params }: { params: { slug: string } }) => {
   if (!allowed) {
     redirect('/unauthorized');
   }
-  await prisma.user.update({
-    where: {
-      userId: user?.userId,
-    },
-    data: {
-      currentTeam: {
-        connect: {
-          slug: slug,
+  if (slug !== 'friendurance-demo-team') {
+    await prisma.user.update({
+      where: {
+        userId: user?.userId,
+      },
+      data: {
+        currentTeam: {
+          connect: {
+            slug: slug,
+          },
         },
       },
-    },
-  });
-
+    });
+  }
   return (
     <div className="grow  space-y-3 md:space-y-8">
       {/* <CurrentTeamSetter user={user} /> */}

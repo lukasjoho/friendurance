@@ -8,11 +8,13 @@ const TeamspaceHeader = ({ slug }: any) => {
     <div className="sticky top-0 z-10 mt-3 bg-white  md:mt-8">
       <Container className="space-y-1.5 md:space-y-4">
         <div className="flex items-center justify-between">
-          <TeamSelector slug={slug} />
+          {slug !== 'friendurance-demo-team' && <TeamSelector slug={slug} />}
           <div className="flex gap-2">
-            <div className="hidden md:block">
-              <InviteButton />
-            </div>
+            {slug !== 'friendurance-demo-team' && (
+              <div className="hidden md:block">
+                <InviteButton />
+              </div>
+            )}
             <DateRangeSelector />
           </div>
         </div>

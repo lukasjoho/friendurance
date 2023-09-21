@@ -49,8 +49,8 @@ const Team = ({ data }: any) => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data.members.map((member: any) => (
-                <MemberRow member={member} />
+              {data.members.map((member: any, idx: any) => (
+                <MemberRow member={member} key={member.userId} />
               ))}
             </TableBody>
           </Table>

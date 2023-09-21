@@ -17,6 +17,7 @@ model User {
     lastName String?
     imageUrl String?
     createdAt     DateTime @default(now())
+    updatedAt     DateTime @default(now())
     teams Team[] @relation("UserTeam")
     accessToken String?
     refreshToken String?

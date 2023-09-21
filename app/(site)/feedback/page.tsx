@@ -1,3 +1,4 @@
+import FeedbackForm from '@/components/FeedbackForm';
 import RegularPageLayout from '@/components/layout/RegularPageLayout';
 import { createMetaDataObject } from '@/lib/helpers/createMetaDataObject';
 import { Metadata } from 'next';
@@ -19,6 +20,7 @@ const FeedbackPage = () => {
       title="Feedback"
       subtitle="Vote on feedback or submit your own."
     >
+      <FeedbackForm className="-my-2" layout="base" />
       <Suspense fallback={<FeedbackGridFallback />}>
         <FeedbackGrid />
       </Suspense>

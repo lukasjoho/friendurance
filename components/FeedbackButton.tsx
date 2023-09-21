@@ -31,7 +31,7 @@ const FeedbackButton = () => {
         <DropdownMenuLabel>Feedback</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <div className="space-y-3 p-2">
-          <FeedbackForm onOpenChange={setOpen} />
+          <FeedbackForm onOpenChange={setOpen} layout="dropdown" />
           <Link
             className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}
             href="/feedback"

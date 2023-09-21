@@ -1,7 +1,7 @@
 'use client';
 import { Discipline, disciplines } from '@/lib/data/disciplines';
+import { useCookie } from '@/lib/hooks/useLocalStorage';
 import { cn } from '@/lib/utils';
-import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
@@ -62,18 +62,16 @@ const dateRanges = [
 
 export const DateRangeSelector: FC<any> = () => {
   const router = useRouter();
-  let dateRangeCookie: any;
+  const [rangeCookie, setRangeCookie] = useCookie('dateRange', 'last-month');
   const handleDateRangeSelection = (dateRange: any) => {
-    Cookies.set('dateRange', dateRange.value);
+    setRangeCookie(dateRange.value);
     router.refresh();
   };
-
-  dateRangeCookie = Cookies.get('dateRange');
 
   return (
     <div className="inline-flex rounded-md bg-muted p-1 text-muted-foreground">
       {dateRanges.map((dateRange, idx) => {
-        const isActive = dateRangeCookie === dateRange.value;
+        const isActive = rangeCookie === dateRange.value;
         return (
           <button
             className={cn(

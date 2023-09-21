@@ -40,13 +40,13 @@ const TeamsOverview = async () => {
     //     notIn: ['friendurance-demo-team'],
     //   },
     // },
-    // where: {
-    //   members: {
-    //     some: {
-    //       userId: user?.userId,
-    //     },
-    //   },
-    // },
+    where: {
+      members: {
+        some: {
+          userId: user?.userId,
+        },
+      },
+    },
   });
   return (
     <div className="flex grow flex-col items-center justify-center py-8 md:py-16">

@@ -20,7 +20,7 @@ const HomePage = () => {
               variant="outline"
               className="flex h-8 items-center gap-2 rounded-full border-brand px-8 text-brand hover:bg-brand/5 hover:text-brand hover:brightness-110"
             >
-              Team Leaderboards
+              Global Leaderboards
               <Medal className="w-4" />
             </Button>
           </Link>
@@ -32,8 +32,8 @@ const HomePage = () => {
           />
           <p className="text-center">
             Elevate your Strava experience with Friendurance. <br />
-            Connect your Strava account, create or join a team and enjoy brand
-            new metrics.
+            Connect your Strava account, create or join a team, rank on the
+            leaderboard and enjoy the competition.
           </p>
           <Suspense
             fallback={

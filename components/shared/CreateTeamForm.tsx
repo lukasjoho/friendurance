@@ -1,7 +1,6 @@
 'use client';
 import { slugify } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -18,7 +17,11 @@ import {
 } from '../ui/form';
 import { Input } from '../ui/input';
 
-const CreateTeamForm = () => {
+interface FormProps {
+  hide?: () => void;
+}
+
+const CreateTeamForm = ({ hide }: FormProps) => {
   const router = useRouter();
   const formSchema: any = z.object({
     name: z.string().nonempty('Name required.'),
@@ -49,8 +52,10 @@ const CreateTeamForm = () => {
     const team = await res.json();
     if (res.ok) {
       toast.success(`Team successfully created.`);
+      console.log('SHOULD HIDE');
+      hide?.();
       router.push(`/team/${team.slug}`);
-      revalidatePath(`/team/${team.slug}`);
+      return;
     } else {
       if (res.status === 409) {
         toast.error('Team name not available.');

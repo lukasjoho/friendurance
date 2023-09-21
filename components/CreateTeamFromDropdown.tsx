@@ -11,7 +11,7 @@ import {
 import { DropdownMenuItem } from './ui/dropdown-menu';
 
 const CreateTeamFromDropdown = () => {
-  const { show } = useModal();
+  const { show, hide } = useModal();
   return (
     <DropdownMenuItem
       className="cursor-pointer"
@@ -22,7 +22,7 @@ const CreateTeamFromDropdown = () => {
               <ModalTitle>Create team</ModalTitle>
             </ModalHeader>
             <ModalContent>
-              <CreateTeamForm />
+              <CreateTeamForm hide={hide} />
             </ModalContent>
           </Modal>
         )

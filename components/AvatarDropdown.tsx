@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { getAuthUser } from '@/lib/db';
-import { LayoutDashboard } from 'lucide-react';
+import { LayoutDashboard, Users2 } from 'lucide-react';
 import Link from 'next/link';
 import LogoutButton from './LogoutButton';
 import { UserAvatar } from './UserAvatar';
@@ -28,6 +28,12 @@ const AvatarDropdown = async () => {
           <Link href="/team">
             <LayoutDashboard className="mr-2 h-4 w-4" />
             <span>Teamboard</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/teams">
+            <Users2 className="mr-2 h-4 w-4" />
+            <span>Teams</span>
           </Link>
         </DropdownMenuItem>
 

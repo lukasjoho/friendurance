@@ -11,7 +11,7 @@ import {
 } from './modal';
 
 export default function CreateTeamModal() {
-  const { show } = useModal();
+  const { show, hide } = useModal();
   return (
     <>
       <Button
@@ -23,8 +23,7 @@ export default function CreateTeamModal() {
                 <ModalTitle>Create team</ModalTitle>
               </ModalHeader>
               <ModalContent>
-                <p>formmmm</p>
-                <CreateTeamForm />
+                <CreateTeamForm hide={hide} />
               </ModalContent>
             </Modal>
           )

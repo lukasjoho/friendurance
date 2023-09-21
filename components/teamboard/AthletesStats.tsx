@@ -8,9 +8,9 @@ const AthletesStats = ({ slug }: { slug: string }) => {
       <CardHeader>
         <CardTitle>Athlete Stats</CardTitle>
       </CardHeader>
-      <CardContent className="p-0">
-        <Tabs defaultValue="run" className="">
-          <TabsList className="ml-6">
+      <CardContent className="p-0 pt-1 md:p-0">
+        <Tabs defaultValue="run">
+          <TabsList className="ml-3 md:ml-6">
             <TabsTrigger value="run">Run</TabsTrigger>
             <TabsTrigger value="ride">Ride</TabsTrigger>
           </TabsList>

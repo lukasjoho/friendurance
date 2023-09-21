@@ -11,7 +11,11 @@ import {
 import InterceptionModal from '@/components/shared/modal/InterceptionModal';
 import { prisma } from '@/lib/clients/prisma';
 import { getUserSummary } from '@/lib/db';
-import { formatMPerSecondToKmPerHour, formatMToKm } from '@/lib/utils';
+import {
+  formatFloatMToM,
+  formatMPerSecondToKmPerHour,
+  formatMToKm,
+} from '@/lib/utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -89,6 +93,10 @@ const UserSummaryTable = async ({ id, days, discipline }: any) => {
         value={formatMToKm(userSummary.avgDistancePerRun) + ' km'}
       />
       <Metric label="Activities" value={userSummary.avgActivityCount} />
+      <Metric
+        label="Elevation Gain"
+        value={formatFloatMToM(userSummary.avgTotalElevGain)}
+      />
     </div>
   );
 };

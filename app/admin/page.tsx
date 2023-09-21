@@ -1,5 +1,6 @@
 import Container from '@/components/Container';
-import { Button } from '@/components/ui/button';
+import { UserAvatar } from '@/components/UserAvatar';
+import RefreshButton from '@/components/admin/RefreshButton';
 import {
   Table,
   TableBody,
@@ -11,10 +12,23 @@ import {
 import { prisma } from '@/lib/clients/prisma';
 import { formatDate } from '@/lib/utils';
 
+function handleRefresh(event: React.MouseEvent<HTMLButtonElement>) {
+  const id = (event.target as HTMLButtonElement).id;
+  console.log(id);
+}
+
 const AdminPage = async () => {
   const users = await prisma.user.findMany({
     where: {
       isDemo: false,
+    },
+    include: {
+      activities: {
+        orderBy: {
+          startDate: 'desc',
+        },
+        take: 1,
+      },
     },
   });
   return (
@@ -26,18 +40,25 @@ const AdminPage = async () => {
               <TableRow>
                 <TableHead>Name</TableHead>
                 <TableHead>Last Refreshed</TableHead>
+                <TableHead>Last Activity</TableHead>
                 <TableHead>Action</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {users.map((user) => (
                 <TableRow key={user.userId}>
-                  <TableCell>{user.firstName}</TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2 font-medium">
+                      <UserAvatar user={user} />
+                      {user.firstName}
+                    </div>
+                  </TableCell>
                   <TableCell>{formatDate(user.updatedAt.toString())}</TableCell>
                   <TableCell>
-                    <Button size="md" variant="default">
-                      Refresh
-                    </Button>
+                    {formatDate(user.activities[0].startDate?.toISOString()!)}
+                  </TableCell>
+                  <TableCell className="w-[160px]">
+                    <RefreshButton id={user.userId} />
                   </TableCell>
                 </TableRow>
               ))}

@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import { TeamAvatar, UserAvatar } from './UserAvatar';
+import MemberRow from './MemberRow';
+import { TeamAvatar } from './UserAvatar';
 import { Modal, ModalContent, ModalHeader, ModalTitle } from './shared/modal';
+import { Table, TableBody, TableHead, TableHeader, TableRow } from './ui/table';
 
 const TeamInfoModal = ({ data }: any) => {
   const { entity } = data.original;
@@ -29,24 +30,31 @@ const Team = ({ data }: any) => {
   };
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-      <div>
+      <div className="space-y-2">
         <TeamAvatar
           className="aspect-square h-auto w-full text-10xl"
           team={team}
         />
+        {/* <Link href={} className={cn(buttonVariants({ variant: 'default' }))}>
+          <LayoutDashboard className="h-5 w-5" /> View Team Dashboard
+        </Link>
+        <Button className="flex w-full gap-2 rounded-lg"></Button> */}
       </div>
-      <div className="space-y-4 rounded-lg border p-6">
-        <div className="text-muted-foreground">Members</div>
-        {data.members.map((member: any) => (
-          <Link
-            href={`/user/${member.userId}`}
-            className="flex items-center gap-6"
-            key={member.id}
-          >
-            <UserAvatar className="h-16 w-16" user={member} />
-            <div className=" text-2xl font-medium">{member.firstName}</div>
-          </Link>
-        ))}
+      <div>
+        <div className="rounded-lg border">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Members</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {data.members.map((member: any) => (
+                <MemberRow member={member} />
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   );

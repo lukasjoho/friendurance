@@ -41,11 +41,20 @@ const TeamsOverview = async () => {
     //   },
     // },
     where: {
-      members: {
-        some: {
-          userId: user?.userId,
+      OR: [
+        {
+          members: {
+            some: {
+              userId: user?.userId,
+            },
+          },
         },
-      },
+        {
+          slug: {
+            in: ['friendurance-demo-team'],
+          },
+        },
+      ],
     },
   });
   return (
@@ -61,7 +70,11 @@ const TeamsOverview = async () => {
               {teams.map((team) => (
                 <Link
                   key={team.id}
-                  href={`api/team?slug=${team.slug}`}
+                  href={
+                    team.slug === 'friendurance-demo-team'
+                      ? '/demoteam'
+                      : `/team/${team.slug}`
+                  }
                   className={cn(
                     buttonVariants({ variant: 'secondary' }),
                     'flex w-full items-center justify-start gap-3 overflow-scroll py-8'

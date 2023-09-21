@@ -39,6 +39,7 @@ const TeamPage = async ({ params }: { params: { slug: string } }) => {
     <div className="grow  space-y-3 md:space-y-8">
       {/* <CurrentTeamSetter user={user} /> */}
       <TeamspaceHeader slug={slug} />
+
       <Container className="space-y-3 md:space-y-8">
         <div className="flex items-stretch gap-4 md:gap-8">
           <AthletesStats slug={slug} />

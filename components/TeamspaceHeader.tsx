@@ -18,9 +18,11 @@ const TeamspaceHeader = ({ slug }: any) => {
             <DateRangeSelector />
           </div>
         </div>
-        <div className="md:hidden">
-          <InviteButton className="w-full" />
-        </div>
+        {slug !== 'friendurance-demo-team' && (
+          <div className="md:hidden">
+            <InviteButton className="w-full" />
+          </div>
+        )}
       </Container>
     </div>
   );

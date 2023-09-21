@@ -28,6 +28,7 @@ export async function GET(req: NextRequest) {
         startLatLng: activity.start_latlng,
         user: { connect: { userId: String(userId) } },
         elevHigh: activity.elev_high,
+        elevGain: activity.total_elevation_gain,
         maxSpeed: activity.max_speed,
         averageSpeed: activity.average_speed,
         calories: activity.calories,

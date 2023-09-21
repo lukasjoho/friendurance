@@ -8,7 +8,7 @@ const Climber = async ({ slug }: { slug: string }) => {
   const usersSortedByElevationGain = await prisma.activity.groupBy({
     by: ['userId'],
     _sum: {
-      elevHigh: true,
+      elevGain: true,
     },
     where: {
       user: {
@@ -19,7 +19,7 @@ const Climber = async ({ slug }: { slug: string }) => {
         },
       },
       type: {
-        in: ['Run', 'Ride', 'Hike'],
+        in: ['Run', 'Ride', 'VirtualRide', 'Hike'],
       },
       startDate: {
         gte: date,
@@ -27,7 +27,7 @@ const Climber = async ({ slug }: { slug: string }) => {
     },
     orderBy: {
       _sum: {
-        elevHigh: 'desc',
+        elevGain: 'desc',
       },
     },
   });
@@ -48,8 +48,8 @@ const Climber = async ({ slug }: { slug: string }) => {
       userId: userIdWithHighestElevationGain,
     },
   });
-  const elevationGain = usersSortedByElevationGain[0]._sum.elevHigh?.toFixed(0);
-  if (!user || !elevationGain) return <>dssada</>;
+  const elevationGain = usersSortedByElevationGain[0]._sum.elevGain?.toFixed(0);
+  if (!user || !elevationGain) return <></>;
   return (
     <ShoutoutCard
       user={user}

@@ -121,6 +121,16 @@ export async function getUsersSummariesByDiscipline(
   return usersData;
 }
 
+//helper function that if discipline equals ride it should return array with "ride" and "virtualride"
+export function getDisciplines(discipline: string) {
+  const value = discipline.toLowerCase();
+  if (value === 'ride') {
+    return ['Ride', 'VirtualRide'];
+  } else {
+    return [discipline];
+  }
+}
+
 export async function getUserSummary({
   id,
   discipline,
@@ -137,7 +147,7 @@ export async function getUserSummary({
         userId: id,
       },
       type: {
-        equals: discipline,
+        in: getDisciplines(discipline),
       },
       startDate: {
         gte: getDateFromDays(days),
@@ -146,6 +156,7 @@ export async function getUserSummary({
     _sum: {
       distance: true,
       movingTime: true,
+      elevGain: true,
     },
     _avg: {
       distance: true,
@@ -161,6 +172,7 @@ export async function getUserSummary({
     avgSpeed: activityDataGroupedByUser._avg.averageSpeed || 0,
     avgDistancePerRun: activityDataGroupedByUser._avg.distance || 0,
     avgActivityCount: activityDataGroupedByUser._count.activityId || 0,
+    avgTotalElevGain: activityDataGroupedByUser._sum.elevGain || 0,
   };
 
   console.log('NEW STATS: ', userStats);
@@ -179,7 +191,7 @@ export async function getAthleteSummaryByDiscipline(
         userId: user.userId,
       },
       type: {
-        equals: discipline,
+        in: getDisciplines(discipline),
       },
       startDate: {
         gte: getDateFromDays(days),
@@ -234,7 +246,7 @@ export async function getTeamSummaryByDiscipline(
         },
       },
       type: {
-        equals: discipline,
+        in: getDisciplines(discipline),
       },
       startDate: {
         gte: getDateFromDays(days),

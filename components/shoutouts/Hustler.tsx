@@ -21,7 +21,7 @@ const Hustler = async ({ slug }: { slug: string }) => {
         gte: date,
       },
       type: {
-        in: ['Run', 'Ride', 'Swim', 'Workout'],
+        in: ['Run', 'Ride', 'VirtualRide', 'Swim', 'Workout'],
       },
     },
     orderBy: {

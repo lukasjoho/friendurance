@@ -5,7 +5,7 @@ import InviteButton from './modules/invite/InviteButton';
 
 const TeamspaceHeader = ({ slug }: any) => {
   return (
-    <div className="sticky top-0 z-10 mt-3 bg-white  md:mt-8">
+    <div className="relative top-0 z-10 mt-3 bg-white  md:mt-8">
       <Container className="space-y-1.5 md:space-y-4">
         <div className="flex items-center justify-between">
           {slug !== 'friendurance-demo-team' && <TeamSelector slug={slug} />}

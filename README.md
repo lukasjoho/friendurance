@@ -42,6 +42,11 @@ Teams compete agains each other on a global public leaderboard.
 
 ![Alt text](https://res.cloudinary.com/dum2lqmke/image/upload/v1695666262/Screenshot_2023-09-25_at_20.22.39_itjtxq.png)
 
+## Shoutouts
+
+Athletes receive special shoutouts for their performance based on monthly and yearly aggregate metrics.
+![Alt text](https://res.cloudinary.com/dum2lqmke/image/upload/v1695667205/Screenshot_2023-09-25_at_20.32.33_x7nthu.png)
+
 ## Feedback
 
 Users can give feedback without any sign-up on a publicly available feedback board.

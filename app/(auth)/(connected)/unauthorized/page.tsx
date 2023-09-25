@@ -1,4 +1,4 @@
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';

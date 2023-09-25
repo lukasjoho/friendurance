@@ -1,5 +1,5 @@
-import Connect from '@/components/Connect';
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
+import Connect from '@/components/pages/connect/Connect';
 import { getAuthUser } from '@/lib/db';
 
 const ConnectPage = async () => {

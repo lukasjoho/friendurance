@@ -1,5 +1,5 @@
-import { UserAvatar } from '@/components/UserAvatar';
 import InviteLoginButton from '@/components/shared/InviteLoginButton';
+import { UserAvatar } from '@/components/shared/UserAvatar';
 import { Card } from '@/components/ui/card';
 import { prisma } from '@/lib/clients/prisma';
 import { getAuthUser } from '@/lib/db';

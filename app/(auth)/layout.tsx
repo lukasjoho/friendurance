@@ -11,9 +11,6 @@ const AuthLayout = async ({
   if (!user) {
     redirect('/login');
   }
-  // if (!user.hasConnected) {
-  //   redirect('/connect');
-  // }
   return <>{children}</>;
 };
 

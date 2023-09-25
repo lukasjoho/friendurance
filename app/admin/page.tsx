@@ -1,6 +1,5 @@
-import Container from '@/components/Container';
-import { UserAvatar } from '@/components/UserAvatar';
-import RefreshButton from '@/components/admin/RefreshButton';
+import Container from '@/components/layout/Container';
+import { UserAvatar } from '@/components/shared/UserAvatar';
 import {
   Table,
   TableBody,
@@ -11,11 +10,7 @@ import {
 } from '@/components/ui/table';
 import { prisma } from '@/lib/clients/prisma';
 import { formatDate } from '@/lib/utils';
-
-function handleRefresh(event: React.MouseEvent<HTMLButtonElement>) {
-  const id = (event.target as HTMLButtonElement).id;
-  console.log(id);
-}
+import RefreshButton from '../../components/pages/admin/RefreshButton';
 
 const AdminPage = async () => {
   const users = await prisma.user.findMany({

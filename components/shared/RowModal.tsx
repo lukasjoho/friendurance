@@ -1,5 +1,5 @@
-import TeamInfoModal from '../TeamInfoModal';
 import Radar from '../modules/radar';
+import TeamInfoModal from '../pages/leaderboard/TeamInfoModal';
 import UserInfoModal from './UserInfoModal';
 
 const RowModal = ({ data, type }: any) => {

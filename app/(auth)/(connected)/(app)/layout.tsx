@@ -1,4 +1,4 @@
-import Footer from '@/components/Footer';
+import Footer from '@/components/layout/Footer';
 import React, { FC } from 'react';
 
 interface AppLayoutProps {
@@ -8,9 +8,6 @@ interface AppLayoutProps {
 const AppLayout: FC<AppLayoutProps> = async ({ children }) => {
   return (
     <div className="flex grow flex-col">
-      {/* <TeamspaceHeader /> */}
-
-      {/* <PopUpWrapper /> */}
       {children}
       <div className="mt-16 md:mt-32">
         <Footer />

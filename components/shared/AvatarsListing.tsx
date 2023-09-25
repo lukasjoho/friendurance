@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { FC } from 'react';
-import { UserAvatar } from '../UserAvatar';
+import { UserAvatar } from './UserAvatar';
 
 interface AvatarListingProps {
   users: any;

@@ -2,28 +2,6 @@ import { getRadarMetrics } from '@/app/api/radars/actions';
 import { cookies } from 'next/headers';
 import { prisma } from './clients/prisma';
 import { getDateFromDays } from './helpers';
-import { getStravaUserSingle } from './strava';
-
-export async function hasActivitiesAndStats() {
-  let hasActivitiesAndStats = false;
-  const stravaUser = await getStravaUserSingle();
-  const user = await prisma.user.findUnique({
-    where: {
-      userId: String(stravaUser?.id),
-      NOT: [
-        {
-          activities: {
-            none: {},
-          },
-        },
-      ],
-    },
-    include: {
-      activities: true,
-    },
-  });
-  return user;
-}
 
 export async function getAuthUser() {
   const cookieStore = cookies();
@@ -140,7 +118,6 @@ export async function getUserSummary({
   discipline: string;
   days: number;
 }) {
-  console.log('SUMMARY SERVER DAYS: ', days);
   const activityDataGroupedByUser = await prisma.activity.aggregate({
     where: {
       user: {
@@ -175,7 +152,6 @@ export async function getUserSummary({
     avgTotalElevGain: activityDataGroupedByUser._sum.elevGain || 0,
   };
 
-  console.log('NEW STATS: ', userStats);
   return userStats;
 }
 
@@ -210,7 +186,6 @@ export async function getAthleteSummaryByDiscipline(
       activityId: true,
     },
   });
-  console.log('ACT: ', activityDataGroupedByUser);
   const userStats = {
     avgTotalDistance: activityDataGroupedByUser._sum.distance || 0,
     avgSpeed: activityDataGroupedByUser._avg.averageSpeed || 0,

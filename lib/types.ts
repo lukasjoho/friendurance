@@ -1,3 +1,7 @@
+export interface ModuleProps {
+  slug: string;
+}
+
 export interface User {
   id: string;
   userId: string;

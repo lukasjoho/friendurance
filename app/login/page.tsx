@@ -1,4 +1,4 @@
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
 import LoginButton from '@/components/shared/LoginButton';
 import { Card, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';

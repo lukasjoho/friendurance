@@ -1,10 +1,10 @@
-import FeedbackForm from '@/components/FeedbackForm';
 import RegularPageLayout from '@/components/layout/RegularPageLayout';
+import FeedbackForm from '@/components/shared/feedback/FeedbackForm';
 import { createMetaDataObject } from '@/lib/helpers/createMetaDataObject';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
-import FeedbackGrid from './FeedbackGrid';
-import FeedbackGridFallback from './FeedbackGridFallback';
+import FeedbackGrid from './components/FeedbackGrid';
+import FeedbackGridFallback from './components/FeedbackGridFallback';
 
 export const metadata: Metadata = createMetaDataObject({
   title: 'Feedback',

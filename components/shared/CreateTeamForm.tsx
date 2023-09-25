@@ -43,7 +43,6 @@ const CreateTeamForm = ({ hide }: FormProps) => {
   }, [watchedValue]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     // const res = await createTeam(values);
     const res = await fetch('/api/teams', {
       method: 'POST',
@@ -52,7 +51,6 @@ const CreateTeamForm = ({ hide }: FormProps) => {
     const team = await res.json();
     if (res.ok) {
       toast.success(`Team successfully created.`);
-      console.log('SHOULD HIDE');
       hide?.();
       router.push(`/team/${team.slug}`);
       return;

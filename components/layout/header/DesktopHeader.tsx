@@ -1,7 +1,7 @@
-import AvatarDropdown from '@/components/AvatarDropdown';
-import Container from '@/components/Container';
-import FeedbackButton from '@/components/FeedbackButton';
-import { Icons } from '@/components/Icons';
+import AvatarDropdown from '@/components/layout/AvatarDropdown';
+import Container from '@/components/layout/Container';
+import { Icons } from '@/components/shared/Icons';
+import FeedbackButton from '@/components/shared/feedback/FeedbackButton';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { FC } from 'react';

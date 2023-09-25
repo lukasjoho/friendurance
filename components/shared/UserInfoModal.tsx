@@ -6,7 +6,6 @@ import {
   formatToEmoji,
   secondsToHoursMinutes,
 } from '@/lib/utils';
-import { UserAvatar } from '../UserAvatar';
 import Radar from '../modules/radar';
 import {
   Table,
@@ -16,6 +15,7 @@ import {
   TableHeader,
   TableRow,
 } from '../ui/table';
+import { UserAvatar } from './UserAvatar';
 import { Modal, ModalContent, ModalHeader, ModalTitle } from './modal';
 
 interface UserInfoModalProps {

@@ -1,10 +1,10 @@
 'use client';
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
 import { AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { FC, createContext, useContext, useState } from 'react';
 
-import { Icons } from '@/components/Icons';
+import { Icons } from '@/components/shared/Icons';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Link from 'next/link';

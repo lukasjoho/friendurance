@@ -1,10 +1,10 @@
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
 import DisciplineSelector, {
   DateRangeSelector,
-} from '@/components/DisciplineSelector';
-import LeaderboardHero from '@/components/leaderboard/LeaderboardHero';
-import SkeletonLeaderboardTable from '@/components/leaderboard/SkeletonLeaderboardTable';
-import TeamsTable from '@/components/leaderboard/TeamsTable';
+} from '@/components/pages/leaderboard/DisciplineSelector';
+import LeaderboardHero from '@/components/pages/leaderboard/LeaderboardHero';
+import SkeletonLeaderboardTable from '@/components/shared/leaderboard/SkeletonLeaderboardTable';
+import TeamsTable from '@/components/shared/leaderboard/TeamsTable';
 import { Discipline, disciplines } from '@/lib/data/disciplines';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';

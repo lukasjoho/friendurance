@@ -1,4 +1,4 @@
-import AvatarDropdown from '@/components/AvatarDropdown';
+import AvatarDropdown from '@/components/layout/AvatarDropdown';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 

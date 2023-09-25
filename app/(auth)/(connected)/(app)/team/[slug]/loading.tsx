@@ -1,4 +1,4 @@
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const LoadingPage = () => {

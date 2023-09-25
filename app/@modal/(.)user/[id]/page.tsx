@@ -1,6 +1,6 @@
 import { getRadarMetrics } from '@/app/api/radars/actions';
-import { UserAvatar } from '@/components/UserAvatar';
 import Radar from '@/components/modules/radar';
+import { UserAvatar } from '@/components/shared/UserAvatar';
 import { RecentActivities } from '@/components/shared/UserInfoModal';
 import UserSummary from '@/components/shared/UserSummary';
 import {

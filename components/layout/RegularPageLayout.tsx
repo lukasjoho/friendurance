@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import SiteHeader, { SiteHeaderProps } from '../shared/SiteHeader';
+import SiteHeader, { SiteHeaderProps } from './headers/siteheader/SiteHeader';
 
 interface RegularPageLayoutProps extends SiteHeaderProps {
   children: React.ReactNode;

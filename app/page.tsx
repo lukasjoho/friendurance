@@ -1,9 +1,9 @@
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import HomeTitle from '@/components/HomeTitle';
+import HomeTitle from '@/components/pages/home/HomeTitle';
 import LoginButton from '@/components/shared/LoginButton';
 import { cn } from '@/lib/utils';
 import { Medal } from 'lucide-react';

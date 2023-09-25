@@ -1,7 +1,7 @@
-import Container from '@/components/Container';
-import { TeamAvatar } from '@/components/UserAvatar';
+import Container from '@/components/layout/Container';
+import CreateTeamButton from '@/components/pages/teams/CreateTeamButton';
 import AvatarsListing from '@/components/shared/AvatarsListing';
-import CreateTeamButton from '@/components/shared/CreateTeamButton';
+import { TeamAvatar } from '@/components/shared/UserAvatar';
 
 import { buttonVariants } from '@/components/ui/button';
 import {

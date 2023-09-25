@@ -1,10 +1,10 @@
-import UsersTable from '../leaderboard/UsersTable';
+import UsersTable from '../shared/leaderboard/UsersTable';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 const AthletesStats = ({ slug }: { slug: string }) => {
   return (
-    <Card className="grow overflow-hidden">
+    <Card>
       <CardHeader>
         <CardTitle>Athlete Stats</CardTitle>
       </CardHeader>

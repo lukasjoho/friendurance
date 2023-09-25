@@ -1,7 +1,7 @@
-import Container from '@/components/Container';
-import Map from '@/components/Map/Map';
-import TeamspaceHeader from '@/components/TeamspaceHeader';
-import Shoutouts from '@/components/shoutouts';
+import Container from '@/components/layout/Container';
+import TeamHeader from '@/components/layout/headers/teamheader/TeamHeader';
+import Map from '@/components/modules/Map/Map';
+import Shoutouts from '@/components/modules/Shoutouts';
 import AthletesStats from '@/components/teamboard/AthletesStats';
 import { prisma } from '@/lib/clients/prisma';
 import { getAuthUser, getTeams } from '@/lib/db';
@@ -37,16 +37,10 @@ const TeamPage = async ({ params }: { params: { slug: string } }) => {
   }
   return (
     <div className="grow  space-y-3 md:space-y-8">
-      {/* <CurrentTeamSetter user={user} /> */}
-      <TeamspaceHeader slug={slug} />
-
+      {/* passing slugs down here through prop drilling. This could also be solved with server context store or accessing headers in component to avoid prop drilling. */}
+      <TeamHeader slug={slug} />
       <Container className="space-y-3 md:space-y-8">
-        <div className="flex items-stretch gap-4 md:gap-8">
-          <AthletesStats slug={slug} />
-          {/* <div className="min-w-[400px] ">
-            <TeamRadar />
-          </div> */}
-        </div>
+        <AthletesStats slug={slug} />
         <Shoutouts slug={slug} />
         <Map slug={slug} />
       </Container>

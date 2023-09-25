@@ -1,7 +1,7 @@
-import Container from '@/components/Container';
-import Map from '@/components/Map/Map';
-import TeamspaceHeader from '@/components/TeamspaceHeader';
-import Shoutouts from '@/components/shoutouts';
+import Container from '@/components/layout/Container';
+import TeamHeader from '@/components/layout/headers/teamheader/TeamHeader';
+import Map from '@/components/modules/Map/Map';
+import Shoutouts from '@/components/modules/Shoutouts';
 import AthletesStats from '@/components/teamboard/AthletesStats';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { ShieldAlert } from 'lucide-react';
@@ -9,7 +9,7 @@ import { ShieldAlert } from 'lucide-react';
 const TeamPage = async () => {
   return (
     <div className="grow  space-y-3 md:space-y-8">
-      <TeamspaceHeader slug="friendurance-demo-team" />
+      <TeamHeader slug="friendurance-demo-team" />
       <Container>
         <Alert variant="warning">
           <ShieldAlert />

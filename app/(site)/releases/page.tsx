@@ -1,5 +1,5 @@
 import { allPosts } from '@/.contentlayer/generated';
-import Container from '@/components/Container';
+import Container from '@/components/layout/Container';
 import RegularPageLayout from '@/components/layout/RegularPageLayout';
 import { compareDesc } from 'date-fns';
 import ReleaseItem from './ReleaseItem';

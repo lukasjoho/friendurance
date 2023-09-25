@@ -38,11 +38,6 @@ async function getAllMetrics(userId: string, type: 'Run' | 'Ride') {
   };
 }
 
-interface QueryOptions {
-  metric: '_count' | '_avg';
-  field: '';
-}
-
 export async function getSortedCounts(type: 'Run' | 'Ride') {
   //in last 30 days
   return await prisma.activity.groupBy({

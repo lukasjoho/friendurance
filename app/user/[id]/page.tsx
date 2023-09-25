@@ -7,7 +7,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const UserPage = ({ params }: { params: { id: string } }) => {
+const UserPage = () => {
   return <div>UserPage</div>;
 };
 

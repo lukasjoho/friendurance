@@ -13,13 +13,11 @@ export async function POST(req: NextRequest) {
   if (!count) {
     return NextResponse.json({ error: 'Provide a body with count value.' });
   }
-  const upsertedUsers = await upsertDemoUsers();
+  await upsertDemoUsers();
   const createdActivities = await createDemoActivities(parseInt(count));
 
   return NextResponse.json(createdActivities);
 }
-
-const TYPES = ['Run', 'Ride'];
 
 const upsertDemoUsers = async () => {
   const users = generateUsers();

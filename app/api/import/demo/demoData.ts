@@ -1,5 +1,3 @@
-const COUNT = 500;
-
 function generateRandomFloat(min: number, max: number): number {
   return Math.random() * (max - min) + min;
 }
@@ -18,7 +16,7 @@ function generateRandomDate(start: string, end: string) {
   return new Date(newTimestamp).toISOString();
 }
 
-function generateActivity(i: number) {
+function generateActivity() {
   const mTime = generateRandomInt(900, 3600);
   const dist = Number(generateRandomFloat(5000, 10000).toFixed(1));
   return {
@@ -46,7 +44,7 @@ function generateActivity(i: number) {
 export function generateActivities(count: number) {
   const activities = [];
   for (let i = 0; i < count; i++) {
-    activities.push(generateActivity(i));
+    activities.push(generateActivity());
   }
   return activities;
 }

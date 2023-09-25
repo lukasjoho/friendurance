@@ -17,7 +17,7 @@ export interface TokenResponse {
 }
 
 export async function getStravaActivityById(id: string) {
-  const [data, error] = await fetcher(
+  const [data] = await fetcher(
     `${process.env.STRAVA_API_URL}/activities/${id}`
   );
   return data;
@@ -53,6 +53,6 @@ export async function refreshTokens() {
 }
 
 export async function getStravaUserSingle() {
-  const [data, error] = await fetcher(`${process.env.STRAVA_API_URL}/athlete`);
+  const [data] = await fetcher(`${process.env.STRAVA_API_URL}/athlete`);
   return data;
 }

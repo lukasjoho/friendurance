@@ -18,7 +18,7 @@ import { createInvite } from './actions';
 interface InviteButtonProps extends ButtonProps {}
 
 const InviteButton: FC<InviteButtonProps> = (props) => {
-  const { className, ...rest } = props;
+  const { className } = props;
   const { show } = useModal();
   return (
     <Button

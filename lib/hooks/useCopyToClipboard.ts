@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-type CopyFn = (text: string) => Promise<boolean>;
-
 export function useCopyToClipboard(): [
   string,
   (text: string) => Promise<boolean>,

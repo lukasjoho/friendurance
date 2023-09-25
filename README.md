@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center" >
+    <h1 align="center">Friendurance</h1>
+    <p>Friendurance is a fun web app on top of the Strava API. Strava athletes sign-up, create or join a team and then compete along detailed metrics team internally against their friends, but also externally against other teams.</p>
+    🌐 <a href="https://friendurance.com/">friendurance.com</a>
+    <br/>
+    <br/>
+</div>
 
-## Getting Started
+![Alt text](https://res.cloudinary.com/dum2lqmke/image/upload/v1695665373/friendurance-github-cover_c3c1q2.jpg)
 
-First, run the development server:
+# Tools
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Built with the following tech-stack:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [NextJS 13](https://nextjs.org/docs): Frontend UI
+- [Strava API](https://developers.strava.com/docs/reference): API to get athlete data
+- [Prisma](https://www.prisma.io/): Database ORM
+- [TailwindCSS](https://tailwindcss.com): CSS Styling
+- [ContentLayer](https://contentlayer.dev): Release Posts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Leaderboard
 
-## Learn More
+Within a team, users are ranked across 4 dimensions and the disciplines "Run" and "Ride".
+![Alt text](https://res.cloudinary.com/dum2lqmke/image/upload/v1695666705/Screenshot_2023-09-25_at_20.31.40_djymaf.png)
 
-To learn more about Next.js, take a look at the following resources:
+## Percentile Radar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Users are ranked into percentiles across 4 dimensions against the total user base.
+![Alt text](https://res.cloudinary.com/dum2lqmke/image/upload/v1695666777/Screenshot_2023-09-25_at_20.32.51_ylzlr7.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Map
 
-## Deploy on Vercel
+On a global map, users see where their teammates are doing sports.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Alt text](https://res.cloudinary.com/dum2lqmke/image/upload/v1695666583/Screenshot_2023-09-25_at_20.29.37_fy60vj.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Global Leaderboard
+
+Teams compete agains each other on a global public leaderboard.
+
+![Alt text](https://res.cloudinary.com/dum2lqmke/image/upload/v1695666262/Screenshot_2023-09-25_at_20.22.39_itjtxq.png)
+
+## Feedback
+
+Users can give feedback without any sign-up on a publicly available feedback board.
+
+![Alt text](https://res.cloudinary.com/dum2lqmke/image/upload/v1695666912/Screenshot_2023-09-25_at_20.35.06_g0nofq.png)

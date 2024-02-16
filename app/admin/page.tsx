@@ -50,7 +50,7 @@ const AdminPage = async () => {
                   </TableCell>
                   <TableCell>{formatDate(user.updatedAt.toString())}</TableCell>
                   <TableCell>
-                    {formatDate(user.activities[0].startDate?.toISOString()!)}
+                    {formatDate(user.activities[0]?.startDate?.toISOString()!)}
                   </TableCell>
                   <TableCell className="w-[160px]">
                     <RefreshButton id={user.userId} />
